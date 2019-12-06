@@ -28,7 +28,6 @@ class App
         {
             if(method_exists($this->controller, $url[1])) 
             {
-                var_dump($url);
                 $this->method = $url[1];
                 unset($url[1]);
                 //echo $url[1]; // For testing
@@ -42,7 +41,6 @@ class App
 
     public function parseUrl()
     {
-        // var_dump($_SERVER['REQUEST_URI']); die;
         if(isset($_GET['url'])) {
             return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         }

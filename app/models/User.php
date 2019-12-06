@@ -16,23 +16,18 @@ class User extends Model
 
     function __construct()
     {
-        $db = DB::connect();
-        $sql = ("SELECT `test`.`test` FROM `test`");
-        $stmt= $db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch();
+        
     }
 
-    function checkLogin() 
+    function checkLogin($mail, $password) 
     {
         $db = DB::connect();
-        $sql = ("SELECT * FROM `users` WHERE `email` = ?");
+        $sql = "SELECT * FROM `users` WHERE `email_address` = :email";
         $stmt= $db->prepare($sql);
-        if($stmt->execute())
-        {
-            return "GELUKT!";
-        };
-        //$result = $stmt->fetch();
-        return "niet gelukt";
+        $stmt->bindParam(":email",$email);
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        return $result;
     }
 }

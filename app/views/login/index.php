@@ -1,10 +1,13 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="./src/styles/generalStyles.css">
-  <link rel="stylesheet" type="text/css" href="./src/styles/login.css">
+  <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
+  <link rel="stylesheet" type="text/css" href="../src/styles/login.css">
 </head>
 
   <body>
+    <script>
+    console.log("<?php echo $data['test']?>")
+    </script>
     <div class="viewContainer viewContainerCustom">
 
       <div class="topBlock">

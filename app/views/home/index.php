@@ -6,10 +6,5 @@
 <body>
 
 </body>
-<script type="module">
-  var data = <?php echo $data['']?>
-
-  //LoginView.Render(ding);
-
-</script>
+test
 </html>
