@@ -80,6 +80,7 @@
 
   <script>
 
+<<<<<<< HEAD
     function ShowInfo(){
       var popup = document.getElementById("myPopup");
       popup.classList.toggle("show");
@@ -87,4 +88,8 @@
 
   </script>
 
+=======
+</body>
+test
+>>>>>>> development
 </html>

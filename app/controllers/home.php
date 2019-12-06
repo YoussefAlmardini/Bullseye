@@ -5,7 +5,11 @@ class Home extends Controller
 
     public function index()
     {
+<<<<<<< HEAD
         $this->view('home/index'); 
+=======
+        $this->view('home/index');
+>>>>>>> development
     }
 
     public function test() //test function 

@@ -5,30 +5,27 @@ class User extends Model
     protected $table = 'user';
     protected $fields = [
         'id',
-        'username',
+        'role_id',
+        'email',
+        'password',
+        'birthdate',
         'first_name',
+        'insertion',
         'last_name'
     ];
 
     function __construct()
     {
-        $db = DB::connect();
-        $sql = ("SELECT `test`.`test` FROM `test`");
-        $stmt= $db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch();
+        
     }
 
-    function checkLogin() 
+    function checkLogin($email, $password) 
     {
         $db = DB::connect();
-        $sql = ("SELECT * FROM `users`");
-        $stmt= $db->prepare($sql);
-        if($stmt->execute())
-        {
-            return "GELUKT!";
-        };
-        //$result = $stmt->fetch();
-        return "niet gelukt";
+        $stmt= $db->prepare("SELECT * FROM `users` WHERE `email_address` = :email");
+        $stmt->bindParam(":email",$email);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
     }
 }
