@@ -1,16 +1,58 @@
 <html>
 <head>
-
+  <link rel="stylesheet" type="text/css" href="./src/styles/generalStyles.css">
+  <link rel="stylesheet" type="text/css" href="./src/styles/login.css">
 </head>
 
-<body>
+  <body>
+    <div class="viewContainer viewContainerCustom">
 
-</body>
-<script type="module">
-  //var ding = echo $data['logindata'];
-  import LoginView from '/src/views/loginView.js';
+      <div class="topBlock">
 
-  LoginView.Render();
+        <div class="Title">
+            NLRANGERS
+        </div>
 
-</script>
+        <div class="notification">
+
+        </div>
+
+      </div>
+
+      <div class="middleBlock">
+
+        <form method="post" action="//TODO">
+
+        <div class="secondTitle formTitle">
+          Inloggin
+        </div>
+
+         <div class="inputContainer">
+            <input type="email" placeho/>
+         </div>
+
+         <div class="inputContainer">
+            <input type="password" />
+         </div>
+
+          <div class="inputContainer">
+            <button type="submit">Akkord</button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="bottomBlock">
+
+        <div class="secondTitle">Nog geen account?</div>
+        <div class="link"><a href="#">Account aanmaken</a></div>
+
+      </div>
+
+
+    </div>
+    
+
+  </body>
 </html>

@@ -2,13 +2,13 @@
 
 class DB {
     public function connect() {
-        $user = "admin";
-        $pass = "admin";
+        $user = "localhost";
+        $pass = "xlcaBw";
         try {
             $options = [
                 PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION
             ];
-            $db = new PDO('mysql:host=localhost;dbname=test', $user, $pass, $options); 
+            $db = new PDO('mysql:host=localhost;dbname=student4a7_525889', $user, $pass, $options); 
         } catch (PDOException $e) {
             error_log($e->getMessage() . "\n", 3, "log/errorlog.log");
         }
