@@ -6,7 +6,7 @@
 
   <body>
     <script>
-    console.log("<?php echo $data['test']?>")
+    console.log("<?php echo($data['test']['email_address'])?>")
     </script>
     <div class="viewContainer viewContainerCustom">
 

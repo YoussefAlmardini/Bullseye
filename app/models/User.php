@@ -19,15 +19,13 @@ class User extends Model
         
     }
 
-    function checkLogin($mail, $password) 
+    function checkLogin($email, $password) 
     {
         $db = DB::connect();
-        $sql = "SELECT * FROM `users` WHERE `email_address` = :email";
-        $stmt= $db->prepare($sql);
+        $stmt= $db->prepare("SELECT * FROM `users` WHERE `email_address` = :email");
         $stmt->bindParam(":email",$email);
         $stmt->execute();
         $result = $stmt->fetch();
-
         return $result;
     }
 }

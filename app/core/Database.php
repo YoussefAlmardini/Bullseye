@@ -2,8 +2,8 @@
 
 class DB {
     public function connect() {
-        $user = "admin";
-        $pass = "admin";
+        $user = "root";
+        $pass = "";
 
         try {
             $options = [
