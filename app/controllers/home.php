@@ -3,12 +3,9 @@
 class Home extends Controller
 {
 
-    public function index($username = '')
+    public function index()
     {
-        $user = $this->model('User');
-        $user->username = $username;
-        $this->view('home/index', ['username' => $user->username]); 
-        //echo "Home pagina met method 'index' met Username: " . $username;
+        $this->view('home/index'); 
     }
 
     public function test() //test function 

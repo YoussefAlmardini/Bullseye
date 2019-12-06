@@ -3,7 +3,7 @@
 class App
 {
  /// website.nl/login/index/
-    protected $controller = 'login'; // Standaard controller
+    protected $controller = 'home'; // Standaard controller
     protected $method = 'index'; // Standaard method
     protected $params = []; // Standaard geen params
 

@@ -1,7 +1,7 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="./src/styles/generalStyles.css">
-  <link rel="stylesheet" type="text/css" href="./src/styles/login.css">
+  <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
+  <link rel="stylesheet" type="text/css" href="../src/styles/login.css">
 </head>
 
   <body>
@@ -28,11 +28,11 @@
         </div>
 
          <div class="inputContainer">
-            <input type="email" placeho/>
+            <input type="email" placeholder="Email"/>
          </div>
 
          <div class="inputContainer">
-            <input type="password" />
+            <input type="password" placeholder="wachtwoord"/>
          </div>
 
           <div class="inputContainer">
