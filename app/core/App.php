@@ -3,7 +3,7 @@
 class App
 {
  /// website.nl/login/index/
-    protected $controller = 'login'; // Standaard controller
+    protected $controller = 'home'; // Standaard controller
     protected $method = 'index'; // Standaard method
     protected $params = []; // Standaard geen params
 
@@ -11,7 +11,7 @@ class App
     {
         $url = $this->parseUrl();
 
-        //print_r($url); // For testing
+        // print_r($url); // For testing
 
         if(file_exists('../app/controllers/' . $url[0] . '.php' ))
         {
@@ -28,7 +28,6 @@ class App
         {
             if(method_exists($this->controller, $url[1])) 
             {
-                var_dump($url);
                 $this->method = $url[1];
                 unset($url[1]);
                 //echo $url[1]; // For testing
@@ -42,9 +41,8 @@ class App
 
     public function parseUrl()
     {
-        // var_dump($_SERVER['REQUEST_URI']); die;
         if(isset($_GET['url'])) {
             return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-        }
+        } // nlrangers.test/registration
     }
 }

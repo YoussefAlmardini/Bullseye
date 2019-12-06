@@ -1,10 +1,13 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="./src/styles/generalStyles.css">
-  <link rel="stylesheet" type="text/css" href="./src/styles/login.css">
+  <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
+  <link rel="stylesheet" type="text/css" href="../src/styles/login.css">
 </head>
 
   <body>
+    <script>
+    console.log("<?php echo($data['test']['email_address'])?>")
+    </script>
     <div class="viewContainer viewContainerCustom">
 
       <div class="topBlock">
@@ -28,11 +31,11 @@
         </div>
 
          <div class="inputContainer">
-            <input type="email" placeho/>
+            <input type="email" placeholder="Email"/>
          </div>
 
          <div class="inputContainer">
-            <input type="password" />
+            <input type="password" placeholder="wachtwoord"/>
          </div>
 
           <div class="inputContainer">

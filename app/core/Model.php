@@ -17,4 +17,8 @@ class Model {
     public function loadFromArray(array $array){
         
     }
+
+    public function loadFromDB(array $array){
+        
+    }
 }

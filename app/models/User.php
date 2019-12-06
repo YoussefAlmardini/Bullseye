@@ -4,35 +4,43 @@ class User extends Model
 {
     protected $table = 'user';
     protected $fields = [
-        'id',
+        'user_id',
         'role_id',
-        'email',
-        'password',
-        'birthdate',
         'first_name',
         'insertion',
-        'last_name'
+        'last_name',
+        'birthdate',
+        'email_address',
+        'password'
     ];
+
+    private function saveUserInDatabase($firstName, $insertion, $lastName, $birthDate, $email_address, $password){
+        // THIS FUNCTION SAVES THE USER IN THE DATABASE
+
+        $query = 'INSERT INTO users(role_id, first_name, insertion, last_name, birthdate, email_address, password) VALUES (:firstName, :insertion, :lastName, :birthDate, :email_address, :password)';
+        $stmt = $pdo->prepare($query);
+        $stmt->
+        $stmt->bindValue(':firstName', $firstName);
+        $stmt->bindValue(':insertion', $insertion);
+        $stmt->bindValue(':lastName', $lastName);
+        $stmt->bindValue(':birthDate', $birthDate);
+        $stmt->bindValue(':email_address', $email_address);
+        $stmt->bindValue(':password', $password);
+        $stmt->execute();
+    }
 
     function __construct()
     {
-        $db = DB::connect();
-        $sql = ("SELECT `test`.`test` FROM `test`");
-        $stmt= $db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch();
+        
     }
 
-    function checkLogin() 
+    function checkLogin($email, $password) 
     {
         $db = DB::connect();
-        $sql = ("SELECT * FROM `users` WHERE `email` = ?");
-        $stmt= $db->prepare($sql);
-        if($stmt->execute())
-        {
-            return "GELUKT!";
-        };
-        //$result = $stmt->fetch();
-        return "niet gelukt";
+        $stmt= $db->prepare("SELECT * FROM `users` WHERE `email_address` = :email");
+        $stmt->bindParam(":email",$email);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
     }
 }
