@@ -11,7 +11,7 @@ class App
     {
         $url = $this->parseUrl();
 
-        //print_r($url); // For testing
+        // print_r($url); // For testing
 
         if(file_exists('../app/controllers/' . $url[0] . '.php' ))
         {
@@ -42,6 +42,6 @@ class App
     {
         if(isset($_GET['url'])) {
             return $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-        }
+        } // nlrangers.test/registration
     }
 }
