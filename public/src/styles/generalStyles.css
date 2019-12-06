@@ -12,7 +12,7 @@ button{
     border: none;
     border-radius: 50px;
     color:white;
-    opacity: 75%;
+    opacity: 75;
     font-family: Segoe UI;
 }
 
@@ -21,7 +21,7 @@ button:hover{
 }
 
 input{
-    opacity: 75%;
+    opacity: 75;
     font-family: Segoe UI;
     text-align: center;
 }

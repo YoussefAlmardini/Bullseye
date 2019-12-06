@@ -1,0 +1,45 @@
+.viewContainerCustom{
+    background: url('../assets/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;;
+}
+input{
+    width: 80%;
+    height: 150px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    opacity: 0.75;
+    font-size: 50px;
+    font-family: Semibold, Segoe, UI;
+
+}
+button{
+    width: 50%;
+    height: 100px;
+    font-size: 50px;
+    margin-top: 5%;
+}
+.middleBlock{
+    min-height: max-content;
+    margin-top: 100px;
+
+}
+.formTitle{
+    padding-bottom: 25px;
+}
+.bottomBlock{
+    margin-top: 0px;
+}
+
+.formregister{
+    background: #FFFFFF52 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    opacity: 0.75;
+    width: 80%;
+    left: 10%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    position: relative;
+}
