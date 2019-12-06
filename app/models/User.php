@@ -28,4 +28,19 @@ class User extends Model
         $stmt->bindValue(':password', $password);
         $stmt->execute();
     }
+
+    function __construct()
+    {
+        
+    }
+
+    function checkLogin($email, $password) 
+    {
+        $db = DB::connect();
+        $stmt= $db->prepare("SELECT * FROM `users` WHERE `email_address` = :email");
+        $stmt->bindParam(":email",$email);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }
 }
