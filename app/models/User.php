@@ -5,8 +5,12 @@ class User extends Model
     protected $table = 'user';
     protected $fields = [
         'id',
-        'username',
+        'role_id',
+        'email',
+        'password',
+        'birthdate',
         'first_name',
+        'insertion',
         'last_name'
     ];
 
@@ -22,7 +26,7 @@ class User extends Model
     function checkLogin() 
     {
         $db = DB::connect();
-        $sql = ("SELECT * FROM `users`");
+        $sql = ("SELECT * FROM `users` WHERE `email` = ?");
         $stmt= $db->prepare($sql);
         if($stmt->execute())
         {

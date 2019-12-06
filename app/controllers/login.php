@@ -10,10 +10,10 @@ class Login extends Controller
 
     public function authorize()
     {
-        $test = $this->model('User');
-        $test->checkLogin();
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $this->model('User')->checkLogin($email, $password);
         //$this->view('login/index', ['test' => $test]);
         //return $this->model('checkLogin');
-
     }
 }
