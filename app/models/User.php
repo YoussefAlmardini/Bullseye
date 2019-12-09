@@ -16,9 +16,9 @@ class User extends Model
 
     private function saveUserInDatabase($firstName, $insertion, $lastName, $birthDate, $email_address, $password){
         // THIS FUNCTION SAVES THE USER IN THE DATABASE
-
+        $db = DB::connect();
         $query = 'INSERT INTO users(role_id, first_name, insertion, last_name, birthdate, email_address, password) VALUES (:firstName, :insertion, :lastName, :birthDate, :email_address, :password)';
-        $stmt = $pdo->prepare($query);
+        $stmt = $db->prepare($query);
         $stmt->
         $stmt->bindValue(':firstName', $firstName);
         $stmt->bindValue(':insertion', $insertion);
@@ -37,22 +37,24 @@ class User extends Model
     function checkLogin($email, $password) 
     {
         $db = DB::connect();
+        if($db == false) {$_SESSION['errors']['no_connection'] = true;}
         $stmt = $db->prepare("SELECT * FROM `users` WHERE `email_address` = :email");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+        $_SESSION['errors'] = [];
         // If email is not valid
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-           // E-mail is valid!
+           unset($_SESSION['errors']);
         } else {
-            $_SESSION['errors'] = '';
+            unset($_SESSION['errors']);
             $_SESSION['errors']['unvalid_email'] = true;
+            return false;
         }
 
         //If user does not exist
         if($user === false){
-            $_SESSION['errors'] = '';
+            unset($_SESSION['errors']);
             $_SESSION['errors']['inc_username'] = true;
             return false;
         } else{
@@ -60,11 +62,10 @@ class User extends Model
             if($validPassword){
                 $_SESSION['user'] = $user;
                 $_SESSION['logged_in'] = time();
-                $_SESSION['errors'] = '';
-                //TODO: Link naar alle speurtochten
+                unset($_SESSION['errors']);
                 return true;    
             } else{
-                $_SESSION['errors'] = '';
+                unset($_SESSION['errors']);
                 $_SESSION['errors']['inc_password'] = true;
                 return false;
             }

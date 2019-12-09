@@ -5,9 +5,6 @@
 </head>
 
   <body>
-    <script>
-    console.log("<?php echo $data['error_login']?>")
-    </script>
     <div class="viewContainer viewContainerCustom">
 
       <div class="topBlock">
@@ -27,6 +24,9 @@
             }
             else if(isset($_SESSION['errors']['inc_password'])){
               echo 'Wachtwoord is incorrect';
+            } 
+            else if(isset($_SESSION['errors']['no_connection'])){
+              echo 'Geen verbinding met database';
             }else{
               echo '';
             }
