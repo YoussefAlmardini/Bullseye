@@ -28,7 +28,6 @@ class App
         {
             if(method_exists($this->controller, $url[1])) 
             {
-                var_dump($url);
                 $this->method = $url[1];
                 unset($url[1]);
                 //echo $url[1]; // For testing
