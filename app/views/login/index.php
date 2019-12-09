@@ -6,14 +6,14 @@
 
   <body>
     <script>
-    console.log("<?php echo($data['test']['email_address'])?>")
+    console.log("<?php echo $data['error_login']?>")
     </script>
     <div class="viewContainer viewContainerCustom">
 
       <div class="topBlock">
 
         <div class="Title">
-            NLRANGERS
+            NLRangers
         </div>
 
         <div class="notification">
@@ -24,22 +24,22 @@
 
       <div class="middleBlock">
 
-        <form method="post" action="//TODO">
+        <form method="post" action="/login/authorize">
 
         <div class="secondTitle formTitle">
-          Inloggin
+          Inloggen
         </div>
 
          <div class="inputContainer">
-            <input type="email" placeho/>
+            <input type="email" name="email" placeholder=""/>
          </div>
 
          <div class="inputContainer">
-            <input type="password" />
+            <input type="password" name="password" placeholder=""/>
          </div>
 
           <div class="inputContainer">
-            <button type="submit">Akkord</button>
+            <button type="submit">Akkoord</button>
           </div>
 
         </form>
@@ -49,7 +49,7 @@
       <div class="bottomBlock">
 
         <div class="secondTitle">Nog geen account?</div>
-        <div class="link"><a href="#">Account aanmaken</a></div>
+        <div class="link"><a href="/register">Account aanmaken</a></div>
 
       </div>
 
