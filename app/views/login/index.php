@@ -13,11 +13,25 @@
       <div class="topBlock">
 
         <div class="Title">
-            NLRangers
+            NLRANGERS
         </div>
 
-        <div class="notification">
-
+        <div class="notification redNotification">
+         <p  id="notification">
+           <?php
+            if(isset($_SESSION['errors']['unvalid_email'])){
+              echo 'E-mailadres is niet geldig';
+            }
+            else if(isset($_SESSION['errors']['inc_username'])){
+              echo 'E-mailadres is incorrect';
+            }
+            else if(isset($_SESSION['errors']['inc_password'])){
+              echo 'Wachtwoord is incorrect';
+            }else{
+              echo '';
+            }
+          ?>
+         </p>
         </div>
 
       </div>
