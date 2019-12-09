@@ -31,11 +31,11 @@
         </div>
 
          <div class="inputContainer">
-            <input type="email" name="email" placeholder=""/>
+            <input type="email" name="email" placeholder="e-mail"/>
          </div>
 
          <div class="inputContainer">
-            <input type="password" name="password" placeholder=""/>
+            <input type="password" name="password" placeholder="wachtwoord"/>
          </div>
 
           <div class="inputContainer">
@@ -49,7 +49,7 @@
       <div class="bottomBlock">
 
         <div class="secondTitle">Nog geen account?</div>
-        <div class="link"><a href="/register">Account aanmaken</a></div>
+        <div class="link"><a href="/registration/index">Account aanmaken</a></div>
 
       </div>
 

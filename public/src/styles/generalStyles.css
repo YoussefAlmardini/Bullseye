@@ -24,6 +24,7 @@ input{
     opacity: 75;
     font-family: Segoe UI;
     text-align: center;
+    opacity: 0.75;
 }
 
 .inputContainer{

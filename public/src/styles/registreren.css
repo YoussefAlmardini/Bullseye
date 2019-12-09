@@ -10,10 +10,8 @@ input{
     height: 150px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #707070;
-    opacity: 0.75;
     font-size: 50px;
     font-family: Semibold, Segoe, UI;
-
 }
 button{
     width: 50%;
