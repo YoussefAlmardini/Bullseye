@@ -12,7 +12,7 @@ input{
     border: 1px solid #707070;
     opacity: 0.75;
     font-size: 50px;
-    font-family: Segoe, UI;
+    font-family: Semibold, Segoe, UI;
 
 }
 button{
@@ -33,7 +33,7 @@ button{
     margin-top: 0px;
 }
 
-.formregister{
+.formprofiel{
     background: #FFFFFF52 0% 0% no-repeat padding-box;
     border: 1px solid #707070;
     opacity: 0.75;
