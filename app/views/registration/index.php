@@ -50,15 +50,17 @@
             </div>
 
             <div class="inputContainer">
-                <input required type="password" placeholder="Wachtwoord *" name="password">
+                <input required type="password" placeholder="Wachtwoord *" id="password" name="password">
+                <img class="passwordshow" id="passwordshowimage" src="../src/assets/Icon-eye.png" onclick="showPassword()">
             </div>
 
             <div class="inputContainer">
-                <input required type="password" name="repeatedPassword"  placeholder="Herhaal wachtwoord *">
+                <input required type="password" name="repeatedPassword" id="passwordrepeat"  placeholder="Herhaal wachtwoord *">
+                <img class="passwordshow3" id="passwordshowimage2" src="../src/assets/Icon-eye.png" onclick="showPassword2()">
             </div>
 
             <div class="inputContainer">
-                <button required name="submit" type="submit">Verzenden</button>
+                <button required name="submit" onclick="changePasswordType(); changePasswordType2()" type="submit">Verzenden</button>
             </div>
 
         </form>
@@ -68,7 +70,7 @@
     <div class="bottomBlock">
 
         <div class="secondTitle">Heeft u al een account?</div>
-        <div class="link"><a href="#">Inloggen</a></div>
+        <div class="link"><a href="/login/index"">Inloggen</a></div>
 
     </div>
 
@@ -78,3 +80,55 @@
 
 </body>
 </html>
+<script>
+    function showPassword() {
+        var x = document.getElementById("password");
+        var img = document.getElementById("passwordshowimage");
+        if (x.type === "password") {
+            x.type = "text";
+            img.src = "../src/assets/Icon-eye-off.png";
+            img.className = "passwordshow2";
+        } else {
+            x.type = "password";
+            img.src = "../src/assets/Icon-eye.png";
+            img.className = "passwordshow";
+        }
+    }
+
+    function changePasswordType() {
+        var x = document.getElementById("password");
+        var img = document.getElementById("passwordshowimage");
+        if (x.type === "password") {
+
+        } else {
+            x.type = "password";
+            img.src = "../src/assets/Icon-eye.png";
+            img.className = "passwordshow";
+        }
+    }
+    function showPassword2() {
+        var x = document.getElementById("passwordrepeat");
+        var img = document.getElementById("passwordshowimage2");
+        if (x.type === "password") {
+            x.type = "text";
+            img.src = "../src/assets/Icon-eye-off.png";
+            img.className = "passwordshow4";
+        } else {
+            x.type = "password";
+            img.src = "../src/assets/Icon-eye.png";
+            img.className = "passwordshow3";
+        }
+    }
+
+    function changePasswordType2() {
+        var x = document.getElementById("passwordrepeat");
+        var img = document.getElementById("passwordshowimage2");
+        if (x.type === "password") {
+
+        } else {
+            x.type = "password";
+            img.src = "../src/assets/Icon-eye.png";
+            img.className = "passwordshow3";
+        }
+    }
+</script>
