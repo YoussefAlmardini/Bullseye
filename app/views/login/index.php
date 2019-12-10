@@ -13,7 +13,8 @@
             NLRANGERS
         </div>
 
-        <div class="notification redNotification">
+        <div class="notification redNotification" 
+        style="display:<?php echo( isset($_SESSION['errors']) ? 'block' : 'none')?>">
          <p  id="notification">
            <?php
             if(isset($_SESSION['errors']['unvalid_email'])){
