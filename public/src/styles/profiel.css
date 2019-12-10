@@ -29,10 +29,11 @@ button{
 .formTitle{
     padding-bottom: 25px;
 }
-.bottomBlock{
-    margin-top: 0px;
+.profielimage{
     position: relative;
-
+    margin-top: -430px;
+    width: 160px;
+    height: 145px;
 }
 
 .marginset{
@@ -54,34 +55,6 @@ button{
     font-size: 50px;
 }
 
-.profielbutton{
-    top: 745px;
-    left: 0%;
-    width: 33%;
-    height: 150px;
-    background: #0F7EC7;
-    display: inline-block;
-}
-.mapbutton{
-    top: 745px;
-    width: 33%;
-    height: 150px;
-    background: #66A1C7;
-    display: inline-block;
-
-}
-.instellingenbutton{
-    top: 745px;
-    width: 33%;
-    height: 150px;
-    background: #66A1C7;
-    display: inline-block;
-}
-
-.footerimages{
-    padding-top: 25px;
-}
-
 .topimage {
     position: relative;
     top: -190px;
@@ -98,13 +71,3 @@ button{
     margin-top: 200px;
 }
 
-.profielimage{
-    position: relative;
-    margin-top: -430px;
-
-    width: 160px;
-    height: 145px;
-
-
-
-}
