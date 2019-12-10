@@ -42,23 +42,23 @@
             </div>
 
             <div class="inputContainer">
-                <input placeholder="E-mail" type="email" />
+                <input required type="email" placeholder="E-mailadres *" name="email_address">
             </div>
 
             <div class="inputContainer">
-                <input placeholder="E-mail herhalen" type="email" />
+                <input required type="email" placeholder="Herhaal e-mailadres *">
             </div>
 
             <div class="inputContainer">
-                <input placeholder="Wachtwoord" type="password" />
+                <input required type="password" placeholder="Wachtwoord *" name="password">
             </div>
 
             <div class="inputContainer">
-                <input placeholder="Wachtwoord herhalen" type="password" />
+                <input required type="password" placeholder="Herhaal wachtwoord *">
             </div>
 
             <div class="inputContainer">
-                <button type="submit">Verzenden</button>
+                <button required name="submit" type="submit">Verzenden</button>
             </div>
 
         </form>
