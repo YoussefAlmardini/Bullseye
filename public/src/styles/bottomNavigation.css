@@ -1,0 +1,24 @@
+.NavButton{
+    top: 745px;
+    left: 0%;
+    width: 33%;
+    height: 150px;
+    background: #66A1C7;
+    display: inline-block;
+    text-align: center;
+}
+
+.footerimages{
+    padding-top: 25px;
+}
+
+.active{
+    background: #0F7EC7;
+}
+
+.navigationContainer{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+}
