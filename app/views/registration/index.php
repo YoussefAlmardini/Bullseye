@@ -14,9 +14,9 @@
         <label for="birthDate">Geboortedatum: </label>
         <input required type="date" name="birthDate"> <br><br>
         <input required type="email" placeholder="E-mailadres *" name="email_address"> <br><br>
-        <input required type="email" placeholder="Herhaal e-mailadres *"> <br><br>
+        <input required type="email" placeholder="Herhaal e-mailadres *" name="repeated_email_address"> <br><br>
         <input required type="password" placeholder="Wachtwoord *" name="password"> <br><br>
-        <input required type="password" placeholder="Herhaal wachtwoord *"> <br><br>
+        <input required type="password" placeholder="Herhaal wachtwoord *" name="repeatedPassword"> <br><br>
         <input required type="submit" placeholder="Registreren" name="submit">
     </form>
 </body>
