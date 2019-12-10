@@ -27,3 +27,18 @@ button{
 .bottomBlock{
     margin-top: 400px;
 }
+
+.passwordshow {
+    height: 50px;
+    position: absolute;
+    left: 770px;
+    top: 815px;
+    opacity: 0.5;
+}
+.passwordshow2 {
+    height: 62px;
+    position: absolute;
+    left: 770px;
+    top: 810px;
+    opacity: 0.5;
+}
