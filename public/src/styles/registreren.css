@@ -46,3 +46,33 @@ button{
 .birthdatetitle{
     font-size: 50px;
 }
+
+.passwordshow {
+    height: 50px;
+    position: absolute;
+    left: 590px;
+    top: 1210px;
+    opacity: 0.5;
+}
+.passwordshow2 {
+    height: 62px;
+    position: absolute;
+    left: 590px;
+    top: 1205px;
+    opacity: 0.5;
+}
+
+.passwordshow3 {
+    height: 50px;
+    position: absolute;
+    left: 590px;
+    top: 1380px;
+    opacity: 0.5;
+}
+.passwordshow4 {
+    height: 62px;
+    position: absolute;
+    left: 590px;
+    top: 1375px;
+    opacity: 0.5;
+}
