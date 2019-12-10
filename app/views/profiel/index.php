@@ -18,9 +18,10 @@
 
 
         <form class="formprofiel" action="*" method="POST">
-            33
+            <div class="topimage"></div>
+            <img class="profielimage" src="../src/assets/Icon-user.png">
 
-            <div class="inputContainer">
+            <div class="inputContainer marginset">
                 <label class="birthdatetitle" for="birthDate">voornaam: </label> <br><br>
                 <input required type="text" placeholder="Voornaam *" name="firstName">
             </div>
@@ -63,7 +64,21 @@
 
     <div class="bottomBlock">
 
-
+        <a href="http://nlrangers.test/profiel/index">
+          <div class="profielbutton">
+              <img class="footerimages" src="../src/assets/Icon-user-alt.png">
+          </div>
+        </a>
+        <a href="http://nlrangers.test/map/index">
+            <div class="mapbutton">
+                <img class="footerimages" src="../src/assets/Icon-earth.png">
+            </div>
+        </a>
+        <a href="http://nlrangers.test/settings/index">
+            <div class="instellingenbutton">
+                <img class="footerimages" src="../src/assets/Icon-settings.png">
+            </div>
+        </a>
 
     </div>
 

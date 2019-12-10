@@ -35,7 +35,8 @@
          </div>
 
          <div class="inputContainer">
-            <input type="password" placeholder="wachtwoord"/>
+            <input type="password" name="password" id="password" placeholder="wachtwoord"/>
+             <input type="checkbox" onclick="showPassword()">Laat wachtwoord zien
          </div>
 
           <div class="inputContainer">
@@ -59,3 +60,13 @@
 
   </body>
 </html>
+<script>
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
