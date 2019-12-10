@@ -46,7 +46,7 @@
             </div>
 
             <div class="inputContainer">
-                <input required type="email" placeholder="Herhaal e-mailadres *">
+                <input required type="email" name="repeated_email_address" placeholder="Herhaal e-mailadres *">
             </div>
 
             <div class="inputContainer">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="inputContainer">
-                <input required type="password" placeholder="Herhaal wachtwoord *">
+                <input required type="password" name="repeatedPassword"  placeholder="Herhaal wachtwoord *">
             </div>
 
             <div class="inputContainer">
