@@ -25,6 +25,7 @@ class Registration extends Controller
         $model = $this->model('User');
 
         if($model->validateUserInput($firstName, $insertion, $lastName, $birthDate, $email_address, $repeatedEmail_address, $password, $repeatedPassword, $hashedPassword)){
+            echo "<script>alert('Uw account is succesvol aangemaakt!');</script>";
             $this->view('login/index');
         }else{
             $this->view('registration/index');
