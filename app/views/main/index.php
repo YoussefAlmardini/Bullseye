@@ -3,6 +3,7 @@
 ?>
 <html>
 <body>
+
 <div id="mymap"></div>
 
 </body>
