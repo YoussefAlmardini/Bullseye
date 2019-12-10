@@ -24,6 +24,7 @@ input{
     opacity: 75;
     font-family: Segoe UI;
     text-align: center;
+    opacity: 0.75;
 }
 
 .inputContainer{
@@ -70,4 +71,21 @@ input{
 
 .lightGreen{
     background: #0BD26F;
+}
+.greenNotification{
+    color: #097740;
+}
+.redNotification{
+    color:#D20B0B;
+}
+.notification{
+    margin-left: 140;
+}
+.notification P{
+    font-family: Segoe UI;
+    font-weight: 500;
+    font-size: 40px;
+    position: fixed;
+    background: #FFFFFF52 0% 0% no-repeat padding-box !important;
+    padding: 1%;
 }
