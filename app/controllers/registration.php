@@ -10,33 +10,25 @@ class Registration extends Controller
     }
 
     public function catchData(){
-        // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA
+        // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA AND SENDS IT TO THE MODEL
 
-        $firstName = $_POST['firstName'];
-        $insertion = $_POST['insertion'];
-        $lastName = $_POST['lastName'];
-        $birthDate = $_POST['birthDate'];
-        $email_address = $_POST['email_address'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $firstName = htmlentities(htmlspecialchars($_POST['firstName']));
+        $insertion = htmlentities(htmlspecialchars($_POST['insertion']));
+        $lastName = htmlentities(htmlspecialchars($_POST['lastName']));
+        $birthDate = htmlentities(htmlspecialchars($_POST['birthDate']));
+        $email_address = htmlentities(htmlspecialchars($_POST['email_address']));
+        $repeatedEmail_address = htmlentities(htmlspecialchars($_POST['repeated_email_address']));
+        $password = $_POST['password'];
+        $repeatedPassword = $_POST['repeatedPassword'];
+        $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         $model = $this->model('User');
-        $model->saveUserInDatabase($firstName, $insertion, $lastName, $birthDate, $email_address, $password);
 
-        $this->view('login/index');
-    }
-    
-    private function generateSalt() {
-        // THIS FUNCTION GENERATES A SALT FOR THE HASH OF THE PASSWORD
-
-        $charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/\\][{}\'";:?.>,<!@#$%^&*()-_=+|';
-        $randString = "";
-        $randStringLen = 64;
-    
-        while(strlen($randString) < $randStringLen) {
-            $randChar = substr(str_shuffle($charset), mt_rand(0, strlen($charset)), 1);
-            $randString .= $randChar;
+        if($model->validateUserInput($firstName, $insertion, $lastName, $birthDate, $email_address, $repeatedEmail_address, $password, $repeatedPassword, $hashedPassword)){
+            echo "<script>alert('Uw account is succesvol aangemaakt!');</script>";
+            $this->view('login/index');
+        }else{
+            $this->view('registration/index');
         }
-    
-        return $randString;
     }
 }
