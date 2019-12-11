@@ -69,10 +69,34 @@ class BotBarNavigation{
     static LoadPage=(nav)=>{
         for(let key in nav){
             if(nav[key].active){
-                window.location.replace("http://nlrangers.test/"+nav[key].location);
+
+                let nextLocation = nav[key].location;
+                let currentUrl = window.location.href;
+                let currentLocation = this.GetCurrntLocation(nav,currentUrl);
+
+                //If you are navigate the same page that you are already in.....
+                if(currentUrl.includes(nextLocation)){
+                    alert("you are already here");
+                }
+                //Else replace the  current extention from the url with the new location... for example .../main (will be) .../settings
+                else{
+                    let nextUrl = this.GetNextUrl(currentUrl,currentLocation,nextLocation);
+                    window.location.replace(nextUrl);
+                }
             }
         }
        
+    }
+
+    //Uti
+    static GetNextUrl=(Url,currentLocation,nextLocation)=>{
+        return Url.replace(currentLocation,nextLocation);
+    }
+    
+    static GetCurrntLocation=(nav,currentUrl)=>{
+        for(let key in nav){
+            if(currentUrl.includes(nav[key].location)){return nav[key].location;}
+        }
     }
 }
 
