@@ -40,7 +40,7 @@
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', layerOptions).addTo(mymap);
 
             // Make a marker where you click
-            mymap.on('contextmenu', addMarker);
+            mymap.on('click', addMarker).on('contextmenu',delete_marker);
 
         // If user denies use of location
         }, function() {
@@ -66,12 +66,13 @@
             mymap.panTo(new L.LatLng(latitude, longitude));
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', layerOptions).addTo(mymap);
             });
-
+            
             // Maak een nieuwe marker
+            let newCircle;
             function addMarker(e){
-
             // Add marker to map at click location; add popup window
-            var newCircle = new L.circle(e.latlng,
+            let title = document.getElementById("title").value;
+            newCircle = new L.circle(e.latlng,
             {clickable: true,
             radius: 15,
             }
@@ -81,8 +82,7 @@
             };
 
             function delete_marker(){
-                let title = document.getElementById("title").value;
-                mymap.removeLayer(title)
+                mymap.removeLayer(this.newCircle);
             }
     }
 </script>

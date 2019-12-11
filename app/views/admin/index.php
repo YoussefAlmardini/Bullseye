@@ -7,7 +7,7 @@ include "header.php";
     <div id="mymap"></div>
     <input type="text" id="title" value="">
 
-    <!-- Always as last loaded  -->
+    <!-- Always as last loaded  --> 
 </body>
 <?php
 include "mapload.php";
