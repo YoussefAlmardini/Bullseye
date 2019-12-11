@@ -1,10 +1,16 @@
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script> 
+    $(document).ready(function () {
+
     document.getElementById('mymap').innerHTML = "<div id='map' style='width: 100%; height: 90%;'></div>";
     var mymap = L.map('mymap').setView([52.1637739, 5.3965879], 20);
     mymap.setZoom(15);
+
+    new L.Control.Zoom({
+    position: 'topright'
+    }).addTo(mymap);
 
     // Default layer options
     var layerOptions = {
@@ -40,7 +46,7 @@
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', layerOptions).addTo(mymap);
 
             // Make a marker where you click
-            mymap.on('click', addMarker).on('contextmenu',delete_marker);
+            mymap.on('click', addMarker);
 
         // If user denies use of location
         }, function() {
@@ -68,22 +74,34 @@
             });
             
             // Maak een nieuwe marker
-            let newCircle;
+            let newCircle = {};
             function addMarker(e){
             // Add marker to map at click location; add popup window
             let title = document.getElementById("title").value;
+            let descriptie = document.getElementById("descriptie").value;
+            let bind_title_descriptie = title +"<br>"+ descriptie;
+
             newCircle = new L.circle(e.latlng,
-            {clickable: true,
+            {
+            clickable: true,
             radius: 15,
             }
             ).addTo(mymap)
-            .bindPopup(title)
-            .openPopup();
-            };
+            .bindPopup(bind_title_descriptie)
+            .openPopup()
+            .on('contextmenu', delete_marker);
+            };  
 
-            function delete_marker(){
-                mymap.removeLayer(this.newCircle);
+            function delete_marker(e){
+                mymap.removeLayer(this);
             }
+
+            $('#toolbar .hamburger').on('click', function() {
+            $(this).parent().toggleClass('open');
+            });
+
+
     }
+});
+
 </script>
-</body>
