@@ -26,7 +26,7 @@
     // Sets icon
     var myIcon = L.icon({
         iconUrl: window.location.origin + '/src/assets/myicon.png',
-        iconSize: [30, 50],
+        iconSize: [70, 90],
         popupAnchor: [],
     });
 
