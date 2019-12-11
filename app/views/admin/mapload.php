@@ -1,12 +1,3 @@
-<head>
-    <link rel="stylesheet" href="../src/styles/map.css"/>
-   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-   crossorigin=""/>
-</head>
-<body>
-<div id="mymap"></div>
-
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 
@@ -47,6 +38,10 @@
             // Move the map to your current location
             mymap.panTo(new L.LatLng(latitude, longitude));
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', layerOptions).addTo(mymap);
+
+            // Make a marker where you click
+            mymap.on('contextmenu', addMarker);
+
         // If user denies use of location
         }, function() {
             latitude = 52.15139964059902;
@@ -70,7 +65,25 @@
             // Move the map in the center of location
             mymap.panTo(new L.LatLng(latitude, longitude));
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', layerOptions).addTo(mymap);
-        });
+            });
+
+            // Maak een nieuwe marker
+            function addMarker(e){
+
+            // Add marker to map at click location; add popup window
+            var newCircle = new L.circle(e.latlng,
+            {clickable: true,
+            radius: 15,
+            }
+            ).addTo(mymap)
+            .bindPopup(title)
+            .openPopup();
+            };
+
+            function delete_marker(){
+                let title = document.getElementById("title").value;
+                mymap.removeLayer(title)
+            }
     }
 </script>
 </body>
