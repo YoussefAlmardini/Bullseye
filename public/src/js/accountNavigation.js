@@ -8,9 +8,9 @@ class BotBarNavigation{
             location : "profiel"
         },
         map:{
-            element : document.getElementById('map'),
+            element : document.getElementById('main'),
             active : true,
-            location : "map"
+            location : "main"
         },
         settings:{
             element : document.getElementById('settings'),
@@ -37,7 +37,7 @@ class BotBarNavigation{
                     this.LoadPage(nav);
                     
                 break;
-            case Element.MAP:
+            case Element.MAIN:
                     nav.profile.active = false;
                     nav.map.active = true;
                     nav.settings.active = false;
@@ -78,7 +78,7 @@ class BotBarNavigation{
 
 const Element = {
     PROFILE: 'profile',
-    MAP: 'map',
+    MAIN: 'main',
     SETTINGS:'settings'
 }
 

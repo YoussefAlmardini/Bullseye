@@ -19,11 +19,6 @@
         <input type="number" id="Ycoordinate" placeholder="Y Coordinate Marker">
         <input type="text" id="PopupMessage" placeholder="Popup bericht">
         <input type="button" onclick="getCoordinates()" value="Set a marker">
-
-        <?php include "../app/components/bottomNavigation/index.php"; ?>
-        <script>
-            BotBarNavigation.SwitchActivaty('map');
-        </script>
     </body>
     
 </html>

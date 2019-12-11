@@ -5,7 +5,7 @@
         <img class="footerimages" src="../src/assets/Icon-user-alt.png">
     </div>
 
-    <div class="NavButton" onclick="BotBarNavigation.Navigate('map')" id="map">
+    <div class="NavButton" onclick="BotBarNavigation.Navigate('main')" id="main">
         <img class="footerimages" src="../src/assets/Icon-earth.png">
     </div>
 
