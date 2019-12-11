@@ -77,12 +77,13 @@ class User extends Model
         
     }
 
-    function checkLogin($email, $password) 
+    function checkLogin($email, $password, $role)
     {
         $db = DB::connect();
         if($db == false) {$_SESSION['errors']['no_connection'] = true;}
-        $stmt = $db->prepare("SELECT * FROM `users` WHERE `email_address` = :email");
+        $stmt = $db->prepare("SELECT users.* FROM users INNER JOIN roles ON users.role_id = roles.role_id WHERE users.email_address = :email AND roles.role = :role;");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':role', $role);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         $_SESSION['errors'] = [];
@@ -105,6 +106,11 @@ class User extends Model
             if($validPassword){
                 $_SESSION['user'] = $user;
                 $_SESSION['logged_in'] = time();
+
+                if($role === 'admin'){
+                    $_SESSION['adminLoggedIn'] = true;
+                }
+                
                 unset($_SESSION['errors']);
                 return true;    
             } else{
