@@ -33,7 +33,6 @@ class BotBarNavigation{
                     nav.profile.active = true;
                     nav.map.active = false;
                     nav.settings.active = false;
-                    this.SwitchActivaty(nav);
                     this.LoadPage(nav);
                     
                 break;
@@ -41,14 +40,12 @@ class BotBarNavigation{
                     nav.profile.active = false;
                     nav.map.active = true;
                     nav.settings.active = false;
-                    this.SwitchActivaty(nav);
                     this.LoadPage(nav);
                 break;
             case Element.SETTINGS:
                     nav.profile.active = false;
                     nav.map.active = false;
                     nav.settings.active = true;
-                    this.SwitchActivaty(nav);
                     this.LoadPage(nav);
                 break;
 
@@ -76,10 +73,11 @@ class BotBarNavigation{
 
                 //If you are navigate the same page that you are already in.....
                 if(currentUrl.includes(nextLocation)){
-                    alert("you are already here");
+                    return false;
                 }
                 //Else replace the  current extention from the url with the new location... for example .../main (will be) .../settings
                 else{
+                    this.SwitchActivaty(nav);
                     let nextUrl = this.GetNextUrl(currentUrl,currentLocation,nextLocation);
                     window.location.replace(nextUrl);
                 }
