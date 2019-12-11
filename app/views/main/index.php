@@ -3,10 +3,10 @@
 ?>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/map.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/main.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/bottomNavigation.css">
+        <link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
+        <link rel="stylesheet" type="text/css" href="/src/styles/map.css">
+        <link rel="stylesheet" type="text/css" href="/src/styles/main.css">
+        <link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
     </head>
 <body>
 
