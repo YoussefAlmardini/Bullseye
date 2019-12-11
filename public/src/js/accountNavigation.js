@@ -21,10 +21,10 @@ class BotBarNavigation{
     }
 
     static Navigate =(location)=>{
-      this.UpdateGraphics(location);
+      this.UpdateNavigation(location);
     }
 
-    static UpdateGraphics=(element)=>{
+    static UpdateNavigation=(element)=>{
 
         let nav = this.navItems();
 
@@ -53,7 +53,6 @@ class BotBarNavigation{
     }
 
     static SwitchActivaty=(currentLocation)=>{
-        console.log(currentLocation);
        for(let key in this.navItems()){
            if(this.navItems()[key].location == currentLocation){
             this.navItems()[key].element.classList.add('active');
