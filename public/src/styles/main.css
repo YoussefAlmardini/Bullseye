@@ -1,0 +1,31 @@
+.TopDataMain{
+    top: 0px;
+    left: 0%;
+    width: 33%;
+    height: 150px;
+    background: #0F7EC7;
+    display: inline-block;
+    text-align: center;
+    z-index: 100;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+.TopDataMain p {
+    font-family: Segoe UI;
+    position: relative;
+    top: -10px;
+}
+
+.TopDataBar{
+    position: absolute;
+    top: 0px;
+    display: flex;
+    width: 100%;
+
+    
+}
+
+.TopDataMainMiddle{
+    background: #66A1C7;
+}
