@@ -1,4 +1,4 @@
-<script src="src/js/accountNavigation.js"></script>
+<script src="../src/js/accountNavigation.js"></script>
 <div class="navigationContainer">
 
     <div class="NavButton" onclick="BotBarNavigation.Navigate('profile')" id="profile">
