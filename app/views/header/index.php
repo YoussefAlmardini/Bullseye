@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="src/styles/map.css">
 <link rel="stylesheet" type="text/css" href="src/styles/main.css">
 <link rel="stylesheet" type="text/css" href="src/styles/bottomNavigation.css">
+<link rel="stylesheet" type="text/css" href="src/styles/home.css">
 
 <script src="/src/js/utilities.js"></script>
 <script>

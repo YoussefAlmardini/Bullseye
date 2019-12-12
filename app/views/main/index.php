@@ -8,30 +8,20 @@
 
 
 <div class="scaverage">
-    <div class="TopDataBar">
+   
 
-    <div class="TopDataMain" id="level">
-        <p>Level</p>
-    </div>
-
-    <div class="TopDataMain TopDataMainMiddle" id="location">
-        <p>Locatie</p>
-    </div>
-
-    <div class="TopDataMain" id="time">
-        <p>Tijd</p>
-    </div>
-
-    </div>
-
-    <div id="mymap"></div>
-
-  
-
-    <?php
-    include "map.php";
-    ?>
 </div>
+    <?php 
+        $empty = true;
+        $list = false;
+        $main = false;
+
+        if($empty){ include 'emptyMain.php';}
+        else if($list){include 'scaverageList.php';}
+        else if ($main){ include "map.php";}
+    ?>
+
+
 
 <?php include "../app/components/bottomNavigation/index.php"; ?>
 <script>
