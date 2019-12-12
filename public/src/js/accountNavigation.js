@@ -21,10 +21,10 @@ class BotBarNavigation{
     }
 
     static Navigate =(location)=>{
-      this.UpdateGraphics(location);
+      this.UpdateNavigation(location);
     }
 
-    static UpdateGraphics=(element)=>{
+    static UpdateNavigation=(element)=>{
 
         let nav = this.navItems();
 
@@ -33,7 +33,6 @@ class BotBarNavigation{
                     nav.profile.active = true;
                     nav.map.active = false;
                     nav.settings.active = false;
-                    this.SwitchActivaty(nav);
                     this.LoadPage(nav);
                     
                 break;
@@ -41,14 +40,12 @@ class BotBarNavigation{
                     nav.profile.active = false;
                     nav.map.active = true;
                     nav.settings.active = false;
-                    this.SwitchActivaty(nav);
                     this.LoadPage(nav);
                 break;
             case Element.SETTINGS:
                     nav.profile.active = false;
                     nav.map.active = false;
                     nav.settings.active = true;
-                    this.SwitchActivaty(nav);
                     this.LoadPage(nav);
                 break;
 
@@ -56,7 +53,6 @@ class BotBarNavigation{
     }
 
     static SwitchActivaty=(currentLocation)=>{
-        console.log(currentLocation);
        for(let key in this.navItems()){
            if(this.navItems()[key].location == currentLocation){
             this.navItems()[key].element.classList.add('active');
@@ -69,10 +65,35 @@ class BotBarNavigation{
     static LoadPage=(nav)=>{
         for(let key in nav){
             if(nav[key].active){
-                window.location.replace("http://nlrangers.test/"+nav[key].location);
+
+                let nextLocation = nav[key].location;
+                let currentUrl = window.location.href;
+                let currentLocation = this.GetCurrntLocation(nav,currentUrl);
+
+                //If you are navigate the same page that you are already in.....
+                if(currentUrl.includes(nextLocation)){
+                    return false;
+                }
+                //Else replace the  current extention from the url with the new location... for example .../main (will be) .../settings
+                else{
+                    this.SwitchActivaty(nav);
+                    let nextUrl = this.GetNextUrl(currentUrl,currentLocation,nextLocation);
+                    window.location.replace(nextUrl);
+                }
             }
         }
        
+    }
+
+    //Uti
+    static GetNextUrl=(Url,currentLocation,nextLocation)=>{
+        return Url.replace(currentLocation,nextLocation);
+    }
+    
+    static GetCurrntLocation=(nav,currentUrl)=>{
+        for(let key in nav){
+            if(currentUrl.includes(nav[key].location)){return nav[key].location;}
+        }
     }
 }
 

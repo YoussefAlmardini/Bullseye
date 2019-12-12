@@ -1,45 +1,34 @@
 <?php
-// include "header.php";
+    include "../app/views/header/index.php";
 ?>
+
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/map.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/main.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/bottomNavigation.css">
-    </head>
+    <head></head>
 <body>
 
-<div class="TopDataBar">
 
-    <div class="TopDataMain" id="level">
-        <p>Level</p>
-        <p>level_Data</p>
-    </div>
-
-    <div class="TopDataMain TopDataMainMiddle" id="location">
-        <p>Locatie</p>
-        <p>location_Data</p>
-    </div>
-
-    <div class="TopDataMain" id="time">
-        <p>Tijd</p>
-        <p>time_Data</p>
-    </div>
+<div class="scaverage">
+   
 
 </div>
+    <?php 
+        $empty = true;
+        $list = false;
+        $main = false;
 
-<div id="mymap"></div>
+        if($empty){ include 'emptyMain.php';}
+        else if($list){include 'scaverageList.php';}
+        else if ($main){ include "map.php";}
+    ?>
 
-    <?php include "../app/components/bottomNavigation/index.php"; ?>
-    <script>
-        BotBarNavigation.SwitchActivaty('main');
-    </script>
 
+
+<?php include "../app/components/bottomNavigation/index.php"; ?>
+<script>
+    BotBarNavigation.SwitchActivaty('main');
+</script>
 </body>
-<?php
-include "map.php";
-?>
+
 
 
 </html>
