@@ -1,26 +1,34 @@
 <?php
-// include "header.php";
+    include "../app/views/header/index.php";
 ?>
+
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/map.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/main.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/bottomNavigation.css">
-    </head>
+    <head></head>
 <body>
 
-<div id="mymap"></div>
 
-    <?php include "../app/components/bottomNavigation/index.php"; ?>
-    <script>
-        BotBarNavigation.SwitchActivaty('main');
-    </script>
+<div class="scaverage">
+   
 
+</div>
+    <?php 
+        $empty = true;
+        $list = false;
+        $main = false;
+
+        if($empty){ include 'emptyMain.php';}
+        else if($list){include 'scaverageList.php';}
+        else if ($main){ include "map.php";}
+    ?>
+
+
+
+<?php include "../app/components/bottomNavigation/index.php"; ?>
+<script>
+    BotBarNavigation.SwitchActivaty('main');
+</script>
 </body>
-<?php
-include "map.php";
-?>
+
 
 
 </html>

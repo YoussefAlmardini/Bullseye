@@ -1,0 +1,64 @@
+body{
+    background: #D1DDE5;
+}
+
+.settingsHeader{
+    height: 150px;
+    width: 100%;
+    background:  #0F7EC7;
+    text-align: center;
+    opacity: 75%;
+}
+.settingsHeader h1{
+    padding-top: 40px;
+    font-size: 50px;
+    color: white;
+    font-family: Segoe UI;
+}
+.settingsBox{
+    width: 100%;
+}
+
+.settingsBox .settingsItem{
+    height: 150px;
+    background:  rgba(102,161,199,0.5);
+    text-align: left;
+    display: flex;
+}
+.borderBottom{
+    border-bottom: 2px solid white;
+}
+.settingItemTitle{
+    height: 100px;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 50px;
+    font-family: Segoe UI;
+    font-weight: 500;
+    color: white;
+    text-shadow: 0 10px 10px black;;
+}
+
+.settingsItemLabel{
+    margin-top: 55px;
+    margin-left: 25px;
+    font-size: 40px;
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: 1;
+    font-weight: bold;
+}
+
+button{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    font-size: 60px;
+    margin-top: 25px;
+    padding-left: 1%;
+    font-family: none;
+    border: 2px solid white;
+    font-weight: bolder;
+    right: 50px;
+    background: #D20B0B;
+    opacity: 0.9;
+}

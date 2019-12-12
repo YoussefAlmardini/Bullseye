@@ -1,0 +1,10 @@
+#mapid {height: 90%;
+        width: auto;}
+
+#mymap{
+    height: 83%;
+    width: auto;
+    top: 8.5%;
+    z-index: 1;
+
+}
