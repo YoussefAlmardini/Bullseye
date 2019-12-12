@@ -1,16 +1,14 @@
 <?php
-// include "header.php";
+    include "../app/views/header/index.php";
 ?>
+
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
-        <link rel="stylesheet" type="text/css" href="/src/styles/map.css">
-        <link rel="stylesheet" type="text/css" href="/src/styles/main.css">
-        <link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
-    </head>
+    <head></head>
 <body>
 
-<div class="TopDataBar">
+
+<div class="scaverage">
+    <div class="TopDataBar">
 
     <div class="TopDataMain" id="level">
         <p>Level</p>
@@ -24,19 +22,23 @@
         <p>Tijd</p>
     </div>
 
+    </div>
+
+    <div id="mymap"></div>
+
+  
+
+    <?php
+    include "map.php";
+    ?>
 </div>
 
-<div id="mymap"></div>
-
-    <?php include "../app/components/bottomNavigation/index.php"; ?>
-    <script>
-        BotBarNavigation.SwitchActivaty('main');
-    </script>
-
+<?php include "../app/components/bottomNavigation/index.php"; ?>
+<script>
+    BotBarNavigation.SwitchActivaty('main');
+</script>
 </body>
-<?php
-include "map.php";
-?>
+
 
 
 </html>

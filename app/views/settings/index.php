@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="../src/styles/bottomNavigation.css">
     </head>
 
-    <body onload="BotBarNavigation.LoadPage();">
+    <body>
 
         <div class="settingsHeader">
             <h1>Instellingen</h1>
