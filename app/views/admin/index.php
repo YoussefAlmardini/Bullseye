@@ -1,7 +1,3 @@
-<?php
-include "header.php";
-?>
-<html>
 
 <body>
     <!-- <div id="mymap"></div> -->
