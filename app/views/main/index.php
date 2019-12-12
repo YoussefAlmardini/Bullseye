@@ -12,9 +12,9 @@
 
 </div>
     <?php 
-        $empty = true;
+        $empty = false;
         $list = false;
-        $main = false;
+        $main = true;
 
         if($empty){ include 'emptyMain.php';}
         else if($list){include 'scaverageList.php';}
