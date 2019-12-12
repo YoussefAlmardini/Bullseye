@@ -10,14 +10,17 @@
 
     <div class="TopDataMain" id="level">
         <p>Level</p>
+        <p>level_data</p>
     </div>
 
     <div class="TopDataMain TopDataMainMiddle" id="location">
         <p>Locatie</p>
+        <p>location_data</p>
     </div>
 
     <div class="TopDataMain" id="time">
         <p>Tijd</p>
+        <p>time_date</p>
     </div>
 
     </div>
