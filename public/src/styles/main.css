@@ -1,7 +1,7 @@
 .TopDataMain{
     top: 0px;
     left: 0%;
-    width: 33%;
+    width: 33.5%;
     height: 150px;
     background: #0F7EC7;
     display: inline-block;
@@ -9,6 +9,7 @@
     z-index: 100;
     font-size: 30px;
     color: #FFFFFF;
+
 }
 
 .TopDataMain p {

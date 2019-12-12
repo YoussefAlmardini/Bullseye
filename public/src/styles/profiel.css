@@ -6,17 +6,26 @@
     min-width: 100vw;;
 }
 input{
-    width: 80%;
-    height: 150px;
+    width: 50%;
+    height: 100px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 1px solid #707070;
+    border: 0px solid #707070;
     opacity: 0.75;
     font-size: 50px;
-    font-family: Semibold, Segoe, UI;
+    position: relative;
+    left: 10px;
+    font-family: Segoe UI;
+
+
 
 }
+
+input:focus{
+    outline: none;
+}
+
 button{
-    width: 50%;
+    width: 45%;
     height: 100px;
     font-size: 50px;
     margin-top: 5%;
@@ -36,23 +45,33 @@ button{
     height: 145px;
 }
 
+.inputContainer{
+    background-color: #FFFFFF;
+    border: 2px solid #707070;
+    text-align: left;
+}
+
 .marginset{
     margin-top: -100px;
 }
 
 .formprofiel{
     background: #FFFFFF52 0% 0% no-repeat padding-box;
-    border: 1px solid #707070;
+    border: 2px solid #707070;
     opacity: 0.75;
     width: 80%;
     left: 10%;
     padding-top: 30px;
     padding-bottom: 30px;
     position: relative;
+
 }
 
 .birthdatetitle{
-    font-size: 50px;
+    font-size: 45px;
+    left: 30px;
+    position: relative;
+    font-family: Segoe UI;
 }
 
 .topimage {
@@ -70,4 +89,53 @@ button{
 .middleBlock{
     margin-top: 200px;
 }
+
+.iconInputProfiel{
+    height: 65px;
+    position: absolute;
+    left: 680px;
+    top: 260px;
+    opacity: 0.75;
+}
+.iconInputProfiel2{
+    height: 65px;
+    position: absolute;
+    left: 680px;
+    top: 380px;
+    opacity: 0.75;
+}
+
+.iconInputProfiel3{
+    height: 65px;
+    position: absolute;
+    left: 680px;
+    top: 500px;
+    opacity: 0.75;
+}
+
+.iconInputProfiel4{
+    height: 65px;
+    position: absolute;
+    left: 680px;
+    top: 625px;
+    opacity: 0.75;
+}
+
+.iconInputProfiel5{
+    height: 65px;
+    position: absolute;
+    left: 680px;
+    top: 750px;
+    opacity: 0.75;
+}
+
+.iconInputProfiel6{
+    height: 65px;
+    position: absolute;
+    left: 680px;
+    top: 870px;
+    opacity: 0.75;
+}
+
+
 
