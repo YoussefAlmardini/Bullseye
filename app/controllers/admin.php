@@ -31,4 +31,8 @@ class Admin extends Controller
     public function heatmap(){
         $this->view('admin/heatmap');
     }
+
+    public function renderindexhtml(){
+        $this->view('admin/hmp');
+    }
 }
