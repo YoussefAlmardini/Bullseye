@@ -1,7 +1,7 @@
 .TopDataMain{
     top: 0px;
     left: 0%;
-    width: 33%;
+    width: 33.5%;
     height: 150px;
     background: #0F7EC7;
     display: inline-block;
@@ -9,6 +9,7 @@
     z-index: 100;
     font-size: 30px;
     color: #FFFFFF;
+
 }
 
 .TopDataMain p {
@@ -28,4 +29,92 @@
 
 .TopDataMainMiddle{
     background: #66A1C7;
+}
+.standardMain{
+    background: #D1DDE5;
+    height: 100vh;
+    width: 100%;
+}
+.center{
+    text-align: center;
+    padding-top: 150px;
+    font-weight: 500;
+    text-shadow: 0 5px 10px black;
+    font-size: 45px;
+}
+
+.emptyIcon img{
+    width: 425px;
+    height: 400px;
+}
+
+.emptyIcon{
+    text-align: center;
+    margin-top: 200px;
+}
+
+.emptyMainTitle{
+    color: #0F7EC7;
+    font-size: 50px;
+    text-align: center;
+    font-family: Segoe UI;
+    width: 50%;
+    margin:0 auto;
+    margin-top: 100px;
+    font-weight: 500;
+}
+.mainButton{
+    text-align: center;
+    margin-top: 100px;
+}
+.mainButton button{
+    width: 450px;
+    height: 100px;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+}
+.scaverageListItem{
+    height:900px;
+    width: 80%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.50);
+    box-shadow: 2px 2px 30px black;
+    margin-top: 350px;
+    border-radius: 20px;
+}
+.scaverageListItemIcon{
+    position: relative;
+    top: -190px;
+    left: 240px;
+    width: 300px;
+    height: 300px;
+    background: #FFFFFF;
+    border: 3px solid #0F7EC7;
+    border-radius: 50%;
+}
+
+.top{
+    margin-top: -300px;
+}
+
+.lessSpaceBetween{
+    margin-top: 25px;
+}
+.scaverageListItemInfo{
+    width:60%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 20px;
+}
+.scaverageListItemText{
+    color: #0F7EC7;
+    font-size: 40px;
+    text-align: center;
+    font-family: Segoe UI;
+    width: 80%;
+    margin:0 auto;
+    font-weight: 500;
+    margin-top: 30px;
 }
