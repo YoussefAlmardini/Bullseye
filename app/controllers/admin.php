@@ -16,5 +16,9 @@ class Admin extends Controller
     public function dashboard()
     {
         $this->view('admin/dashboard');
-    } 
+    }
+
+    public function heatmap(){
+        $this->view('admin/heatmap');
+    }
 }
