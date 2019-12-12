@@ -3,9 +3,7 @@
 ?>
 
 <html>
-    <head>
-       
-    </head>
+    <head></head>
 <body>
 
 
