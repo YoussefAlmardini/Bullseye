@@ -6,7 +6,24 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
 </head>
 <body>
-<div id="mymap"></div>
+    <div class="TopDataBar">
+
+    <div class="TopDataMain" id="level">
+        <p>Level</p>
+    </div>
+
+    <div class="TopDataMain TopDataMainMiddle" id="location">
+        <p>Locatie</p>
+    </div>
+
+    <div class="TopDataMain" id="time">
+        <p>Tijd</p>
+    </div>
+
+    </div>
+<div id="mymap">
+  
+</div>
 
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
@@ -27,7 +44,7 @@
     // Sets icon
     var myIcon = L.icon({
         iconUrl: window.location.origin + '/src/assets/myicon.png',
-        iconSize: [70, 90],
+        iconSize: [50, 50],
         popupAnchor: [],
     });
 
