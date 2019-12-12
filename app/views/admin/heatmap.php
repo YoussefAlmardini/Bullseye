@@ -4,23 +4,27 @@
     }
 
     require_once("header.php");
+    require_once("mapload.php");
 ?>
 
 <html lang="en">
     <head>
-        <script src="leaflet-heatmap.js"></script>
         <title>Heatmap - Admin | NL Rangers</title>
     </head>
 
     <body>
+    
         <h1>Welkom op de heatmap-pagina</h1>
+        <div id="mymap"></div>
 
         <script>
             var heat = L.heatLayer([
-                [50.5, 30.5, 0.2], // lat, lng, intensity
-                [50.6, 30.4, 0.5],
-                ...
-            ], {radius: 25}).addTo(map);
+                [52.177908, 5.386823, 0.9], // lat, lng, intensity
+            ], {radius: 25}).addTo(mymap);
+
+            mymap.addLayer(heat);
         </script>
     </body>
 </html>
+
+
