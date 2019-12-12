@@ -1,6 +1,5 @@
 <?php
 include "header.php";
-include "../../models/Admin.php"
 ?>
 <html>
 
