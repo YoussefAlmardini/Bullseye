@@ -1,5 +1,5 @@
 <?php
-    include "../app/views/header/index.php";
+    include "app/views/header/index.php";
 ?>
 
 <html>
@@ -23,7 +23,7 @@
 
 
 
-<?php include "../app/components/bottomNavigation/index.php"; ?>
+<?php include "app/components/bottomNavigation/index.php"; ?>
 <script>
     BotBarNavigation.SwitchActivaty('main');
 </script>
