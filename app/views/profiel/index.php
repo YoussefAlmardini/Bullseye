@@ -71,7 +71,7 @@
             </div>
     </div>
 
-    <?php include "../app/components/bottomNavigation/index.php"; ?>
+    <?php include "app/components/bottomNavigation/index.php"; ?>
     <script>
             BotBarNavigation.SwitchActivaty('profiel');
     </script>
