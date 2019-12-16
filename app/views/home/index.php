@@ -1,7 +1,7 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="./src/styles/generalStyles.css">
-  <link rel="stylesheet" type="text/css" href="./src/styles/home.css">
+  <link rel="stylesheet" type="text/css" href="src/styles/generalStyles.css">
+  <link rel="stylesheet" type="text/css" href="src/styles/home.css">
 </head>
 
   <body>
