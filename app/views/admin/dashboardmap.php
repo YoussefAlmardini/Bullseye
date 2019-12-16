@@ -11,19 +11,47 @@ include "header.php";
 <div id="mapwrap">
   <div id="toolbar">
     <div class="hamburger">
-      <span>Admin</span>
+      <span>Mappen</span>
     </div>
     <div id="tourstops">
       <h2>Nieuwe map creeren</h2>
       <ul>
           <h4>Map info</h4>
+          <!-- Een nieuwe map toevoegen -->
+          <input type="text" id="title_speurtocht" value="" placeholder="Title speurtocht">
+          <input type="text" id="description" value="" placeholder="Omschrijving speurtocht">
+          <input type="text" id="Info" value="" placeholder="Extra info">
          <input type="number" id="Setlatitude" value="" placeholder="Coordinaten latitude" readonly>
          <input type="number" id="Setlongitude" value="" placeholder="Coordinaten longitude" readonly>
+         <button type="submit" id="" onclick="NewMap()"> Voeg nieuwe map toe</button>
 
-         <input type="text" id="title" value="" placeholder="Title marker" >
-         <input type="text" id="descriptie" value="" placeholder="Descriptie" >
-
-         <button type="submit" id="" onclick="NewMap()"> Voeg nieuwe map toe met de markers</button>
+      </ul>
+    </div>
+  </div>
+  <div id="toolbar">
+    <div class="hamburger hamburger2">
+      <span>Markers</span>
+    </div>
+    <div id="tourstops">
+      <h2>Nieuwe markers creeren</h2>
+      <ul>
+          <h4>Marker info toevoegen</h4>
+         <!-- Begin marker adding new map or choose organisation and add extra markers-->
+          <select>
+            <option type="text" id="Organisation" value="">Organisatie selecteren</option>
+            <option type="text" id="Organisation" value="">Dierentuin</option>
+          </select>
+         <input type="text" id="title_markers" value="" placeholder="Opdracht title" >
+         <input type="text" id="descriptie" value="" placeholder="Opdracht descriptie" >
+         <select>
+            <option type="text" id="" value="">Type selecteren</option>
+            <option type="text" id="" value="">Open vraag</option>
+            <option type="text" id="" value="">Meerkeuze</option>
+          </select>
+          <input type="text" id="tip1" value="" placeholder="Antwoord vraag" >
+          <input type="text" id="tip1" value="" placeholder="Tip 1" >
+          <input type="text" id="tip2" value="" placeholder="Tip 2" >
+         <button type="submit" id="" onclick="NewMarkers()"> Voeg markers aan de map toe</button>
       </ul>
     </div>
   </div>

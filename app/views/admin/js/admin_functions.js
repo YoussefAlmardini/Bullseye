@@ -77,7 +77,7 @@
 
         function addMarker(e){
             // Add marker to map at click location; add popup window
-            let title = document.getElementById("title").value;
+            let title = document.getElementById("title_markers").value;
             let descriptie = document.getElementById("descriptie").value;
             let bind_title_descriptie = title +"<br>"+ descriptie;
 
