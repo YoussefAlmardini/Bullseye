@@ -16,7 +16,7 @@ class AnonymousLocation extends Model
         $stmt = $db->prepare($query);
         $stmt->bindValue(':latitude', $latitude);
         $stmt->bindValue(':longitude', $longitude);
-        $smtm->bindValue(':date', date('Y-m-d'));
+        $stmt->bindValue(':date', date('Y-m-d'));
         $stmt->execute();
     }
 }
