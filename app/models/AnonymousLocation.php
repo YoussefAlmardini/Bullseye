@@ -19,4 +19,15 @@ class AnonymousLocation extends Model
         $stmt->bindValue(':date', date('Y-m-d'));
         $stmt->execute();
     }
+
+    public function getLocationsArr($startDate, $endDate){
+        $query = 'SELECT latitude, longitude FROM anonymous_user_locations WHERE date >= :startDate AND date <= :endDate;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':startDate', $startDate);
+        $stmt->bindValue(':endDate', $endDate);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

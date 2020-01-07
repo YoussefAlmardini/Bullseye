@@ -79,8 +79,6 @@
         } else {
             mymarker.addTo(mymap);
         }
-        
-        //sendLocation(e.latitude, e.longitude);
     }
 
     function sendLocation(){
@@ -97,10 +95,12 @@
             }
         };
 
-        xhttp.open("GET", "https://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude, true);
+        xhttp.open("GET", "http://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude, true);
         xhttp.send();
     };
 
-    window.setInterval(sendLocation, 60000);
+    if(window.setInterval(sendLocation, 60000)){
+        console.log('http request sent');
+    }
 </script>
 </body>
