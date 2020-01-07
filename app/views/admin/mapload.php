@@ -78,8 +78,13 @@
             function addMarker(e){
             // Add marker to map at click location; add popup window
             let title = document.getElementById("title").value;
-            let descriptie = document.getElementById("descriptie").value;
-            let bind_title_descriptie = title +"<br>"+ descriptie;
+            
+            const text = "<strong id=''>"+title+"</strong><br>"+
+                    "<a hidden id='type_id_"+i+"'>"+marker.type_id+"</a><br>"+
+                    "Vraag:<a id='queue"+i+"'>"+marker.queue+"</a><br>"+
+                    "Antwoord:<a id='answer"+i+"'>"+marker.answer+"</a><br>"+
+                    "Tip 1:<a id='tip1_"+i+"'>"+marker.tips[0]+"</a><br>"+
+                    "Tip 2:<a id='tip2_"+i+"'>"+marker.tips[1]+"</a><br>";
 
             newCircle = new L.circle(e.latlng,
             {
@@ -87,7 +92,7 @@
             radius: 15,
             }
             ).addTo(mymap)
-            .bindPopup(bind_title_descriptie)
+            .bindPopup(text)
             .openPopup()
             .on('contextmenu', delete_marker);
             };  

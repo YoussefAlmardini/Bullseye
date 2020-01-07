@@ -26,6 +26,16 @@
             alt: 'mymarker'}            // Name for accessibillity
         );
 
+        customCircleMarker = L.CircleMarker.extend({
+            options: { 
+               title: 'Custom data!',
+               type_id: 'Custom data!',
+               queue: 'Custom data!',
+               tip_1: 'Custom data!',
+               tip_2: 'More data!'
+            }
+         });
+
         L.easyButton('<span class="bigdot">&bigodot;</span>', function(){
             mymap.setView(mymarker.getLatLng(), 18);
         }).addTo(mymap);
@@ -61,22 +71,30 @@
                     const marker = res[i];
 
                     console.log(marker);
-                    const text = "<strong id='title"+i+"'>"+marker.quest+"</strong><br>"+
+                    const text = "<strong id='title'>"+marker.quest+"</strong><br>"+
+                    "<a hidden id='type_id_"+i+"'>"+marker.type_id+"</a><br>"+
                     "Vraag:<a id='queue"+i+"'>"+marker.queue+"</a><br>"+
+                    "Antwoord:<a id='answer"+i+"'>"+marker.answer+"</a><br>"+
                     "Tip 1:<a id='tip1_"+i+"'>"+marker.tips[0]+"</a><br>"+
-                    "Tip 2:<a id='tip2_"+i+"'>"+marker.tips[1]+"</a><br>"+
-                    "<p></p><p></p><p></p>";
+                    "Tip 2:<a id='tip2_"+i+"'>"+marker.tips[1]+"</a><br>";
+                    
 
                     newCircle = new L.circle(L.latLng(marker.cordinates.lat, marker.cordinates.lng), {
                         clickable: true,
                         radius: 15,
+                        title: marker.quest,
+                        answer: marker.answer,
+                        queue: marker.queue,
+                        tip_1: marker.tips[0],
+                        tip_2: marker.tips[1],
+                        type_id: marker.type_id,
+                        id: marker.id
+
                     }).addTo(mymap)
                     .bindPopup(text)
                     .openPopup()
-                    .on('contextmenu', delete_marker); 
-                }
-                function delete_marker(e){
-                    mymap.removeLayer(this);
+                    .on('contextmenu', delete_marker)
+                    .on("click", circleClick);
                 }
             })
         });
@@ -122,4 +140,16 @@
 
         function delete_marker(e){
             mymap.removeLayer(this);
+        }
+
+        function circleClick(e){
+            console.log(this.options);
+            document.getElementById('title_markers').value = this.options.title;
+            document.getElementById('queue_markers').value = this.options.queue;
+            document.getElementById('answer').value = this.options.answer;
+            document.getElementById('tip1').value = this.options.tip_1;
+            document.getElementById('tip2').value = this.options.tip_2;
+            document.getElementById('type_id').selectedIndex = this.options.type_id;
+            document.getElementById('quest_id').value = this.options.id;
+
         }

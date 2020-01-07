@@ -5,7 +5,7 @@ class Admin2 extends Model
     public function getAllQuestionOrderByQueue($id){
         // THIS FUNCTION CHECKS FOR EXISTANCE OF THE BY THE USER INSERTED E-MAILADDRESS
 
-        $query = 'SELECT * FROM quests WHERE expedition_id = '.$id.' ORDER BY queue';
+        $query = 'SELECT * FROM quests INNER JOIN `potential_answers` ON quests.answer_id = `potential_answers`.`answer_id` WHERE expedition_id = '.$id.' ORDER BY queue';
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -15,13 +15,6 @@ class Admin2 extends Model
         }     
 
         $res = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        for($i = 0; $i < count($res); $i++) {
-             $query = 'SELECT * FROM potential_answers WHERE answer_id = '.$res.' ORDER BY queue';
-        $db = DB::connect();
-        $stmt = $db->prepare($query);
-        $stmt->execute();
-        }
 
         return array_map(function($marker) {
             return [
@@ -38,7 +31,8 @@ class Admin2 extends Model
                 'tips'=> [
                     $marker['tip_1'],
                     $marker['tip_2'] ?? '',
-                ]
+                ],
+                'answer'=> $marker['answer']
             ];
         }, $res);
     }
