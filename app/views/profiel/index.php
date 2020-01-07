@@ -1,10 +1,6 @@
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/profiel.css">
-        <link rel="stylesheet" type="text/css" href="../src/styles/bottomNavigation.css">
-    </head>
-
+<?php
+     include "app/views/header/index.php";
+?>
     <body>
         <div class="viewContainer viewContainerCustom">
 
@@ -71,9 +67,9 @@
             </div>
     </div>
 
-    <?php include "../app/components/bottomNavigation/index.php"; ?>
+    <?php include "app/components/bottomNavigation/index.php"; ?>
     <script>
-            BotBarNavigation.SwitchActivaty('profiel');
+        document.getElementById('profile').style.background = "#0F7EC7";
     </script>
 </body>
 </html>
@@ -85,10 +81,10 @@
 
         if (targetInput.readOnly === true){
             targetInput.readOnly = false;
-            targetImage.src = "../src/assets/Icon-edit-selected.png"
+            targetImage.src = "src/assets/Icon-edit-selected.png"
         }else{
             targetInput.readOnly = true;
-            targetImage.src = "../src/assets/Icon-edit.png";
+            targetImage.src = "src/assets/Icon-edit.png";
         }
     }
 </script>
