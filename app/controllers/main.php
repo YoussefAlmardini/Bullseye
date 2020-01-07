@@ -6,4 +6,9 @@ class Main extends Controller
     {
         $this->view('main/index');
     }
+
+    public function list()
+    {
+        $this->view('main/list');
+    }
 }
