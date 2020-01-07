@@ -13,6 +13,6 @@
     </div>
 
     <div class="mainButton">
-        <button>Speurtocht doen</button>
+        <button><a href="/main/list" class="clearLink">Mijn lijst</a></button>
     </div>
 </div>
