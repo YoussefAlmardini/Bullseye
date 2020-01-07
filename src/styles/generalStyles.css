@@ -77,8 +77,11 @@ input{
 .greenNotification{
     color: #097740;
 }
+.green{
+    background: #097740;
+}
 .redNotification{
-    color:#D20B0B;
+    color:rgb(20, 20, 20);
 }
 .notification{
     margin-left: 140;
