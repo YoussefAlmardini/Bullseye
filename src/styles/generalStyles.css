@@ -32,7 +32,10 @@ input{
 .inputContainer{
     margin: 2.5%;
 }
-
+.clearLink{
+    text-decoration: none;
+    color: white;
+}
 .Title{
     font-size: 100px;
     color: #0F7EC7;

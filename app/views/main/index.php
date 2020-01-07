@@ -6,7 +6,7 @@
 
 
 <div class="scaverage">
-   
+   <?php include_once "emptyMain.php"; ?>
     
 </div>
 

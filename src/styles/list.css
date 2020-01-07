@@ -4,14 +4,11 @@ body{
 }
 
 .scaverageList{
-    width: 100%;
 }
 
 .scaverageItem{
-    height: 800px;
-    background: red;
     margin: 100px auto;
-    padding: 5%;
+    padding: 2.5%;
     box-shadow: 2px 3px 60px black;
     border-radius: 25px;
     width: 75%;
@@ -20,10 +17,11 @@ body{
 .scaverageItemTitle{
     font-size: 40px;
     text-align: center;
-    color: white;
+    color: #0F7EC7;
     font-family: Segoe UI;
     font-weight: 500;
-    margin-top: 50px;
+    margin-top: 25px;
+    font-weight: 700;
 }
 
 .scaverageItemIcon{
@@ -36,6 +34,50 @@ body{
 }
 
 .scaverageItemButton{
-
+    text-align: center;
 }
 
+.IconInfo{
+    width: 100%;
+    background: rgba(15,126,199,0.2);
+    margin-top: 25px;
+    display: flex;
+}
+.infoBlock{
+    width: 33.33%;
+    padding: 2%;
+}
+.infoBlock .icon{
+    text-align: center;
+}
+.infoBlock .icon img{
+    width: 100px;
+}
+.infoBockData{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 30px;
+    color: black;
+    font-family: Segoe UI;
+    font-weight: bold;
+}
+.tooltip .tooltiptext{
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+  .centerText{
+      text-align: center;
+      margin-top: 25px;
+  }
