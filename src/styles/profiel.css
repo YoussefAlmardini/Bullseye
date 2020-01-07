@@ -72,6 +72,7 @@ button{
     left: 30px;
     position: relative;
     font-family: Segoe UI;
+    text-align: right;
 }
 
 .topimage {
