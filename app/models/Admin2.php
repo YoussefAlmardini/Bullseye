@@ -37,4 +37,25 @@ class Admin2 extends Model
         }, $res);
     }
 
+    public function updateOrAddQuestion($data)
+    {
+        $question_ID = $data['id'];
+        print_r($data);
+        die();
+        $query = 'SELECT * FROM quests WHERE quest_id = '.$question_ID;
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        
+        if($stmt->rowCount() < 1){
+            //Als er geen vraag bestaat maak er 1 aan
+            $query = 'INSERT INTO quests ()
+            VALUES ()';
+        } else {
+            //Als de vraag al bestaat, update de vraag
+            $query = 'UPDATE quests SET 
+             = ,
+            WHERE quest_id = '.$question_ID;
+        }
+    }
 }

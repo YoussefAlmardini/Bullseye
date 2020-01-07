@@ -27,4 +27,13 @@ class Admin extends Controller
         exit;
     }
 
+    public function updateMarker() 
+    {
+        $data = $_POST;
+        $admin = $this->model('Admin2');
+        $res = $admin->updateOrAddQuestion($data);
+
+
+    }
+
 }
