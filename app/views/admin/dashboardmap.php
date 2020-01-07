@@ -35,14 +35,14 @@ $getOrganisations = false;
     </div>
       <h2>Nieuwe markers creeren</h2>
       <ul>
-          <form>
+          <form method="POST" action="updateMarker()">
             <h4>Marker info toevoegen</h4>
             <!-- Begin marker adding new map or choose organisation and add extra markers-->
             <select id='select_expedition'>
                 <option type="text" id="speurtocht" value="" selected disabled>Speurtocht selecteren</option>
                 <?php echo getMaps(); ?>
             </select>
-            <input type="number" id="quest_id" hidden>         
+            <input type="number" value="" id="quest_id" hidden>         
             <input type="text" id="title_markers" value="" placeholder="Opdracht title" >
             <input type="number" id="queue_markers" value="" placeholder="Volgorde vraag" >
             <select id="type_id">
@@ -52,7 +52,7 @@ $getOrganisations = false;
             <input type="text" id="answer" value="" placeholder="Antwoord vraag" >
             <input type="text" id="tip1" value="" placeholder="Tip 1" >
             <input type="text" id="tip2" value="" placeholder="Tip 2" >
-            <button type="submit" id="" onclick="NewMarkers()"> Voeg markers aan de map toe</button>
+            <button type="submit" id="" onclick="updateMarker()">Update</button>
           </form>
       </ul>
   </div>
