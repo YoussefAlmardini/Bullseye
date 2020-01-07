@@ -1,5 +1,6 @@
 <?php
 include "header.php";
+$getOrganisations = false;
 ?>
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
@@ -32,28 +33,29 @@ include "header.php";
     <div class="hamburger hamburger2">
       <span>Markers</span>
     </div>
-    <div id="tourstops">
       <h2>Nieuwe markers creeren</h2>
       <ul>
+          <form>
           <h4>Marker info toevoegen</h4>
          <!-- Begin marker adding new map or choose organisation and add extra markers-->
-          <select>
-            <option type="text" id="Organisation" value="">Organisatie selecteren</option>
-            <option type="text" id="Organisation" value="">Dierentuin</option>
-          </select>
+          <select id='select_expedition'>
+              <option type="text" id="speurtocht" value="" selected disabled>Speurtocht selecteren</option>
+              <?php echo getMaps(); ?>
+          </select> 
+         
+
+         </form>
          <input type="text" id="title_markers" value="" placeholder="Opdracht title" >
-         <input type="text" id="descriptie" value="" placeholder="Opdracht descriptie" >
+         <input type="number" id="title_markers" value="" placeholder="Volgorde vraag" >
          <select>
-            <option type="text" id="" value="">Type selecteren</option>
-            <option type="text" id="" value="">Open vraag</option>
-            <option type="text" id="" value="">Meerkeuze</option>
+            <option type="text" id="type" value="">Type selecteren</option>
+            <?php echo getTypesQuestions(); ?>
           </select>
-          <input type="text" id="tip1" value="" placeholder="Antwoord vraag" >
+          <input type="text" id="tip0" value="" placeholder="Antwoord vraag" >
           <input type="text" id="tip1" value="" placeholder="Tip 1" >
           <input type="text" id="tip2" value="" placeholder="Tip 2" >
          <button type="submit" id="" onclick="NewMarkers()"> Voeg markers aan de map toe</button>
       </ul>
-    </div>
   </div>
   <div id="mymap"></div>
 </div>
@@ -64,5 +66,35 @@ include "header.php";
   include "js/admin_functions.js";
   ?>
 </script>
+<?php
 
+function getTypesQuestions(){
+  // THIS FUNCTION CHECKS FOR EXISTANCE OF THE BY THE USER INSERTED E-MAILADDRESS
+  $query = 'SELECT `type` FROM `question_types`';
+  $db = DB::connect();
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $result = $stmt->fetchAll();
+  for($i = 0; $i < count($result); $i++) {
+    echo '<option type="text" id="type'.$i.'" value="'.$result[$i]["type"].'">'.$result[$i]["type"].'</option>';
+  }
+}
+
+function getMaps(){
+    $query = 'SELECT * FROM `expeditions`';
+    $db = DB::connect();
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    for($i = 0; $i < count($result); $i++) {
+      $expedition_id = $result[$i]['expedition_id'];
+      $expedition_name = $result[$i]['name'];
+      echo '<option type="text" id="expedition'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
+    }
+}
+
+
+
+
+?>
 </html>

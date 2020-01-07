@@ -48,7 +48,38 @@
                 alert("Locatie toegang geweigerd.");
         });
 
-        
+        //If an expedition is selected, get all the questions
+        document.getElementById('select_expedition').addEventListener('change', function(e) {
+            const id = e.target.selectedOptions[0].value;
+
+            fetch('/admin/api/' + id, {
+                id: id,
+            }).then(function(res) {
+                return res.json();
+            }).then(function(res) {
+                for(const i in res) {
+                    const marker = res[i];
+
+                    console.log(marker);
+                    const text = "<strong id='title"+i+"'>"+marker.quest+"</strong><br>"+
+                    "Vraag:<a id='queue"+i+"'>"+marker.queue+"</a><br>"+
+                    "Tip 1:<a id='tip1_"+i+"'>"+marker.tips[0]+"</a><br>"+
+                    "Tip 2:<a id='tip2_"+i+"'>"+marker.tips[1]+"</a><br>"+
+                    "<p></p><p></p><p></p>";
+
+                    newCircle = new L.circle(L.latLng(marker.cordinates.lat, marker.cordinates.lng), {
+                        clickable: true,
+                        radius: 15,
+                    }).addTo(mymap)
+                    .bindPopup(text)
+                    .openPopup()
+                    .on('contextmenu', delete_marker); 
+                }
+                function delete_marker(e){
+                    mymap.removeLayer(this);
+                }
+            })
+        });
 
         function LoadClickedLocation(e){
             let Getlatitude = e.latlng.lat;
@@ -78,15 +109,12 @@
         function addMarker(e){
             // Add marker to map at click location; add popup window
             let title = document.getElementById("title_markers").value;
-            let descriptie = document.getElementById("descriptie").value;
-            let bind_title_descriptie = title +"<br>"+ descriptie;
+            let bind_title_descriptie = "<strong>"+title+"</strong>" +"<br>";
 
-            newCircle = new L.circle(e.latlng,
-            {
-            clickable: true,
-            radius: 15,
-            }
-            ).addTo(mymap)
+            newCircle = new L.circle(e.latlng, {
+                clickable: true,
+                radius: 15,
+            }).addTo(mymap)
             .bindPopup(bind_title_descriptie)
             .openPopup()
             .on('contextmenu', delete_marker);
@@ -95,7 +123,3 @@
         function delete_marker(e){
             mymap.removeLayer(this);
         }
-
-
-       
-
