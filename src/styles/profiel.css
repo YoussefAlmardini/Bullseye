@@ -72,8 +72,42 @@ button{
     left: 30px;
     position: relative;
     font-family: Segoe UI;
-    text-align: right;
+    text-align: left;
 }
+
+.firstname{
+    text-align: right;
+    left: 80px;
+}
+
+.insertion{
+    text-align: right;
+    left: 77px;
+    width: 38%;
+}
+
+.lastname{
+    text-align: right;
+    left: 70px;
+    width: 45%;
+}
+
+.email{
+    text-align: right;
+    left: 60px;
+    width: 60%;
+}
+
+.level{
+    text-align: right;
+    left: 155px;
+}
+
+.birthdate{
+    text-align: right;
+    left: 40px;
+}
+
 
 .topimage {
     position: relative;
