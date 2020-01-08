@@ -99,7 +99,14 @@ document.getElementById('select_expedition').addEventListener('change', function
             .bindPopup(text)
             .openPopup()
             .on('contextmenu', delete_marker)
-            .on("click", circleClick);
+            .on("click", circleClick)
+            .on('mouseover', function (e) {
+                this.openPopup();
+                circleClick(this);
+            })
+            .on('mouseout', function (e) {
+                this.closePopup();
+            });
         }
     })
 });
@@ -107,9 +114,11 @@ document.getElementById('select_expedition').addEventListener('change', function
 function LoadClickedLocation(e){
     let Getlatitude = e.latlng.lat;
     document.getElementById("Setlatitude").value = Getlatitude;
+    document.getElementById('latitude').value = Getlatitude;
 
     let Getlongitude = e.latlng.lng;
     document.getElementById("Setlongitude").value = Getlongitude ;
+    document.getElementById('longitude').value = Getlongitude;
     }
 
 function onLocationFound(e) 
@@ -132,16 +141,43 @@ function NewMap(e){
 function addMarker(e){
     // Add marker to map at click location; add popup window
     let title = document.getElementById("title_markers").value;
-    let bind_title_descriptie = "<strong>"+title+"</strong>" +"<br>";
-
+    const type_id = document.getElementById('type_id').selectedIndex;
+    const queue = document.getElementById('queue_markers').value;
+    const answer = document.getElementById('answer').value;
+    const tip1 = document.getElementById('tip1').value;
+    const tip2 = document.getElementById('tip2').value;
+    const latitude = document.getElementById('latitude').value;
+    const longitude = document.getElementById('longitude').value;
+    const text = "<strong id='title'>"+title+"</strong><br>"+
+            "<a hidden id='type_id'>"+type_id+"</a><br>"+
+            "Vraag:<a id='queue'>"+queue+"</a><br>"+
+            "Antwoord:<a id='answer'>"+answer+"</a><br>"+
+            "Tip 1:<a id='tip1'>"+tip1+"</a><br>"+
+            "Tip 2:<a id='tip2'>"+tip2+"</a><br>";
     newCircle = new L.circle(e.latlng, {
         clickable: true,
         radius: 15,
+        title: title,
+        answer: answer,
+        queue: queue,
+        tip_1: tip1,
+        tip_2: tip2,
+        type_id: type_id,
+        id: "",
+        latitude: latitude,
+        longitude: longitude
     }).addTo(group)
-    .bindPopup(bind_title_descriptie)
+    .bindPopup(text)
     .openPopup()
     .on('contextmenu', delete_marker)
-    .on("click", circleClick);
+    .on("click", circleClick)
+    .on('mouseover', function (e) {
+        this.openPopup();
+        circleClick(this);
+    })
+    .on('mouseout', function (e) {
+        this.closePopup();
+    });
 };  
 
 function delete_marker(e){
@@ -207,14 +243,38 @@ function objectifyForm(form) {//serialize data function
     return returnArray;
   }
 
-function updateMarker() {
-    //const data = objectifyForm(document.getElementById('markerForm'));
+function resetFields() {
+    var selectedValue = document.getElementById('select_expedition').selectedIndex;
+    document.getElementById('markerForm').reset();
+    document.getElementById('select_expedition').selectedIndex = selectedValue;
     
 }
 
-function resetFields() {
-    //var selectedValue = document.getElementById('select_expedition').selectedIndex;
+function clearAll() {
     document.getElementById('markerForm').reset();
-    //document.getElementById('select_expedition').selectedIndex = selectedValue;
     group.clearLayers();
-  }
+}
+
+function addData() {
+    const data = objectifyForm(document.getElementById('markerForm'));
+    console.log(data);
+    
+    fetch('/admin/updateMarker/', {
+        method: 'POST',
+        body: JSON.stringify({
+            id: data.id,
+            title: data.title,
+            answer: data.answer,
+            queue: data.queue,
+            tip1: data.tip1,
+            tip2: data.tip2,
+            latitude: data.latitude,
+            longitude: data.longitude
+        })
+    }).then(function(res) {
+        console.log(res);
+        return res.json();
+    }).then(function(res) {
+        console.log(res);
+    })
+}

@@ -39,10 +39,9 @@ class Admin2 extends Model
 
     public function updateOrAddQuestion($data)
     {
-        $question_ID = $data['id'];
-        print_r($data);
-        die();
-        $query = 'SELECT * FROM quests WHERE quest_id = '.$question_ID;
+            
+        $question_ID = $data;
+        $query = 'SELECT * FROM quests';
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -53,9 +52,10 @@ class Admin2 extends Model
             VALUES ()';
         } else {
             //Als de vraag al bestaat, update de vraag
-            $query = 'UPDATE quests SET 
-             = ,
-            WHERE quest_id = '.$question_ID;
+            // $query = 'UPDATE quests SET 
+            //  = ,
+            // WHERE quest_id = '.$question_ID;
+            return true;
         }
     }
 }

@@ -35,7 +35,7 @@ $getOrganisations = false;
     </div>
       <h2>Nieuwe markers creeren</h2>
       <ul>
-          <form method="POST" action="/admin/updateMarker" id="markerForm">
+          <form id="markerForm">
             <h4>Marker info toevoegen</h4>
             <!-- Begin marker adding new map or choose organisation and add extra markers-->
             <select id='select_expedition'>
@@ -54,8 +54,9 @@ $getOrganisations = false;
             <input type="text" id="tip2" value="" name="tip2" placeholder="Tip 2" >
             <input type="number" id="latitude" value="" name="latitude" placeholder="Latitude" readonly>
             <input type="number" id="longitude" value="" name="longitude" placeholder="Longitude" readonly>
-            <button type="submit" id="">Update</button>
+            <button type="button" onclick="addData()" id="">Add/Update</button>
             <button type="button" onclick="resetFields()">Reset</button>
+            <button type="button" onclick="clearAll()">Clear All</button>
           </form>
       </ul>
   </div>

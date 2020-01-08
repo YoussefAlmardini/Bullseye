@@ -32,8 +32,9 @@ class Admin extends Controller
         $data = $_POST;
         $admin = $this->model('Admin2');
         $res = $admin->updateOrAddQuestion($data);
-
-
+        echo $res;
+        exit;
+        
     }
 
 }
