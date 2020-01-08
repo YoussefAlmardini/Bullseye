@@ -10,6 +10,8 @@ var layerOptions = {
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', layerOptions).addTo(mymap);
 
+var group = L.featureGroup();  
+mymap.addLayer(group);
 // Sets icon
 var myIcon = L.icon({
     iconUrl: window.location.origin + '/src/assets/myicon.png',
@@ -60,6 +62,7 @@ mymap.on('locationerror', function(e){
 
 //If an expedition is selected, get all the questions
 document.getElementById('select_expedition').addEventListener('change', function(e) {
+    group.clearLayers();
     const id = e.target.selectedOptions[0].value;
 
     fetch('/admin/api/' + id, {
@@ -88,9 +91,11 @@ document.getElementById('select_expedition').addEventListener('change', function
                 tip_1: marker.tips[0],
                 tip_2: marker.tips[1],
                 type_id: marker.type_id,
-                id: marker.id
+                id: marker.id,
+                latitude: marker.cordinates.lat,
+                longitude: marker.cordinates.lng
 
-            }).addTo(mymap)
+            }).addTo(group)
             .bindPopup(text)
             .openPopup()
             .on('contextmenu', delete_marker)
@@ -132,10 +137,11 @@ function addMarker(e){
     newCircle = new L.circle(e.latlng, {
         clickable: true,
         radius: 15,
-    }).addTo(mymap)
+    }).addTo(group)
     .bindPopup(bind_title_descriptie)
     .openPopup()
-    .on('contextmenu', delete_marker);
+    .on('contextmenu', delete_marker)
+    .on("click", circleClick);
 };  
 
 function delete_marker(e){
@@ -151,9 +157,64 @@ function circleClick(e){
     document.getElementById('tip2').value = this.options.tip_2;
     document.getElementById('type_id').selectedIndex = this.options.type_id;
     document.getElementById('quest_id').value = this.options.id;
+    document.getElementById('latitude').value = this.options.latitude;
+    document.getElementById('longitude').value = this.options.longitude;
 
 }
+var serializeArray = function (form) {
 
-function updateMarker(e) {
-    console.log(this);
+	// Setup our serialized data
+	var serialized = [];
+
+	// Loop through each field in the form
+	for (var i = 0; i < form.elements.length; i++) {
+
+		var field = form.elements[i];
+
+		// Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
+		if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
+
+		// If a multi-select, get all selections
+		if (field.type === 'select-multiple') {
+			for (var n = 0; n < field.options.length; n++) {
+                if (!field.options[n].selected) continue;
+                const name = field.name
+				serialized.push({
+					name: field.name,
+					value: field.options[n].value
+				});
+			}
+		}
+
+		// Convert field data to a query string
+		else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
+			serialized.push({
+				name: field.name,
+				value: field.value
+			});
+		}
+	}
+
+	return serialized;
+
+};
+function objectifyForm(form) {//serialize data function
+    var formArray = serializeArray(form);
+    var returnArray = {};
+    for (var i = 0; i < formArray.length; i++){
+      returnArray[formArray[i]['name']] = formArray[i]['value'];
+    }
+    return returnArray;
+  }
+
+function updateMarker() {
+    //const data = objectifyForm(document.getElementById('markerForm'));
+    
 }
+
+function resetFields() {
+    //var selectedValue = document.getElementById('select_expedition').selectedIndex;
+    document.getElementById('markerForm').reset();
+    //document.getElementById('select_expedition').selectedIndex = selectedValue;
+    group.clearLayers();
+  }

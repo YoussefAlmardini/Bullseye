@@ -35,24 +35,27 @@ $getOrganisations = false;
     </div>
       <h2>Nieuwe markers creeren</h2>
       <ul>
-          <form method="POST" action="updateMarker()">
+          <form method="POST" action="/admin/updateMarker" id="markerForm">
             <h4>Marker info toevoegen</h4>
             <!-- Begin marker adding new map or choose organisation and add extra markers-->
             <select id='select_expedition'>
                 <option type="text" id="speurtocht" value="" selected disabled>Speurtocht selecteren</option>
                 <?php echo getMaps(); ?>
             </select>
-            <input type="number" value="" id="quest_id" hidden>         
-            <input type="text" id="title_markers" value="" placeholder="Opdracht title" >
-            <input type="number" id="queue_markers" value="" placeholder="Volgorde vraag" >
-            <select id="type_id">
+            <input type="number" value="" id="quest_id" name="id" hidden>         
+            <input type="text" id="title_markers" value="" name="title" placeholder="Opdracht title" >
+            <input type="number" id="queue_markers" value="" name="queue" placeholder="Volgorde vraag" >
+            <select id="type_id" name="type_id">
               <option type="text" id="type" value="" selected disabled>Type selecteren</option>
               <?php echo getTypesQuestions(); ?>
             </select>
-            <input type="text" id="answer" value="" placeholder="Antwoord vraag" >
-            <input type="text" id="tip1" value="" placeholder="Tip 1" >
-            <input type="text" id="tip2" value="" placeholder="Tip 2" >
-            <button type="submit" id="" onclick="updateMarker()">Update</button>
+            <input type="text" id="answer" value="" name="answer" placeholder="Antwoord vraag" >
+            <input type="text" id="tip1" value="" name="tip1" placeholder="Tip 1" >
+            <input type="text" id="tip2" value="" name="tip2" placeholder="Tip 2" >
+            <input type="number" id="latitude" value="" name="latitude" placeholder="Latitude" readonly>
+            <input type="number" id="longitude" value="" name="longitude" placeholder="Longitude" readonly>
+            <button type="submit" id="">Update</button>
+            <button type="button" onclick="resetFields()">Reset</button>
           </form>
       </ul>
   </div>
@@ -64,6 +67,9 @@ $getOrganisations = false;
   <?php
   include "js/admin_functions.js";
   ?>
+
+  
+  
 </script>
 <?php
 
