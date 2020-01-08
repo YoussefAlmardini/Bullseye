@@ -17,4 +17,23 @@ class Admin extends Controller
         $this->view('models/admin.php');
     }
 
+
+    public function api($id) 
+    {
+        $admin = $this->model('Admin2');
+        $res = $admin->getAllQuestionOrderByQueue($id);
+
+        echo json_encode($res);
+        exit;
+    }
+
+    public function updateMarker() 
+    {
+        $data = $_POST;
+        $admin = $this->model('Admin2');
+        $res = $admin->updateOrAddQuestion($data);
+
+
+    }
+
 }
