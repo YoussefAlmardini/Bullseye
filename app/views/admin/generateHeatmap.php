@@ -23,7 +23,7 @@
             <label for="end_date">Einddatum: </label>
             <input type="date" name="end_date"><br><br>
             
-            <input type="submit" name="submit" placeholder="Genereer heatmap">
+            <input type="submit" name="submit" value="Genereer heatmap">
         </form>
     </body>
 </html>

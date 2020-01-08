@@ -99,8 +99,6 @@
         xhttp.send();
     };
 
-    if(window.setInterval(sendLocation, 60000)){
-        console.log('http request sent');
-    }
+    (window.setInterval(sendLocation, 60000));
 </script>
 </body>
