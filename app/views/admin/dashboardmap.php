@@ -9,6 +9,15 @@ $getOrganisations = false;
 <html>
 
 <body>
+<div id="sideNav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">profiel</a>
+    <a href="#">profielen aanmaken</a>
+    <a href="#">Heatmap</a>
+
+</div>
+<span  id="navOpenButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
 <div id="mapwrap">
   <div id="toolbar">
     <div class="hamburger">
@@ -42,9 +51,9 @@ $getOrganisations = false;
                 <option type="text" id="speurtocht" value="" selected disabled>Speurtocht selecteren</option>
                 <?php echo getMaps(); ?>
             </select>
-            <input type="number" value="" id="quest_id" name="id" hidden>         
+            <input type="number" value="" id="quest_id" name="id" hidden>
             <input type="text" id="title_markers" value="" name="title" placeholder="Opdracht title" >
-            <input type="number" id="queue_markers" value="" name="queue" placeholder="Volgorde vraag" >
+            <input type="number" min="0" id="queue_markers" value="" name="queue" placeholder="Volgorde vraag" >
             <select id="type_id" name="type_id">
               <option type="text" id="type" value="" selected disabled>Type selecteren</option>
               <?php echo getTypesQuestions(); ?>
@@ -68,7 +77,16 @@ $getOrganisations = false;
   include "js/admin_functions.js";
   ?>
 
-  
+
+  function openNav() {
+        document.getElementById("sideNav").style.width = "250px";
+        document.getElementById("navOpenButton").style.zIndex = "0";
+  }
+
+  function closeNav() {
+        document.getElementById("sideNav").style.width = "0";
+        document.getElementById("navOpenButton").style.zIndex = "1";
+  }
   
 </script>
 <?php
@@ -97,8 +115,6 @@ function getMaps(){
       echo '<option type="text" id="expedition'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
     }
 }
-
-
 
 
 ?>

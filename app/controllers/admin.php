@@ -12,6 +12,11 @@ class Admin extends Controller
         $this->view('admin/dashboardmap');
     }
 
+    public function profiel()
+    {
+        $this->view('admin/profiel');
+    }
+
     public function function_admin()
     {
         $this->view('models/admin.php');
