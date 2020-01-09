@@ -55,4 +55,8 @@ class Admin extends Controller
 
         return $this->view('admin/heatmap', ['locations' => $locationsObj]);
     }
+
+    public function addCustomer(){
+        return $this->view('admin/addCustomer');
+    }
 }
