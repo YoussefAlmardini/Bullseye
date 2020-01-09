@@ -73,7 +73,7 @@ document.getElementById('select_expedition').addEventListener('change', function
         for(const i in res) {
             const marker = res[i];
 
-            console.log(marker);
+            //console.log(marker);
             const text = "<strong id='title'>"+marker.quest+"</strong><br>"+
             "<a hidden id='type_id_"+i+"'>"+marker.type_id+"</a><br>"+
             "Vraag:<a id='queue"+i+"'>"+marker.queue+"</a><br>"+
@@ -102,7 +102,6 @@ document.getElementById('select_expedition').addEventListener('change', function
             .on("click", circleClick)
             .on('mouseover', function (e) {
                 this.openPopup();
-                circleClick(this);
             })
             .on('mouseout', function (e) {
                 this.closePopup();
@@ -173,7 +172,6 @@ function addMarker(e){
     .on("click", circleClick)
     .on('mouseover', function (e) {
         this.openPopup();
-        circleClick(this);
     })
     .on('mouseout', function (e) {
         this.closePopup();
@@ -185,7 +183,6 @@ function delete_marker(e){
 }
 
 function circleClick(e){
-    //console.log(this.options);
     document.getElementById('title_markers').value = this.options.title;
     document.getElementById('queue_markers').value = this.options.queue;
     document.getElementById('answer').value = this.options.answer;
@@ -255,14 +252,15 @@ function clearAll() {
     group.clearLayers();
 }
 
+// Update or Inserting a marker
 function addData() {
     const data = objectifyForm(document.getElementById('markerForm'));
-    console.log(data);
-    
     fetch('/admin/updateMarker/', {
         method: 'POST',
         body: JSON.stringify({
             id: data.id,
+            expedition_id: data.expedition_id,
+            type_id: data.type_id,
             title: data.title,
             answer: data.answer,
             queue: data.queue,
@@ -272,7 +270,6 @@ function addData() {
             longitude: data.longitude
         })
     }).then(function(res) {
-        console.log(res);
         return res.json();
     }).then(function(res) {
         console.log(res);

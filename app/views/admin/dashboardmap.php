@@ -19,13 +19,14 @@ $getOrganisations = false;
       <ul>
           <h4>Map info</h4>
           <!-- Een nieuwe map toevoegen -->
-          <input type="text" id="title_speurtocht" value="" placeholder="Title speurtocht">
-          <input type="text" id="description" value="" placeholder="Omschrijving speurtocht">
-          <input type="text" id="Info" value="" placeholder="Extra info">
-         <input type="number" id="Setlatitude" value="" placeholder="Coordinaten latitude" readonly>
-         <input type="number" id="Setlongitude" value="" placeholder="Coordinaten longitude" readonly>
-         <button type="submit" id="" onclick="NewMap()"> Voeg nieuwe map toe</button>
-
+          <form id="mapForm">
+            <input type="text" id="title_speurtocht" value="" placeholder="Title speurtocht">
+            <input type="text" id="description" value="" placeholder="Omschrijving speurtocht">
+            <input type="text" id="Info" value="" placeholder="Extra info">
+            <input type="number" id="Setlatitude" value="" placeholder="Coordinaten latitude" readonly>
+            <input type="number" id="Setlongitude" value="" placeholder="Coordinaten longitude" readonly>
+            <button type="button" id="buttonNewMap" onclick="NewMap()">Voeg nieuwe map toe</button>
+          </form>
       </ul>
     </div>
   </div>
@@ -38,22 +39,22 @@ $getOrganisations = false;
           <form id="markerForm">
             <h4>Marker info toevoegen</h4>
             <!-- Begin marker adding new map or choose organisation and add extra markers-->
-            <select id='select_expedition'>
+            <select id='select_expedition' name="expedition_id">
                 <option type="text" id="speurtocht" value="" selected disabled>Speurtocht selecteren</option>
                 <?php echo getMaps(); ?>
             </select>
             <input type="number" value="" id="quest_id" name="id" hidden>         
-            <input type="text" id="title_markers" value="" name="title" placeholder="Opdracht title" >
-            <input type="number" id="queue_markers" value="" name="queue" placeholder="Volgorde vraag" >
-            <select id="type_id" name="type_id">
+            <input type="text" id="title_markers" value="" name="title" placeholder="Opdracht title*" required >
+            <input type="number" id="queue_markers" value="" name="queue" placeholder="Volgorde vraag*" required >
+            <select id="type_id" name="type_id" required>
               <option type="text" id="type" value="" selected disabled>Type selecteren</option>
               <?php echo getTypesQuestions(); ?>
             </select>
-            <input type="text" id="answer" value="" name="answer" placeholder="Antwoord vraag" >
-            <input type="text" id="tip1" value="" name="tip1" placeholder="Tip 1" >
+            <input type="text" id="answer" value="" name="answer" placeholder="Antwoord vraag*" required>
+            <input type="text" id="tip1" value="" name="tip1" placeholder="Tip 1*" required>
             <input type="text" id="tip2" value="" name="tip2" placeholder="Tip 2" >
-            <input type="number" id="latitude" value="" name="latitude" placeholder="Latitude" readonly>
-            <input type="number" id="longitude" value="" name="longitude" placeholder="Longitude" readonly>
+            <input type="number" id="latitude" value="" name="latitude" placeholder="Latitude*" readonly required>
+            <input type="number" id="longitude" value="" name="longitude" placeholder="Longitude*" readonly required>
             <button type="button" onclick="addData()" id="">Add/Update</button>
             <button type="button" onclick="resetFields()">Reset</button>
             <button type="button" onclick="clearAll()">Clear All</button>
@@ -76,13 +77,13 @@ $getOrganisations = false;
 
 function getTypesQuestions(){
   // THIS FUNCTION CHECKS FOR EXISTANCE OF THE BY THE USER INSERTED E-MAILADDRESS
-  $query = 'SELECT `type` FROM `question_types`';
+  $query = 'SELECT * FROM `question_types`';
   $db = DB::connect();
   $stmt = $db->prepare($query);
   $stmt->execute();
   $result = $stmt->fetchAll();
   for($i = 0; $i < count($result); $i++) {
-    echo '<option type="text" id="type'.$i.'" value="'.$result[$i]["type"].'">'.$result[$i]["type"].'</option>';
+    echo '<option type="text" id="type'.$i.'" value="'.$result[$i]["type_id"].'">'.$result[$i]["type"].'</option>';
   }
 }
 
@@ -95,7 +96,7 @@ function getMaps(){
     for($i = 0; $i < count($result); $i++) {
       $expedition_id = $result[$i]['expedition_id'];
       $expedition_name = $result[$i]['name'];
-      echo '<option type="text" id="expedition'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
+      echo '<option name="expedition_id type="number" id="expedition'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
     }
 }
 
