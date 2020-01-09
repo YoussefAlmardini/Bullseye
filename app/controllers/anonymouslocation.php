@@ -1,6 +1,6 @@
 <?php
 
-class AnonymousLocation extends Model
+class AnonymousLocation extends Controller
 {
     function __construct()
     {
