@@ -39,8 +39,8 @@ class Admin2 extends Model
 
     public function updateOrAddQuestion($data)
     {
-            
-        $question_ID = $data;
+        error_log(print_r($data,1));
+        $question_ID = $data->id;
         $query = 'SELECT * FROM quests';
         $db = DB::connect();
         $stmt = $db->prepare($query);
