@@ -10,15 +10,25 @@
     <div class="scaverageList">
 
         <?php 
-            $result = Model\Main::GetExpeditions();
+
+            $query = 'SELECT *,`organisations`.`name` as `organisation`,`expeditions`.`name` as `expedition` FROM `expeditions` INNER JOIN `organisations` ON `organisations`.`organisation_id` = `expeditions`.`organisation_id`';
+            $db = \DB::connect();
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+
+            if ($stmt->rowCount() === 0) {
+                return [];
+            }
+
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
             for($i = 0; $i < count($result); $i++) {
 
-                $id = $result[$i]['id'];
-                $ex_name = $result[$i]['expedition_name'];
-                $organisation = $result[$i]['organistion'];
+                $id = $result[$i]['expedition_id'];
+                $ex_name = $result[$i]['expedition'];
+                $organisation = $result[$i]['organisation'];
                 $location = $result[$i]['location'];
-                $info = $result[$i]['info'];
+                $info = $result[$i]['description'];
                 $level = $result[$i]['level'];
 
                 echo " <div class='scaverageItem'>
@@ -38,9 +48,9 @@
                         <div class='infoBockData'>$location</div>
                     </div>
                     <div class='infoBlock tooltip'>
-                        <span class='tooltiptext'>Totaal punten</span>
+                        <span class='tooltiptext'>Aantal levels</span>
                         <div  class='icon'><img src='/src/assets/Icon material-grade@2x.png'></div>
-                        <div class='infoBockData'>$level punten</div>
+                        <div class='infoBockData'>$level levels</div>
                     </div>
                     <div class='infoBlock tooltip'>
                         <span class='tooltiptext'>Organisatie</span>
