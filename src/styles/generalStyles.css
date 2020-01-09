@@ -32,13 +32,17 @@ input{
 .inputContainer{
     margin: 2.5%;
 }
-
+.clearLink{
+    text-decoration: none;
+    color: white;
+}
 .Title{
     font-size: 100px;
     color: #0F7EC7;
-    text-shadow: 0 15px 10px black;
-    font-family: Snap ITC;
     padding-top: 100px;
+    font-weight: 900;
+    font-family: Segoe UI;
+    text-shadow: 2px 2px 10px black;
 }
 .secondTitle{
     color: white;
@@ -77,8 +81,11 @@ input{
 .greenNotification{
     color: #097740;
 }
+.green{
+    background: #097740;
+}
 .redNotification{
-    color:#D20B0B;
+    color:rgb(20, 20, 20);
 }
 .notification{
     margin-left: 140;

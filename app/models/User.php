@@ -120,4 +120,30 @@ class User extends Model
             }
         }
     }
+
+    public function validateUserInputUpdate($firstName, $insertion, $lastName, $birthDate, $ID){
+        // THIS FUNCTION VALIDATES THE BY THE USER INSERTED DATA OF THE PROFILE PAGE
+
+        if(strtotime($birthDate) - time() < 0){
+            User::updateUserInDatabase($firstName, $insertion, $lastName, $birthDate, $ID);
+            return true;
+        }else{
+            echo "<script>alert('Uw geboortedatum kan zich niet in de toekomst bevinden!');</script>";
+        }
+    }
+
+    public function updateUserInDatabase($firstName, $insertion, $lastName, $birthDate, $ID){
+        // THIS FUNCTION UPDATES THE USER IN THE DATABASE
+
+        $query = 'Update users SET first_name = :firstName, insertion = :insertion, last_name = :lastName, birthdate = :birthDate WHERE user_id = :id;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':firstName', $firstName);
+        $stmt->bindValue(':insertion', $insertion);
+        $stmt->bindValue(':lastName', $lastName);
+        $stmt->bindValue(':birthDate', (new Datetime($birthDate))->format('Y-m-d'));
+        $stmt->bindValue(':id', $ID);
+        $stmt->execute();
+    }
+
 }

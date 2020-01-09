@@ -12,27 +12,33 @@ class Admin extends Controller
         $this->view('admin/dashboardmap');
     }
 
+    public function profiel()
+    {
+        $this->view('admin/profiel');
+    }
+
     public function function_admin()
     {
         $this->view('models/admin.php');
     }
 
-    public function logout(){
-        session_unset();
-        session_destroy();
-        header("Location: admin/index");
-    }
 
-    public function dashboard()
+    public function api($id) 
     {
-        $this->view('admin/dashboard');
+        $admin = $this->model('Admin2');
+        $res = $admin->getAllQuestionOrderByQueue($id);
+
+        echo json_encode($res);
+        exit;
     }
 
-    public function heatmap(){
-        $this->view('admin/heatmap');
+    public function updateMarker() 
+    {
+        $data = $_POST;
+        $admin = $this->model('Admin2');
+        $res = $admin->updateOrAddQuestion($data);
+
+
     }
 
-    public function renderindexhtml(){
-        $this->view('admin/hmp');
-    }
 }
