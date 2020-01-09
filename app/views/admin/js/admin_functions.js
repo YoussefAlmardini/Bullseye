@@ -113,11 +113,11 @@ document.getElementById('select_expedition').addEventListener('change', function
 
 function LoadClickedLocation(e){
     let Getlatitude = e.latlng.lat;
-    document.getElementById("Setlatitude").value = Getlatitude;
+    document.getElementById("setlatitude").value = Getlatitude;
     document.getElementById('latitude').value = Getlatitude;
 
     let Getlongitude = e.latlng.lng;
-    document.getElementById("Setlongitude").value = Getlongitude ;
+    document.getElementById("setlongitude").value = Getlongitude ;
     document.getElementById('longitude').value = Getlongitude;
     }
 
@@ -195,8 +195,8 @@ function circleClick(e){
     document.getElementById('quest_id').value = this.options.id;
     document.getElementById('latitude').value = this.options.latitude;
     document.getElementById('longitude').value = this.options.longitude;
-
 }
+
 var serializeArray = function (form) {
 
 	// Setup our serialized data
@@ -258,11 +258,12 @@ function clearAll() {
 function addData() {
     const data = objectifyForm(document.getElementById('markerForm'));
     console.log(data);
-    
+   
+
     fetch('/admin/updateMarker/', {
         method: 'POST',
         body: JSON.stringify({
-            id: data.id,
+            id: organisationID,
             title: data.title,
             answer: data.answer,
             queue: data.queue,
@@ -270,6 +271,32 @@ function addData() {
             tip2: data.tip2,
             latitude: data.latitude,
             longitude: data.longitude
+        })
+    }).then(function(res) {
+        console.log(res);
+        return res.json();
+    }).then(function(res) {
+        console.log(res);
+    })
+}
+
+function NewMap(){
+    const data = objectifyForm(document.getElementById('newmapForm'));
+    console.log(data);
+    
+    let organisationValue = document.getElementById('organisation_id').selectedIndex;
+    organisationID = document.getElementById('organisation_id').selectedIndex = organisationValue;
+
+    fetch('/admin/newMap/', {
+        method: 'POST',
+        body: JSON.stringify({
+            id:organisationValue,
+            title: data.title_expedition,
+            description: data.description,
+            info: data.info,
+            loc_expedition: data.loc_expedition,
+            latitude: data.setlatitude,
+            longitude: data.setlongitude
         })
     }).then(function(res) {
         console.log(res);

@@ -14,18 +14,23 @@ $getOrganisations = false;
     <div class="hamburger">
       <span>Mappen</span>
     </div>
-    <div id="tourstops">
-      <h2>Nieuwe map creeren</h2>
+      <h2>Nieuwe speurtocht creeren</h2>
       <ul>
+        <form id="newmapForm">
           <h4>Map info</h4>
           <!-- Een nieuwe map toevoegen -->
-          <input type="text" id="title_speurtocht" value="" placeholder="Title speurtocht">
-          <input type="text" id="description" value="" placeholder="Omschrijving speurtocht">
-          <input type="text" id="Info" value="" placeholder="Extra info">
-         <input type="number" id="Setlatitude" value="" placeholder="Coordinaten latitude" readonly>
-         <input type="number" id="Setlongitude" value="" placeholder="Coordinaten longitude" readonly>
-         <button type="submit" id="" onclick="NewMap()"> Voeg nieuwe map toe</button>
-
+          <select id="organisation_id" name="organisation_id">
+              <option type="text" id="organisation" value="" selected disabled>Organisatie selecteren</option>  
+              <?php echo getOrganisations(); ?>
+            </select>
+          <input type="text" name="title_expedition" id="title_expedition" value="" placeholder="Titel speurtocht *" required>
+          <input type="textarea" name="description" id="description" value="" placeholder="Omschrijving speurtocht *" required>
+          <input type="text" name="loc_expedition" id="loc_expedition" value="" placeholder="Plaats *" required>
+          <input type="text" name="info" id="Info" value="" placeholder="Extra info">
+          <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
+          <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
+         <button type="button" onclick="NewMap()"> Voeg nieuwe map toe</button>
+        </form>
       </ul>
     </div>
   </div>
@@ -44,7 +49,7 @@ $getOrganisations = false;
             </select>
             <input type="number" value="" id="quest_id" name="id" hidden>         
             <input type="text" id="title_markers" value="" name="title" placeholder="Opdracht title" >
-            <input type="number" id="queue_markers" value="" name="queue" placeholder="Volgorde vraag" >
+            <input type="number" id="queue_markers" value="" name="queue" placeholder="Volgorde vraag" readonly>
             <select id="type_id" name="type_id">
               <option type="text" id="type" value="" selected disabled>Type selecteren</option>
               <?php echo getTypesQuestions(); ?>
@@ -99,7 +104,18 @@ function getMaps(){
     }
 }
 
-
+function getOrganisations(){
+  $query = 'SELECT * FROM `organisations`';
+  $db = DB::connect();
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $result = $stmt->fetchAll();
+  for($i = 0; $i < count($result); $i++) {
+    $organisation_id = $result[$i]['organisation_id'];
+    $organisation_name = $result[$i]['name'];
+    echo '<option type="text" id="organisation'.$i.'" value="'.$organisation_id.'">'.$organisation_name.'</option>';
+  }
+}
 
 
 ?>

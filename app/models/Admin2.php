@@ -58,4 +58,29 @@ class Admin2 extends Model
             return true;
         }
     }
+
+    public function newMap($data)
+    {
+        error_log(print_r($data,1));
+        $id = $data->id;
+        $title = $data->title;        
+        $loc_expedition = $data->loc_expedition;        
+        $description = $data->description;        
+        $info = $data->info;        
+        $latitude = $data->latitude;        
+        $longitude = $data->longitude;        
+
+
+        $query = "INSERT INTO expeditions (organisation_id,name,location_name,description,info,start_coordinate_langitude,start_coordinate_longitude)
+                VALUES ($id,'$title','$loc_expedition','$description','$info',$latitude,$longitude)"; 
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        
+        if($stmt->rowCount() < 1){
+            return true;
+        } else {
+           return false;
+        }
+    }
 }
