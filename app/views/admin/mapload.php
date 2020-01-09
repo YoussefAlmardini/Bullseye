@@ -1,4 +1,8 @@
 <!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+   crossorigin=""></script>
+   <script src="leaflet-heatmap.js"></script>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>    
 <script> 
@@ -21,10 +25,18 @@
         accessToken: 'pk.eyJ1IjoibW9sbGllbmF0b3IiLCJhIjoiY2szdHp3eWtxMDUzNjNwazRrYWxxejBieSJ9.DdHVpF9UpzeZCWDWHgKeBg'
     }
 
+
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
+
+      //      window.setInterval(function(){
+      //          var xhttp = new XMLHttpRequest();
+      //          xhttp.open("POST", "../../controllers/anonymouslocation.php?latitude=" + latitude + "&longitude=" + longitude, true);
+      //          xhttp.send();
+      //      }, 60000);
 
             // Sets icon
             var myIcon = L.icon({
@@ -108,7 +120,8 @@
             function add_marker_map(){
 
             }
-
+            
+        
 
     }
 });
