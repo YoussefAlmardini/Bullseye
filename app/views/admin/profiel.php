@@ -1,8 +1,9 @@
 <?php
 include "header.php";
 $getOrganisations = false;
-
 ?>
+
+
 <link rel="stylesheet" href="../src/styles/admin_profiel.css"/>
 <body>
 <div class="viewContainer viewContainerCustom">
@@ -46,15 +47,15 @@ $getOrganisations = false;
             </div>
 
             <div class="inputContainer">
-                <label class="birthdatetitle" for="birthDate">Level: </label>
-                <input class="level" required type="text" placeholder="Level *" disabled id="level" readonly name="level">
+                <label class="birthdatetitle" for="birthDate">Functie: </label>
+                <input class="level" required type="text" placeholder="Function *" id="level"s name="level">
 
             </div>
 
 
             <div class="inputContainer">
-                <label class="birthdatetitle" for="birthDate">Geboortedatum: </label>
-                <input class="birthdate" required type="date" id="birthdate" name="birthdate">
+                <label class="birthdatetitle" for="birthDate">Telefoon-nummer: </label>
+                <input class="birthdate" required type="number" placeholder="" id="birthdate" name="birthdate">
 
             </div>
 
@@ -75,10 +76,11 @@ $getOrganisations = false;
 </html>
 
 <script>
+
     document.getElementById('firstname').value = "<?php echo $data['user']['first_name']; ?>";
     document.getElementById('insertion').value = "<?php echo $data['user']['insertion']; ?>";
     document.getElementById('lastname').value = "<?php echo $data['user']['last_name']; ?>";
     document.getElementById('email').value = "<?php echo $data['user']['email_address']; ?>";
-    document.getElementById('level').value = "<?php echo $data['user']['level']; ?>";
-    document.getElementById('birthdate').value = "<?php echo $data['user']['birthdate']; ?>";
+    document.getElementById('level').value = "<?php echo $data['user']['function']; ?>";
+    document.getElementById('birthdate').value = "<?php echo $data['user']['phone_number']; ?>";
 </script>
