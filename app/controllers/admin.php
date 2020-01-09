@@ -59,11 +59,22 @@ class Admin extends Controller
 
     public function updateMarker() 
     {
-        $data = $_POST;
+        $data = json_decode(file_get_contents('php://input'));
         $admin = $this->model('Admin2');
         $res = $admin->updateOrAddQuestion($data);
+        echo json_encode($res);
+        exit;
+        
+    }
 
-
+    public function newMap() 
+    {
+        $data = json_decode(file_get_contents('php://input'));
+        $admin = $this->model('Admin2');
+        $res = $admin->newMap($data);
+        echo json_encode($res);
+        exit;
+        
     }
 
 }
