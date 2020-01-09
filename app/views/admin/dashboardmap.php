@@ -11,8 +11,8 @@ $getOrganisations = false;
 <body>
 <div id="sideNav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">profiel</a>
-    <a href="#">profielen aanmaken</a>
+    <a href="/admin/profiel">profiel</a>
+    <a href="/admin/registeradmin">profielen aanmaken</a>
     <a href="#">Heatmap</a>
 
 </div>
