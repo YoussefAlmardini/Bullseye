@@ -6,8 +6,10 @@
 
 
 <div class="scaverage">
-   <?php include_once "emptyMain.php"; ?>
-    
+   <?php 
+    //include_once "emptyMain.php"; 
+    include_once "map.php";
+   ?>
 </div>
 
 <?php include "app/components/bottomNavigation/index.php"; ?>
