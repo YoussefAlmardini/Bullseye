@@ -5,7 +5,7 @@ class Admin2 extends Model
     public function getAllQuestionOrderByQueue($id){
         // THIS FUNCTION CHECKS FOR EXISTANCE OF THE BY THE USER INSERTED E-MAILADDRESS
 
-        $query = 'SELECT * FROM quests INNER JOIN `potential_answers` ON quests.answer_id = `potential_answers`.`answer_id` WHERE expedition_id = '.$id.' ORDER BY queue';
+        $query = 'SELECT * FROM quests WHERE expedition_id = '.$id.' ORDER BY queue';
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -21,7 +21,7 @@ class Admin2 extends Model
                 'id' => $marker['quest_id'],
                 'expedition_id' => $marker['expedition_id'],
                 'type_id' => $marker['type_id'],
-                'answer_id'=> $marker['answer_id'],
+                'answer'=> $marker['answer'],
                 'queue'=> $marker['queue'],
                 'quest' => $marker['quest'],
                 'cordinates' => [
@@ -39,23 +39,73 @@ class Admin2 extends Model
 
     public function updateOrAddQuestion($data)
     {
-        $question_ID = $data['id'];
-        print_r($data);
-        die();
-        $query = 'SELECT * FROM quests WHERE quest_id = '.$question_ID;
+        error_log(print_r($data,1));
+        $question_ID = $data->id;
+        $expedition_id = $data->expedition_id;
+        $answer = $data->answer;
+        $type_id = $data->type_id;
+        $queue = $data->queue;
+        $quest = $data->title;
+        $tip1 = $data->tip1;
+        $tip2 = $data->tip2;
+        $latitude = $data->latitude;
+        $longitude = $data->longitude;
+
+        if(empty($question_ID)){
+            //Als er geen vraag bestaat maak er 1 aan
+            $query = "INSERT INTO quests (`expedition_id`, `type_id`, `answer`, `queue`, `quest`, `coordinate_langitude`, `coordinate_longitude`, `tip_1`, `tip_2`)
+            VALUES ($expedition_id, $type_id, '$answer', $queue, '$quest', $latitude, $longitude, '$tip1', '$tip2')";
+            $db = DB::connect();
+            $stmt = $db->prepare($query);
+            if ($stmt->execute()) { 
+                return true;
+             } else {
+                return false;
+            }
+        } else{
+            //Als de vraag al bestaat, update de vraag
+            $query = "UPDATE quests SET 
+            `expedition_id` = $expedition_id, 
+            `type_id` = $type_id, 
+            `answer` = '$answer',
+            `queue` = $queue,
+            `quest` = '$quest',
+            `tip_1` = '$tip1',
+            `tip_2` = '$tip2',
+            `coordinate_langitude` = $latitude,
+            `coordinate_langitude` = $longitude WHERE quest_id = ".$question_ID;
+            $db = DB::connect();
+            $stmt = $db->prepare($query);
+            if ($stmt->execute()) { 
+                return true;
+             } else {
+                return false;
+            }
+        }
+    }
+
+    public function newMap($data)
+    {
+        error_log(print_r($data,1));
+        $id = $data->id;
+        $title = $data->title;        
+        $loc_expedition = $data->loc_expedition;        
+        $description = $data->description;        
+        $info = $data->info;        
+        $latitude = $data->latitude;        
+        $longitude = $data->longitude;        
+
+
+        $query = "INSERT INTO expeditions (organisation_id,name,location_name,description,info,start_coordinate_langitude,start_coordinate_longitude)
+                VALUES ($id,'$title','$loc_expedition','$description','$info',$latitude,$longitude)"; 
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
         
         if($stmt->rowCount() < 1){
-            //Als er geen vraag bestaat maak er 1 aan
-            $query = 'INSERT INTO quests ()
-            VALUES ()';
+            return true;
         } else {
-            //Als de vraag al bestaat, update de vraag
-            $query = 'UPDATE quests SET 
-             = ,
-            WHERE quest_id = '.$question_ID;
+           return false;
         }
     }
 }
