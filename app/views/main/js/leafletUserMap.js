@@ -6,7 +6,7 @@ let currentPos = {
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(UpdateCurrentPosition);
 } else { 
-    alert('wa wa wa');
+    alert('Location is not supporteed, try to lunch app from another browser.');
 }
 
 function UpdateCurrentPosition(position) {
@@ -56,34 +56,43 @@ function onLocationFound(e)
     }
 }
 
-var id, target, options;
+function NavigateTargetQuestion(coords){
+    var id, target, options;
 
-function success(pos) {
-var crd = pos.coords;
+    function success(pos) {
+    var crd = pos.coords;
 
-if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
-    console.log('Congratulations, you reached the target');
-    navigator.geolocation.clearWatch(id);
+    if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
+        console.log('Congratulations, you reached the target');
+        navigator.geolocation.clearWatch(id);
+    }
+    }
+
+    function error(err) {
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+    }
+
+    target = {
+        latitude : coords.lang,
+        longitude: coords.long
+    };
+
+    L.circle([target.latitude,target.longitude], {   
+        color: "blue",
+        fillColor: "#f03",
+        fillOpacity: 0.5,
+        radius: 20
+    }).addTo(mymap);
+
+
+    options = {
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 0
+    };
+
+    id = navigator.geolocation.watchPosition(success, error, options);
 }
-}
-
-function error(err) {
-console.warn('ERROR(' + err.code + '): ' + err.message);
-}
-
-target = {
-    latitude : 0,
-    longitude: 0
-};
-
-
-options = {
-enableHighAccuracy: false,
-timeout: 5000,
-maximumAge: 0
-};
-
-id = navigator.geolocation.watchPosition(success, error, options);
 
 
 
@@ -113,10 +122,19 @@ function MapLoaded(){
 
 }
 
+
+
+function ShowQuestionDialog(question,id,lang,long){
+    //This data comming from the database
+    let coords = {
+        lang:lang,
+        long:long
+    }
+    let currentQuestion = new Question(question,'text');
+    currentQuestion.CreateQuestionElement();
+    NavigateTargetQuestion(coords);
     
-    
+    //currentQuestion.Print();
+}
 
 
-
-
-//document.getElementById('mymap').addEventListener('click',ShowQuestionDialog);

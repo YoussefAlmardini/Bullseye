@@ -69,7 +69,10 @@
               
     
                 <div class='scaverageItemButton'>   
-                    <button class='green'>Start</button>
+                    <form method='post' action='index.php'>
+                        <input class='green' type='submit' name='expStart' value='Start'>
+                        <input type='text' name='id' value='$id' hidden>
+                    <form>
                 </div>
     
             </div>";
@@ -83,7 +86,6 @@
       
     <?php include "app/components/bottomNavigation/index.php"; ?>
     <script>
-
         document.getElementById('list').style.background = "#0F7EC7";
 
         function ShowInfo(){
