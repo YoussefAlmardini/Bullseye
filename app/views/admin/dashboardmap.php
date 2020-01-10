@@ -71,7 +71,6 @@ $getOrganisations = false;
             <button type="button" onclick="addData()" id="">Add/Update</button>
             <button type="button" onclick="resetFields()">Reset</button>
             <button type="button" onclick="clearAll()">Clear All</button>
-            <button type="button" onclick="deleteQuest()">Delete</button>
           </form>
       </ul>
   </div>
