@@ -98,7 +98,7 @@ document.getElementById('select_expedition').addEventListener('change', function
             }).addTo(group)
             .bindPopup(text)
             .openPopup()
-            .on('contextmenu', delete_marker)
+            .on('contextmenu', deleteQuest)
             .on("click", circleClick)
             .on('mouseover', function (e) {
                 this.openPopup();
@@ -272,8 +272,37 @@ function addData() {
     }).then(function(res) {
         return res.json();
     }).then(function(res) {
-        console.log(res);
+        if(res) {
+            alert('Marker geupdated of toegevoegd')
+            location.reload();
+        } else {
+            alert('Er heeft een probleem plaatsgevonden, probeer het later nog eens');
+        }
     })
+}
+
+function deleteQuest(e) {
+    var r = confirm("Weet u zeker dat u de vraag wilt verwijderen?");
+    if (r == true) {
+        const data = objectifyForm(document.getElementById('markerForm'));
+        fetch('/admin/deleteQuest/', {
+            method: 'POST',
+            body: JSON.stringify({
+                id: data.id
+            })
+        }).then(function(res) {
+            return res.json();
+        }).then(function(res) {
+            if(res) {
+                alert('Vraag is succesvol verwijderd!');
+                location.reload();
+            } else {
+                alert('Er heeft een probleem plaatsgevonden, probeer het later nog eens');
+            }
+        })
+    } else {
+        // PRESSED CANCEL
+    }  
 }
 
 function NewMap(){

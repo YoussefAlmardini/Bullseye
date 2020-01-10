@@ -108,4 +108,16 @@ class Admin2 extends Model
            return false;
         }
     }
+
+    public function deleteQuest($data) {
+        $id = $data->id;
+        $query = "DELETE FROM quests WHERE quest_id = $id";
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        if($stmt->execute()){
+            return true;
+        } else {
+           return false;
+        }
+    }
 }
