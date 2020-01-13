@@ -8,7 +8,7 @@ require_once("header.php");
 
 <html lang="en">
     <head>
-        <title>Klant toevoegen | NL Rangers</title>
+        <title>Organisatie toevoegen | NL Rangers</title>
         <meta charset="utf-8">
         <style>
             #fillMailingAddress{
@@ -26,8 +26,20 @@ require_once("header.php");
     </head>
 
     <body>
-        <form action="/admin/sendCustomerDataToModel" method="post">
-            <label>Naam klant: </label><br>
+        <form action="/admin/sendOrganisationDataToModel" method="post">
+            <label>Kies de klant waarvoor u een organisatie wil toevoegen:</label>
+            <select name="customer">
+                <option selected="selected" disabled>Kies een klant</option>
+                <?php
+                    for($i = 0; $i < count($data['customers']); $i++){
+                        echo '<option>' . $data['customers'][$i] . '</option>';
+                    }
+                ?>
+                <option>klant 1</option>
+                <option>klant 2</option>
+            </select>
+
+            <label>Naam organisatie klant: </label><br>
             <input required type="text" name="company_name"><br>
 
             <label>Postcode: </label><br>

@@ -60,6 +60,21 @@ class Admin extends Controller
         return $this->view('admin/addCustomer');
     }
 
+    public function addOrganisation(){
+        $customers = [];
+        $query = 'SELECT name FROM customers;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($customers, $res[$i]['name']);
+        }
+        
+        return $this->view('admin/addOrganisation', ['customers' => $customers]);
+    }
+
     public function sendCustomerDataToModel(){
         if(isset($_POST['submit'])){
             $companyName = $_POST['company_name'];
@@ -74,5 +89,9 @@ class Admin extends Controller
 
             $this->model('Customer')->saveCustomer($companyName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
         }
+    }
+
+    public function sendOrganisationDataToModel(){
+        echo "Hoi";
     }
 }
