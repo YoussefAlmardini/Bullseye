@@ -48,7 +48,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // Sets icon
 var myIcon = L.icon({
     iconUrl: window.location.origin + '/src/assets/myicon.png',
-    iconSize: [50, 50],
+    iconSize: [20, 20],
+    iconAnchor: [10, 20],
     popupAnchor: [],
 });
 
@@ -87,15 +88,30 @@ function onLocationFound(e)
 {
     if(mymap.hasLayer(mymarker)){
         mymarker.setLatLng(e.latlng);
-        setTimeout(() => {
-            L.circle([currentPos.latitude,currentPos.longitude], {   
-                color: "red",
-                fillColor: "blue",
-                fillOpacity: 0.5,
-                radius: 15
-            }).addTo(mymap);
-        }, 0);
-        console.log(e.latitude);
+        // setTimeout(() => {
+        //     L.circle([currentPos.latitude,currentPos.longitude], {   
+        //         color: "red",
+        //         fillColor: "blue",
+        //         fillOpacity: 0.5,
+        //         radius: 15
+        //     }).addTo(mymap);
+        // }, 0);
+
+        // This is the distance between the current position of the marker and the center of the circle
+        var distance = mymap.distance(e.latlng, [52.1739999562361300,5.4037646949291240]);
+        //circle.getLatLng()  
+        // TODO: GET CURREN"T QUESTION CIRCLE DATA
+
+        // The marker is inside the circle when the distance is inferior to the radius
+        var isInside = distance < 15;
+        //circle.getRadius() 
+        // TODO: GET CURRENT QUESTION CIRCLE DATA
+
+        if(isInside) {
+            alert('Ik zit erin');
+        } else{
+            alert('NIET ERIN');
+        }
     } else {
         mymarker.addTo(mymap);
     }
@@ -122,13 +138,12 @@ function NavigateTargetQuestion(coords,currentQuestion){
         longitude: coords.long
     };
 
-    L.circle([target.latitude,target.longitude], {   
+    const circle = L.circle([target.latitude,target.longitude], {   
         color: "black",
         fillColor: "green",
         fillOpacity: 0.5,
         radius: 15
     }).addTo(mymap);
-
 
     options = {
     enableHighAccuracy: false,
