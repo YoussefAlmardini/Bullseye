@@ -34,12 +34,14 @@ L.Control.MyControl = L.Control.extend({
   }).addTo(mymap);
 
 
+// Make a group where all the markers will in be
 var group = L.featureGroup();  
 mymap.addLayer(group);
+
 // Sets icon
 var myIcon = L.icon({
     iconUrl: window.location.origin + '/src/assets/myicon.png',
-    iconSize: [50, 50],
+    iconSize: [20, 20],
     popupAnchor: [],
 });
 
@@ -51,16 +53,6 @@ const mymarker = L.marker([0,0],
     clickable: true,            // Make the icon clickable
     alt: 'mymarker'}            // Name for accessibillity
 );
-
-customCircleMarker = L.CircleMarker.extend({
-    options: { 
-        title: 'Custom data!',
-        type_id: 'Custom data!',
-        queue: 'Custom data!',
-        tip_1: 'Custom data!',
-        tip_2: 'More data!'
-    }
-    });
 
 L.easyButton('<span class="bigdot">&bigodot;</span>', function(){
     mymap.setView(mymarker.getLatLng(), 18);
@@ -184,6 +176,7 @@ function addMarker(e){
     newCircle = new L.circle(e.latlng, {
         clickable: true,
         radius: 15,
+        color: 'green',
         title: title,
         answer: answer,
         queue: queue,
@@ -335,7 +328,6 @@ function deleteQuest(e) {
 
 function NewMap(){
     const data = objectifyForm(document.getElementById('newmapForm'));
-    console.log(data);
     
     let organisationValue = document.getElementById('organisation_id').selectedIndex;
     organisationID = document.getElementById('organisation_id').selectedIndex = organisationValue;
@@ -352,9 +344,13 @@ function NewMap(){
             longitude: data.setlongitude
         })
     }).then(function(res) {
-        console.log(res);
         return res.json();
     }).then(function(res) {
-        console.log(res);
+        if(res) {
+            alert('Map is succesvol toegevoegd!');
+            location.reload();
+        } else {
+            alert('Er heeft een probleem plaatsgevonden, probeer het later nog eens');
+        }
     })
 }
