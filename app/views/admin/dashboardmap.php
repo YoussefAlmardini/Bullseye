@@ -14,9 +14,12 @@ $getOrganisations = false;
 <body>
 <div id="sideNav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/admin/profiel">profiel</a>
-    <a href="/admin/registeradmin">profielen aanmaken</a>
+    <a href="/admin/profiel">Uw profiel</a>
+    <a href="/admin/registeradmin">Profiel aanmaken</a>
     <a href="#">Heatmap</a>
+    <form method="POST">
+      <a><input type="submit" value="Uitloggen" name="logout"></a>
+    </form>
 
 </div>
 <span  id="navOpenButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
