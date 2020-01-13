@@ -11,13 +11,13 @@ require_once("header.php");
         <title>Klant toevoegen | NL Rangers</title>
         <meta charset="utf-8">
         <style>
-            #fillInvoiceAddress{
+            #fillMailingAddress{
                 border: 1px solid black;
                 padding: 0.5%;
                 display: inline-block;
             }
 
-            #fillInvoiceAddress:hover{
+            #fillMailingAddress:hover{
                 cursor: pointer;
                 border: 1px solid blue;
                 color: blue;
@@ -26,7 +26,7 @@ require_once("header.php");
     </head>
 
     <body>
-        <form action="admin/" method="post">
+        <form action="/admin/sendCustomerDataToModel" method="post">
             <label>Naam organisatie klant: </label><br>
             <input required type="text" name="company_name"><br>
 
@@ -42,19 +42,19 @@ require_once("header.php");
             <label>Huisletter: </label><br>
             <input type="text" name="house_letter" id="house_letter"><br>
 
-            <br><div onclick="fillInvoiceAddress()" id="fillInvoiceAddress">Het factuuradres is hetzelfde als het normale adres</div><br><br>
+            <br><div onclick="fillMailingAddress()" id="fillMailingAddress">Het postadres is hetzelfde als het normale adres</div><br><br>
 
             <label>Postcode factuuradres: </label><br>
-            <input type="text" name="invoice_address_postal_code" id="invoice_address_postal_code"><br>
+            <input type="text" name="mailing_address_postal_code" id="mailing_address_postal_code"><br>
 
             <label>Straatnaam postadres: </label><br>
-            <input type="text" name="invoice_address_street_name" id="invoice_address_street_name"><br>
+            <input type="text" name="mailing_address_street_name" id="mailing_address_street_name"><br>
 
             <label>Huisnummer postadres: </label><br>
-            <input type="text" name="invoice_address_house_number" id="invoice_address_house_number"><br>
+            <input type="text" name="mailing_address_house_number" id="mailing_address_house_number"><br>
 
             <label>Huisletter postadres: </label><br>
-            <input type="text" name="invoice_address_house_letter" id="invoice_address_house_letter"><br><br>
+            <input type="text" name="mailing_address_house_letter" id="mailing_address_house_letter"><br><br>
 
             <br><br><input type="submit" name="submit" value="Opslaan">
         </form>
@@ -62,11 +62,11 @@ require_once("header.php");
         
 
         <script>
-            function fillInvoiceAddress(){
-                document.getElementById('invoice_address_postal_code').value = document.getElementById('postal_code').value;
-                document.getElementById('invoice_address_street_name').value = document.getElementById('street_name').value;
-                document.getElementById('invoice_address_house_number').value = document.getElementById('house_number').value;
-                document.getElementById('invoice_address_house_letter').value = document.getElementById('house_letter').value;
+            function fillMailingAddress(){
+                document.getElementById('mailing_address_postal_code').value = document.getElementById('postal_code').value;
+                document.getElementById('mailing_address_street_name').value = document.getElementById('street_name').value;
+                document.getElementById('mailing_address_house_number').value = document.getElementById('house_number').value;
+                document.getElementById('mailing_address_house_letter').value = document.getElementById('house_letter').value;
             }
         </script>
     </body>
