@@ -156,6 +156,7 @@ function addMarker(e){
     newCircle = new L.circle(e.latlng, {
         clickable: true,
         radius: 15,
+        color: 'green',
         title: title,
         answer: answer,
         queue: queue,
