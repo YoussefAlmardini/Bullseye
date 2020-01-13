@@ -5,10 +5,34 @@ var layerOptions = {
     maxZoom: 20,
     minZoom: 10,
     id: 'mapbox/streets-v11',
-    accessToken: 'pk.eyJ1IjoibW9sbGllbmF0b3IiLCJhIjoiY2szdHp3eWtxMDUzNjNwazRrYWxxejBieSJ9.DdHVpF9UpzeZCWDWHgKeBg'
+    accessToken: 'pk.eyJ1IjoibW9sbGllbmF0b3IiLCJhIjoiY2szdHp3eWtxMDUzNjNwazRrYWxxejBieSJ9.DdHVpF9UpzeZCWDWHgKeBg',
+
 }
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', layerOptions).addTo(mymap);
+
+L.Control.MyControl = L.Control.extend({
+    onAdd: function(map) {
+      var el = L.DomUtil.create('div', 'leaflet-bar my-control');
+  
+      el.innerHTML = 'Mijn locatie <img src="/src/assets/myicon.png"> Opgeslagen locatie <img src="/src/assets/InLocation.png"> Niet opgeslagen locatie <img src="/src/assets/ringNoLocation.png">';
+       
+      return el;
+    },
+  
+    onRemove: function(map) {
+      // Nothing to do here
+    }
+  });
+  
+  L.control.myControl = function(opts) {
+    return new L.Control.MyControl(opts);
+  }
+  
+  L.control.myControl({
+    position: 'topright'
+  }).addTo(mymap);
+
 
 var group = L.featureGroup();  
 mymap.addLayer(group);
@@ -42,6 +66,9 @@ L.easyButton('<span class="bigdot">&bigodot;</span>', function(){
     mymap.setView(mymarker.getLatLng(), 18);
 }).addTo(mymap);
 
+
+
+
 // Put new input inbetween the two comments
 $('#toolbar .hamburger').on('click', function() {
     $(this).parent().toggleClass('open');
@@ -59,6 +86,7 @@ mymap.on('locationfound', onLocationFound);
 mymap.on('locationerror', function(e){
         alert("Locatie toegang geweigerd.");
 });
+
 
 //If an expedition is selected, get all the questions
 document.getElementById('select_expedition').addEventListener('change', function(e) {
