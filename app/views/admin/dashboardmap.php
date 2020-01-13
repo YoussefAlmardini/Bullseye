@@ -1,5 +1,8 @@
 <?php
 include "header.php";
+if (!$_SESSION['adminLoggedIn']) {
+  header("Location: /admin/index");
+}
 $getOrganisations = false;
 ?>
 <!-- Make sure you put this AFTER Leaflet's CSS -->
@@ -23,7 +26,7 @@ $getOrganisations = false;
     <div class="hamburger">
       <span>Mappen</span>
     </div>
-      <h2>Nieuwe speurtocht creeren</h2>
+      <h2>Nieuwe map</h2>
       <ul>
         <form id="newmapForm">
           <h4>Map info</h4>
@@ -47,7 +50,7 @@ $getOrganisations = false;
     <div class="hamburger hamburger2">
       <span>Markers</span>
     </div>
-      <h2>Nieuwe markers creeren</h2>
+      <h2>Nieuwe markers</h2>
       <ul>
           <form id="markerForm">
             <h4>Marker info toevoegen</h4>
