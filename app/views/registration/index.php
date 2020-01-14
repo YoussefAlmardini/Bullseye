@@ -25,7 +25,7 @@
         </div>
 
         <form class="formregister" action="/registration/catchData" method="POST">
-33
+
 
             <div class="inputContainer">
                 <input required type="text" placeholder="Voornaam *" name="firstName">
