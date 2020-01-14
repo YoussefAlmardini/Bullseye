@@ -41,6 +41,26 @@ class Admin extends Controller
 
 
 
+    public function UpdateAdminAccount(){
+        // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA AND SENDS IT TO THE MODEL
+
+        $firstName = htmlentities(htmlspecialchars($_POST['firstName']));
+        $insertion = htmlentities(htmlspecialchars($_POST['insertion']));
+        $lastName = htmlentities(htmlspecialchars($_POST['lastName']));
+        $function = htmlentities(htmlspecialchars($_POST['function']));
+        $phone_number = htmlentities(htmlspecialchars($_POST['phone_number']));
+        $ID = '1';
+
+        $model = $this->model('User');
+
+        if($model->validateAdminInputUpdate($firstName, $insertion, $lastName, $function, $phone_number, $ID)){
+            echo "<script>alert('Uw account is succesvol geupdate!');</script>";
+            $this->view('admin/dashboardmap');
+        }else{
+            $this->view('/admin/profiel');
+        }
+    }
+
 
     public function function_admin()
     {

@@ -6,6 +6,15 @@ $getOrganisations = false;
 
 <link rel="stylesheet" href="../src/styles/admin_profiel.css"/>
 <body>
+<div id="sideNav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/admin/map">Speurtocht maken</a>
+    <a href="/admin/registeradmin">Profielen aanmaken</a>
+    <a href="#">Heatmap</a>
+
+</div>
+<span  id="navOpenButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
 <div class="viewContainer viewContainerCustom">
 
     <div class="topBlock">
@@ -16,7 +25,7 @@ $getOrganisations = false;
     <div class="middleBlock">
 
 
-        <form class="formprofiel" action="/profiel/UpdateAccount" method="POST">
+        <form class="formprofiel" action="/admin/UpdateAdminAccount" method="POST">
             <div class="topimage"></div>
             <img class="profielimage" src="../src/assets/Icon-user.png">
 
@@ -48,14 +57,14 @@ $getOrganisations = false;
 
             <div class="inputContainer">
                 <label class="birthdatetitle" for="birthDate">Functie: </label>
-                <input class="level" required type="text" placeholder="Function *" id="level"s name="level">
+                <input class="level" required type="text" placeholder="Function *" id="level"s name="function">
 
             </div>
 
 
             <div class="inputContainer">
                 <label class="birthdatetitle" for="birthDate">Telefoon-nummer: </label>
-                <input class="birthdate" required type="number" placeholder="" id="birthdate" name="birthdate">
+                <input class="birthdate" required type="number" placeholder="" id="birthdate" name="phone_number">
 
             </div>
 
@@ -76,6 +85,17 @@ $getOrganisations = false;
 </html>
 
 <script>
+
+    function openNav() {
+        document.getElementById("sideNav").style.width = "250px";
+        document.getElementById("navOpenButton").style.zIndex = "0";
+    }
+
+    function closeNav() {
+        document.getElementById("sideNav").style.width = "0";
+        document.getElementById("navOpenButton").style.zIndex = "1";
+    }
+
 
     document.getElementById('firstname').value = "<?php echo $data['user']['first_name']; ?>";
     document.getElementById('insertion').value = "<?php echo $data['user']['insertion']; ?>";
