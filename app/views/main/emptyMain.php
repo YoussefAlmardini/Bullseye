@@ -1,6 +1,6 @@
 <div class="standardMain">
     <div class="thirdTitle spaceUnder center">
-        Current speurtocht
+        Huidige speurtocht
     </div>
 
     <div class="emptyIcon spaceUnder">
@@ -8,8 +8,7 @@
     </div>
 
     <div class="emptyMainTitle spaceUnder">
-        Het is rustig hier
-        Jij hebt geen speurtocht
+        Jij hebt nog geen speurtocht geselecteerd
     </div>
 
     <div class="mainButton">

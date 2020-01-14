@@ -11,7 +11,7 @@
         <div class="topBlock">
 
             <div class="Title spaceUnder">
-                NLRANGERS
+                NLRangers
             </div>
 
             <div class="notification">
@@ -23,31 +23,25 @@
         
 
         <div class="secondTitle titleBlockTop">
-              Welcome
+              Welkom
         </div>
 
         <div class="home">
 
           <div class="thirdTitle spaceUnder">
-                Wat is NL Rangers App?
+                Wat is de NLRangers Web-App?
           </div>
 
           <div class="text spaceUnder">
-                Er zijn vele variaties van passages van 
-                Lorem Ipsum beschikbaar maar het merendeel 
-                heeft te lijden gehad van wijzigingen
-                 in een of andere vorm.
+                NLRangers is een web-app waar je speurtochten mee kan doen. Hartstikke leuk als familie uitje of wanneer je er zin in hebt.
           </div>
 
           <div class="thirdTitle spaceUnder">
-                Zin in enn speurtocht?
+                Zin in een speurtocht?
           </div>
 
           <div class="text spaceUnder">
-                Er zijn vele variaties van passages van 
-                Lorem Ipsum beschikbaar maar het merendeel 
-                heeft te lijden gehad van wijzigingen
-                 in een of andere vorm.
+                U kunt zich gratis aanmelden en volledig gebruik maken van de app. 
           </div>
           <hr>
 
@@ -60,9 +54,9 @@
          
          <div>
             <button onclick="ShowInfo(this)">
-              <div class="popup" onclick="myFunction()">Info
+              <div class="popup" onclick="myFunction()">
+                <label>Info</label>
                 <span class="popuptext" id="myPopup">
-                  <p>Info</p>
                   Er zijn vele variaties van passages van 
                   Lorem Ipsum beschikbaar maar het merendeel 
                   heeft te lijden gehad van wijzigingen
