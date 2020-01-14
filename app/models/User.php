@@ -77,15 +77,15 @@ class User extends Model
         
     }
 
-    function checkLogin($email, $password, $role)
+    function checkLogin($email, $password)
     {
         $db = DB::connect();
         if($db == false) {$_SESSION['errors']['no_connection'] = true;}
-        $stmt = $db->prepare("SELECT users.* FROM users INNER JOIN roles ON users.role_id = roles.role_id WHERE users.email_address = :email AND roles.role = :role;");
+        $stmt = $db->prepare("SELECT * FROM users WHERE email_address = :email;");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':role', $role);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
         $_SESSION['errors'] = [];
         // If email is not valid
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -97,6 +97,9 @@ class User extends Model
         }
 
         //If user does not exist
+        if($stmt->rowCount() === 0){
+            return [];
+        }     
         if($user === false){
             unset($_SESSION['errors']);
             $_SESSION['errors']['inc_username'] = true;
@@ -104,6 +107,7 @@ class User extends Model
         } else{
             $validPassword = password_verify($password, $user['password']);
             if($validPassword){
+                
                 $_SESSION['user'] = $user;
                 $_SESSION['logged_in'] = time();
 

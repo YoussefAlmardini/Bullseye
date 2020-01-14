@@ -96,7 +96,7 @@ function onLocationFound(e)
         //         radius: 15
         //     }).addTo(mymap);
         // }, 0);
-
+        getYourCurrentQuestionLocation();
         // This is the distance between the current position of the marker and the center of the circle
         var distance = mymap.distance(e.latlng, [52.1739999562361300,5.4037646949291240]);
         //circle.getLatLng()  
@@ -115,6 +115,15 @@ function onLocationFound(e)
     } else {
         mymarker.addTo(mymap);
     }
+}
+
+function getYourCurrentQuestionLocation(){
+    fetch('/main/getYourQuestion/')
+    .then(function(res) {
+        return res.json();
+    }).then(function(res) {
+        console.log(res);
+    })
 }
 
 function NavigateTargetQuestion(coords,currentQuestion){
