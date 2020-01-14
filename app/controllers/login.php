@@ -22,7 +22,7 @@ class Login extends Controller
             header('Location: /main');
             echo "<script>confirm('U bent ingelogd als ranger');</script>";
         } else if($role === 'admin'){
-            echo "<script>window.location.href = '/admin/dashboard';</script>";
+            echo "<script>window.location.href = '/admin/map';</script>";
         }
     }
 
