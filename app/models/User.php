@@ -146,4 +146,29 @@ class User extends Model
         $stmt->execute();
     }
 
+
+
+
+    public function validateAdminInputUpdate($firstName, $insertion, $lastName, $function, $phone_number, $ID){
+        // THIS FUNCTION VALIDATES THE BY THE USER INSERTED DATA OF THE PROFILE PAGE
+        User::updateAdminInDatabase($firstName, $insertion, $lastName, $function, $phone_number, $ID);
+        return true;
+    }
+
+    public function updateAdminInDatabase($firstName, $insertion, $lastName, $function, $phoneNumber, $ID){
+        // THIS FUNCTION UPDATES THE ADMIN IN THE DATABASE
+
+        $query = 'Update contact_data SET first_name = :firstName, insertion = :insertion, last_name = :lastName, function = :function, phone_number = :phoneNumber WHERE data_id = :id;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':firstName', $firstName);
+        $stmt->bindValue(':insertion', $insertion);
+        $stmt->bindValue(':lastName', $lastName);
+        $stmt->bindValue(':function', $function);
+        $stmt->bindValue(':phoneNumber', $phoneNumber);
+        $stmt->bindValue(':id', $ID);
+        $stmt->execute();
+    }
+
+
 }
