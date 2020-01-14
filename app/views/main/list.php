@@ -4,7 +4,7 @@
 
 <body>
     <div class="thirdTitle spaceUnder center">
-        Current speurtocht
+        Alle speurtochten
     </div>
 
     <div class="scaverageList">
@@ -27,9 +27,9 @@
                 $id = $result[$i]['expedition_id'];
                 $ex_name = $result[$i]['expedition'];
                 $organisation = $result[$i]['organisation'];
-                $location = $result[$i]['location'];
+                $location = $result[$i]['location_name'];
                 $info = $result[$i]['description'];
-                $level = $result[$i]['level'];
+                $level = $result[$i]['levels'];
 
                 echo " <div class='scaverageItem'>
            
@@ -60,7 +60,7 @@
                 </div>
     
                 <div class='scaverageItemTitle spaceUnder centerText'>
-                    Wat gaan we doen?
+                    Omschrijving:
               </div>
 
               <div class='text spaceUnder centerText'>
