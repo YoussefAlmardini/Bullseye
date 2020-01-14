@@ -75,4 +75,21 @@ class Admin extends Controller
         
     }
 
+    public function deleteMap()
+    {
+        $data = json_decode(file_get_contents('php://input'));
+        $admin = $this->model('Admin2');
+        $res = $admin->deleteMap($data);
+        echo json_encode($res);
+        exit;
+    }
+
+    public function getMaps($id) 
+    {
+        $admin = $this->model('Admin2');
+        $res = $admin->getAllMapsOrderByID($id);
+
+        echo json_encode($res);
+        exit;
+    }
 }

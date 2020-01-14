@@ -39,7 +39,6 @@ class Admin2 extends Model
 
     public function updateOrAddQuestion($data)
     {
-        error_log(print_r($data,1));
         $question_ID = $data->id;
         $expedition_id = $data->expedition_id;
         $answer = $data->answer;
@@ -86,7 +85,6 @@ class Admin2 extends Model
 
     public function newMap($data)
     {
-        error_log(print_r($data,1));
         $id = $data->id;
         $title = $data->title;        
         $loc_expedition = $data->loc_expedition;        
@@ -100,9 +98,9 @@ class Admin2 extends Model
                 VALUES ($id,'$title','$loc_expedition','$description','$info',$latitude,$longitude)"; 
         $db = DB::connect();
         $stmt = $db->prepare($query);
-        $stmt->execute();
         
-        if($stmt->rowCount() < 1){
+        
+        if($stmt->execute()){
             return true;
         } else {
            return false;
@@ -119,5 +117,56 @@ class Admin2 extends Model
         } else {
            return false;
         }
+    }
+
+    public function deleteMap($data) {
+        error_log(print_r($data,1));
+        $expedition_id = $data->expedition_id;
+
+        $query = "DELETE FROM quests WHERE expedition_id = $expedition_id";
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        if($stmt->execute()){
+            $query = "DELETE FROM expeditions WHERE expedition_id = $expedition_id";
+            $db = DB::connect();
+            $stmt = $db->prepare($query);
+            if($stmt->execute()){
+                return true;
+            } else {
+               return false;
+            }
+        } else {
+           return false;
+        }
+
+       
+    }
+
+    public function getAllMapsOrderByID($id){
+        // THIS FUNCTION CHECKS FOR EXISTANCE OF THE MAPS BY ORDER OF ID's
+        $query = 'SELECT * FROM expeditions WHERE organisation_id = '.$id.' ORDER BY expedition_id';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        
+        if($stmt->rowCount() === 0){
+            return [];
+        }     
+
+        $res = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return array_map(function($maps) {
+            return [
+                'expedition_id' => $maps['expedition_id'],
+                'organisation_id' => $maps['organisation_id'],
+                'nameMap'=> $maps['name'],
+                'locName'=> $maps['location_name'],
+                'description' => $maps['description'],
+                'info' => $maps['info'],
+                'cordinates' => [
+                    'lat'=> $maps['start_coordinate_langitude'],
+                    'lng'=> $maps['start_coordinate_longitude'],
+                ],
+            ];
+        }, $res);
     }
 }
