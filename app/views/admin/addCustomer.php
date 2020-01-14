@@ -27,7 +27,6 @@ require_once("header.php");
 
     <body>
         <form action="/admin/sendCustomerDataToModel" method="post">
-            <label>Naam klant: </label><br>
             <input required type="text" name="company_name"><br>
 
             <label>Postcode: </label><br>
