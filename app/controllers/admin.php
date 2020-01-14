@@ -92,6 +92,19 @@ class Admin extends Controller
     }
 
     public function sendOrganisationDataToModel(){
-        echo "Hoi";
+        if(isset($_POST['submit'])){
+            $customer = $_POST['customer'];
+            $organisationName = $_POST['organisation_name'];
+            $postalCode = $_POST['postal_code'];
+            $streetName = $_POST['street_name'];
+            $houseNumber = $_POST['house_number'];
+            $houseLetter = $_POST['house_letter'];
+            $mailingAddressPostalCode = $_POST['mailing_address_postal_code'];
+            $mailingAddressStreetName = $_POST['mailing_address_street_name'];
+            $mailingAddressHouseNumber = $_POST['mailing_address_house_number'];
+            $mailingAddressHouseLetter = $_POST['mailing_address_house_letter'];
+
+            $this->model('Organisation')->saveOrganisation($customer, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
+        }
     }
 }

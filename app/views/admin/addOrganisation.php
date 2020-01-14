@@ -35,12 +35,10 @@ require_once("header.php");
                         echo '<option>' . $data['customers'][$i] . '</option>';
                     }
                 ?>
-                <option>klant 1</option>
-                <option>klant 2</option>
-            </select>
+            </select><br><br>
 
             <label>Naam organisatie klant: </label><br>
-            <input required type="text" name="company_name"><br>
+            <input required type="text" name="organisation_name"><br>
 
             <label>Postcode: </label><br>
             <input type="text" name="postal_code" id="postal_code"><br>
