@@ -8,16 +8,6 @@
 </head>
 <body>
     <?php
-        if(isset($_SESSION['adminLoggedIn'])){
-            showLogoutButton();
-        }
-
-        function showLogoutButton(){
-            echo '<form method="POST">
-                         <input type="submit" value="Uitloggen" name="logout">
-                    </form>';
-        }
-
         if(isset($_POST['logout'])){
             logoutUser();
         }
