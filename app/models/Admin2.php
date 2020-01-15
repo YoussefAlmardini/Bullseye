@@ -92,21 +92,38 @@ class Admin2 extends Model
         $info = $data->info;        
         $latitude = $data->latitude;        
         $longitude = $data->longitude;  
-        $levels = $data->levels;      
+        $levels = $data->levels;
+        $expedition_id = $data->expedition_id;      
 
+        if(empty($expedition_id)){
+       //Als er geen expeditie/map bestaat maak er 1 aan
 
-        $query = "INSERT INTO expeditions (organisation_id,name,location_name,levels,description,info,start_coordinate_langitude,start_coordinate_longitude)
-                VALUES ($id,'$title','$loc_expedition','$levels','$description','$info',$latitude,$longitude)"; 
+        $query = "INSERT INTO expeditions (expedition_id,organisation_id,name,location_name,levels,description,info,start_coordinate_langitude,start_coordinate_longitude)
+                VALUES ('',$id,'$title','$loc_expedition','$levels','$description','$info',$latitude,$longitude)"; 
         $db = DB::connect();
         $stmt = $db->prepare($query);
-        
-        
-        if($stmt->execute()){
-            return true;
+            if ($stmt->execute()) { 
+                return true;
+            } else {
+                return false;
+            }
         } else {
-           return false;
+                    $query = "UPDATE expeditions SET 
+                    name = '$title', 
+                    location_name = '$loc_expedition',
+                    levels = $levels,
+                    description = '$description',
+                    info = '$info' WHERE organisation_id = $id AND expedition_id = $expedition_id"; 
+                    $db = DB::connect();
+                    $stmt = $db->prepare($query);
+                    if ($stmt->execute()) { 
+                        return true;
+                     } else {
+                        return false;
+                    }
+                }
         }
-    }
+    
 
     public function deleteQuest($data) {
         $id = $data->id;

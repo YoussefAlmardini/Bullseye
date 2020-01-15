@@ -93,7 +93,6 @@ document.getElementById('select_expedition').addEventListener('change', function
         for(const i in res) {
             const marker = res[i];
 
-            //console.log(marker);
             const text = "<strong id='title'>"+marker.quest+"</strong><br>"+
             "<a hidden id='type_id_"+i+"'>"+marker.type_id+"</a><br>"+
             "Vraag:<a id='queue"+i+"'>"+marker.queue+"</a><br>"+
@@ -336,6 +335,7 @@ function NewMap(){
     fetch('/admin/newMap/', {
         method: 'POST',
         body: JSON.stringify({
+            expedition_id: data.expedition_id,
             id:organisationValue,
             title: data.title_expedition,
             description: data.description,
@@ -349,7 +349,7 @@ function NewMap(){
         return res.json();
     }).then(function(res) {
         if(res) {
-            alert('Map is succesvol toegevoegd!');
+            alert('Map is succesvol toegevoegd of aangepast!');
             location.reload();
         } else {
             alert('Er heeft een probleem plaatsgevonden, probeer het later nog eens');
@@ -363,7 +363,6 @@ function deleteMap(e) {
     if (r == true) {
         const data = objectifyForm(document.getElementById('newmapForm'));
 
-        console.log(data);
 
         fetch('/admin/deleteMap/', {
             method: 'POST',
@@ -395,7 +394,6 @@ var groupMaps = L.featureGroup();
 mymap.addLayer(groupMaps);
 
 function mapClick(e){
-    console.log(this);
     document.getElementById('title_expedition').value = this.options.nameMap;
     document.getElementById('description').value = this.options.description;
     document.getElementById('loc_expedition').value = this.options.name;
@@ -419,11 +417,9 @@ document.getElementById('organisation_id').addEventListener('change', function(e
         for(const i in res) {
             const maps = res[i];
 
-            console.log(maps);
-
-            const text = "<strong id='title'>"+maps.nameMap+"</strong><br>"+    
-            "<a hidden id='expedition_id"+i+"'>"+maps.expedition_id+"</a><br>"+
+            const text = "<strong id='title'>"+maps.nameMap+"</strong><br>"+   
             "<a id='description"+i+"'>"+maps.description+"</a><br>"+
+            "<a hidden id='expedition_id"+i+"'>"+maps.expedition_id+"</a><br>"+
             "Locatie:<a id='loc_expedition"+i+"'>"+maps.name+"</a><br>"+
             "Extra info:<a id='extra"+i+"'>"+maps.info+"</a><br>"+
             "Level:<a id='levels"+i+"'>"+maps.levels+"</a><br>";
