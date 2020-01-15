@@ -2,9 +2,9 @@
         width: auto;}
 
 #mymap{
-    height: auto;
+    height: 98%;
     width: auto;
-    top: 8.5%;
+    /*top: 8.5%;*/
     z-index: 1;
 }
 .questionBlock{

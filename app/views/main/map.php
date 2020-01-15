@@ -3,14 +3,13 @@
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""/>
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
    <script src="/src/js/questions.js"></script>
    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>    
 </head>
 <body>
-    <div class="TopDataBar">
+    <div class="TopDataBar" style='display:none;'>
         <div class="TopDataMain" id="level">
             <p>Level</p>
             <p>level_data</p>
@@ -24,6 +23,7 @@
             <p>time_date</p>
         </div>
     </div>
+</div><!-- Do not remove this DIV, this will end a DIV with class 'scaverage on index.php  -->
     <div id="mymap"></div>
 </body>
 <!-- Make sure you put this AFTER Leaflet's CSS -->
@@ -37,8 +37,8 @@ const mymap = L.map('mymap').setView([52.1637739, 5.3965879], 15);
 // Default Layer Options
 var layerOptions = {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 20,
-    minZoom: 10,
+    maxZoom: 21,
+    minZoom: 15,
     id: 'mapbox/streets-v11',
     accessToken: 'pk.eyJ1IjoibW9sbGllbmF0b3IiLCJhIjoiY2szdHp3eWtxMDUzNjNwazRrYWxxejBieSJ9.DdHVpF9UpzeZCWDWHgKeBg'
 }
@@ -48,8 +48,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // Sets icon
 var myIcon = L.icon({
     iconUrl: window.location.origin + '/src/assets/myicon.png',
-    iconSize: [20, 20],
-    iconAnchor: [10, 20],
+    iconSize: [50, 50],
+    iconAnchor: [25, 50],
     popupAnchor: [],
 });
 
@@ -64,7 +64,7 @@ const mymarker = L.marker([0,0],
 
 // Button to jump to your own location
 L.easyButton('<span class="bigdot">&bigodot;</span>', function(){
-    mymap.setView(mymarker.getLatLng(), 18);
+    mymap.setView(mymarker.getLatLng(), 20);
 }).addTo(mymap);
 
 mymap.locate({ setView:true, watch: true });

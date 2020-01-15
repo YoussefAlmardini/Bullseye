@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/main.css">
 <div class="standardMain">
     <div class="thirdTitle spaceUnder center">
         Huidige speurtocht

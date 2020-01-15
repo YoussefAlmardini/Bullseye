@@ -1,7 +1,8 @@
-<?php
-    include "app/views/header/index.php";
-?>
-
+<link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/main.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/list.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/profiel.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
 <body>
     <div class="thirdTitle spaceUnder center">
         Alle speurtochten
@@ -71,7 +72,7 @@
                 <div class='scaverageItemButton'>   
                     <form method='post' action='index.php' name=''>
                         <input class='green' type='submit' name='' id='$id' onclick='changeValue(this)' value='Start'>
-                        <input type='text' name='id' value='$id'>
+                        <input type='text' name='id' value='$id' hidden>
                     <form>
                 </div>
     

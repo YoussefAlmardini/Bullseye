@@ -1,14 +1,10 @@
-<?php
-    include "app/views/header/index.php";
-?>
-
+<link rel="stylesheet" type="text/css" href="/src/styles/main.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
 <body>
-
-
-<div class="scaverage">
-   <?php 
+    <div class="scaverage">
+    <?php 
    
-   if(isset($_POST)){
+    if(isset($_POST['clickedID'])){
         include_once "map.php";
         //die('Dit is jouw ID: '. $_POST['clickedID']);
         $query = 'SELECT * FROM `quests` WHERE `expedition_id`='.$_POST['clickedID'];
@@ -41,11 +37,11 @@
            ];
            array_push($_SESSION['quests'],$dataRow);         
         }
-   }else{
+    }else{
     include_once "emptyMain.php"; 
-   }
-   ?>
-</div>
+    }
+    ?>
+
 
 <?php include "app/components/bottomNavigation/index.php"; ?>
 <script>
