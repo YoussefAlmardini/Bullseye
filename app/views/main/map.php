@@ -88,81 +88,50 @@ function UpdateCurrentPosition(position) {
 function onLocationFound(e) 
 {
     if(mymap.hasLayer(mymarker)){
-        mymarker.setLatLng(e.latlng);
-        // setTimeout(() => {
-        //     L.circle([currentPos.latitude,currentPos.longitude], {   
-        //         color: "red",
-        //         fillColor: "blue",
-        //         fillOpacity: 0.5,
-        //         radius: 15
-        //     }).addTo(mymap);
-        // }, 0);
-        getYourCurrentQuestionLocation();
-        // This is the distance between the current position of the marker and the center of the circle
-        var distance = mymap.distance(e.latlng, [52.1739999562361300,5.4037646949291240]);
-        //circle.getLatLng()  
-        // TODO: GET CURREN"T QUESTION CIRCLE DATA
+        mymarker.setLatLng(e.latlng)
 
-        // The marker is inside the circle when the distance is inferior to the radius
-        var isInside = distance < 15;
-        //circle.getRadius() 
-        // TODO: GET CURRENT QUESTION CIRCLE DATA
+        var promise = getYourCurrentQuestionLocation();
+        let data = null;
+        promise.then(function(res) {
+            var quest = res.quest;
+            var id = res.questionID;
+            var langitude = res.coordinate_langitude;
+            var longitude = res.coordinate_longitude;
+            // This is the distance between the current position of the marker and the center of the circle
+            var distance = mymap.distance(e.latlng, [langitude,longitude]);
+            // The marker is inside the circle when the distance is inferior to the radius
+            var isInside = distance < 15;
 
-        if(isInside) {
-            //alert('Ik zit erin');
-        } else{
-            //alert('NIET ERIN');
-        }
+            // L.circle([langitude,longitude], {   
+            //     color: "red",
+            //     fillColor: "blue",
+            //     fillOpacity: 0.5,
+            //     radius: 15
+            // }).addTo(mymap);
+
+            currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
+            currentQuestion.Print();
+                currentQuestion.Delete();
+
+            if(isInside) {
+                currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
+                currentQuestion.Print();
+            } else{
+                currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
+                currentQuestion.Delete();
+            }
+        });//END PROMISE
+        
+        
     } else {
         mymarker.addTo(mymap);
     }
 }
 
 function getYourCurrentQuestionLocation(){
-    fetch('/main/getYourQuestion/')
-    .then(function(res) {
-        return res.json();
-    }).then(function(res) {
-        console.log(res);
-    })
+    return fetch('/main/getYourQuestion/')
+    .then(response => response.json());
 }
-
-function NavigateTargetQuestion(coords,currentQuestion){
-    var id, target, options;
-    function success(pos) {
-        var crd = pos.coords;
-
-        if (target.latitude === crd.latitude && target.longitude === crd.longitude) {
-            console.log('Congratulations, you reached the target');
-            currentQuestion.Print();
-            navigator.geolocation.clearWatch(id);
-        }
-    }
-
-    function error(err) {
-        console.warn('ERROR(' + err.code + '): ' + err.message);
-    }
-
-    target = {
-        latitude : coords.lang,
-        longitude: coords.long
-    };
-
-    const circle = L.circle([target.latitude,target.longitude], {   
-        color: "black",
-        fillColor: "green",
-        fillOpacity: 0.5,
-        radius: 15
-    }).addTo(mymap);
-
-    options = {
-    enableHighAccuracy: false,
-    timeout: 5000,
-    maximumAge: 0
-    };
-
-    id = navigator.geolocation.watchPosition(success, error, options);
-}// END NavigateTargetQuestion()
 
 function ShowQuestionDialog(question,id,lang,long){
     //This data comming from the database
@@ -172,53 +141,28 @@ function ShowQuestionDialog(question,id,lang,long){
     }
     let currentQuestion = new Question(question,'text');
     currentQuestion.CreateQuestionElement();
-    NavigateTargetQuestion(coords,currentQuestion);
-    
   
-    mymap.locate({ setView:true, watch: true });
-    mymap.on('locationfound', onLocationFound);
-    
-    mymap.on('locationerror', function(e){
-            alert("Locatie toegang geweigerd.");
-    });
-
     function sendLocation(){
         var latitude = mymarker.getLatLng().lat;
         var longitude = mymarker.getLatLng().lng;
 
-        console.log("Latitude " + latitude);
-        console.log("Longitude " + longitude);
         var xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                alert(this.responseText);
+                //alert(this.responseText);
             }
         };
-
-        xhttp.open("GET", "http://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude, true);
+        xhttp.open("GET", "https://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude, true);
         xhttp.send();
     };
 
     (window.setInterval(sendLocation, 60000));
+    return currentQuestion;
 }
 </script>
 </body>
-
-    //currentQuestion.Print();
-}// END ShowQuestionDialog()
-
-//window.onpaint = ShowQuestionDialog(question,id,lang,long);
-</script>
 <?php 
-
-if(isset($_SESSION['quests'])){ 
-    $question = $_SESSION['quests'][0]['quest'];
-    $id =  $_SESSION['quests'][0]['questionID'];
-    $lang = $_SESSION['quests'][0]['coordinate_langitude'];
-    $long = $_SESSION['quests'][0]['coordinate_longitude'];
-    echo "<script>ShowQuestionDialog('$question','$id','$lang','$long');</script>";
-}
 
 if(isset($_POST['answer'])){
     $userAnswer = $_POST['answerBody'];

@@ -23,7 +23,7 @@
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
             for($i = 0; $i < count($result); $i++) {
-
+                
                 $id = $result[$i]['expedition_id'];
                 $ex_name = $result[$i]['expedition'];
                 $organisation = $result[$i]['organisation'];
@@ -69,9 +69,9 @@
               
     
                 <div class='scaverageItemButton'>   
-                    <form method='post' action='index.php'>
-                        <input class='green' type='submit' name='expStart' value='Start'>
-                        <input type='text' name='id' value='$id' hidden>
+                    <form method='post' action='index.php' name=''>
+                        <input class='green' type='submit' name='' id='$id' onclick='changeValue(this)' value='Start'>
+                        <input type='text' name='id' value='$id'>
                     <form>
                 </div>
     
@@ -86,6 +86,13 @@
       
     <?php include "app/components/bottomNavigation/index.php"; ?>
     <script>
+        function changeValue(e) {
+            var button = document.getElementById(e.id);
+            var input = button.nextSibling.nextSibling;
+            button.setAttribute("name", "clickedExpedition");
+            input.setAttribute("name", "clickedID");
+        }
+
         document.getElementById('list').style.background = "#0F7EC7";
 
         function ShowInfo(){
