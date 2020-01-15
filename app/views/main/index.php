@@ -27,12 +27,14 @@
            $questionID = $result[$i]['quest_id'];
            $answer = $result[$i]['answer'];
            $quest = $result[$i]['quest'];
+           $queue = $result[$i]['queue'];
            $coordinate_langitude = $result[$i]['coordinate_langitude'];
            $coordinate_longitude = $result[$i]['coordinate_longitude'];
            $dataRow = [
             'questionID' => $questionID,
             'answer' => $answer,
             'quest' => $quest,
+            'queue' => $queue,
             'coordinate_langitude' =>  $coordinate_langitude,
             'coordinate_longitude' => $coordinate_longitude
            ];
