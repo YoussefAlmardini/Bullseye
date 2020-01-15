@@ -173,6 +173,36 @@ function ShowQuestionDialog(question,id,lang,long){
     currentQuestion.CreateQuestionElement();
     NavigateTargetQuestion(coords,currentQuestion);
     
+  
+    mymap.locate({ setView:true, watch: true });
+    mymap.on('locationfound', onLocationFound);
+    
+    mymap.on('locationerror', function(e){
+            alert("Locatie toegang geweigerd.");
+    });
+
+    function sendLocation(){
+        var latitude = mymarker.getLatLng().lat;
+        var longitude = mymarker.getLatLng().lng;
+
+        console.log("Latitude " + latitude);
+        console.log("Longitude " + longitude);
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(this.responseText);
+            }
+        };
+
+        xhttp.open("GET", "http://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude, true);
+        xhttp.send();
+    };
+
+    (window.setInterval(sendLocation, 60000));
+</script>
+</body>
+
     //currentQuestion.Print();
 }// END ShowQuestionDialog()
 
