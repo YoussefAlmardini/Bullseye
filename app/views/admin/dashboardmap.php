@@ -46,7 +46,7 @@ $getOrganisations = false;
           <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
           <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
           <input type="number" hidden name="expedition_id" id="expedition_id">
-         <button type="button" onclick="NewMap()"> Voeg nieuwe map toe</button>
+         <button type="button" onclick="NewMap()"> Nieuwe map/Update</button>
          <button type="button" onclick="clearMap()">Reset map</button>
         </form>
       </ul>
