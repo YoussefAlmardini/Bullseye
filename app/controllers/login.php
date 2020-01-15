@@ -7,13 +7,11 @@ class Login extends Controller
         $this->view('login/index');
     }
 
-    public function authenticate()
+    public function authenticate($email, $password, $role)
     {
-        $password = $_POST['password'];
-        $email = $_POST['email'];
-        $result = $this->model('User')->checkLogin($email, $password);
+        $result = $this->model('User')->checkLogin($email, $password, $role);
         if($result) {
-            header('Location: /main');
+            return true;
         } else {
             header('Location: /login');
         }
