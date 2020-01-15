@@ -2,9 +2,56 @@
         width: auto;}
 
 #mymap{
-    height: 83%;
+    height: auto;
     width: auto;
     top: 8.5%;
     z-index: 1;
+}
+.questionBlock{
+    position: absolute;
+    top: 400px;
+    z-index: 1;
+    margin: 0 auto;
+    width: 100%;
+    height: 700px;
+    font-family: Segoe UI;
+    background-size: contain;
+    background: url('/src/assets/fBXEda.jpg');
+}
 
+.questionBlock p{
+    width: 100%;
+    text-align: center;
+    font-size: 60px;
+    color: #0F7EC7;;
+    font-weight: bold;
+}
+
+.questionBlock div{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.questionBlock div input{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 40px;
+    background: blanchedalmond;
+    margin-top: 25px;
+}
+
+.questionBlock div input[type='submit']{
+    background:#0F7EC7;
+    border: none;
+    border-radius: 50px;
+    color:white;
+    opacity: 75;
+    font-family: Segoe UI;
+}
+
+.questionBlock div input[type='text'],.questionBlock div input[type='number']{
+   width: 75%;
+   background: white;
+   border: 2px solid black;
 }

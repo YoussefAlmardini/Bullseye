@@ -1,7 +1,0 @@
-class Settings{
-
-    static LogOut=()=>{
-
-    }
-
-}

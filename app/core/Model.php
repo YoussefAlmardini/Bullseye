@@ -1,7 +1,6 @@
 <?php
-
-class Model {
-
+class Model
+{
     protected $table = null;
 
     protected $fields = [];
@@ -14,11 +13,11 @@ class Model {
     //     }
     // }
 
-    public function loadFromArray(array $array){
-        
+    public function loadFromArray(array $array)
+    {
     }
 
-    public function loadFromDB(array $array){
-        
+    public function loadFromDB(array $array)
+    {
     }
 }
