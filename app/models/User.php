@@ -77,15 +77,15 @@ class User extends Model
         
     }
 
-    function checkLogin($email, $password, $role)
+    function checkLogin($email, $password)
     {
         $db = DB::connect();
         if($db == false) {$_SESSION['errors']['no_connection'] = true;}
-        $stmt = $db->prepare("SELECT users.* FROM users INNER JOIN roles ON users.role_id = roles.role_id WHERE users.email_address = :email AND roles.role = :role;");
+        $stmt = $db->prepare("SELECT * FROM users WHERE email_address = :email;");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':role', $role);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
         $_SESSION['errors'] = [];
         // If email is not valid
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -97,6 +97,9 @@ class User extends Model
         }
 
         //If user does not exist
+        if($stmt->rowCount() === 0){
+            return [];
+        }     
         if($user === false){
             unset($_SESSION['errors']);
             $_SESSION['errors']['inc_username'] = true;
@@ -104,6 +107,7 @@ class User extends Model
         } else{
             $validPassword = password_verify($password, $user['password']);
             if($validPassword){
+                
                 $_SESSION['user'] = $user;
                 $_SESSION['logged_in'] = time();
 
@@ -145,5 +149,30 @@ class User extends Model
         $stmt->bindValue(':id', $ID);
         $stmt->execute();
     }
+
+
+
+
+    public function validateAdminInputUpdate($firstName, $insertion, $lastName, $function, $phone_number, $ID){
+        // THIS FUNCTION VALIDATES THE BY THE USER INSERTED DATA OF THE PROFILE PAGE
+        User::updateAdminInDatabase($firstName, $insertion, $lastName, $function, $phone_number, $ID);
+        return true;
+    }
+
+    public function updateAdminInDatabase($firstName, $insertion, $lastName, $function, $phoneNumber, $ID){
+        // THIS FUNCTION UPDATES THE ADMIN IN THE DATABASE
+
+        $query = 'Update contact_data SET first_name = :firstName, insertion = :insertion, last_name = :lastName, function = :function, phone_number = :phoneNumber WHERE data_id = :id;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':firstName', $firstName);
+        $stmt->bindValue(':insertion', $insertion);
+        $stmt->bindValue(':lastName', $lastName);
+        $stmt->bindValue(':function', $function);
+        $stmt->bindValue(':phoneNumber', $phoneNumber);
+        $stmt->bindValue(':id', $ID);
+        $stmt->execute();
+    }
+
 
 }
