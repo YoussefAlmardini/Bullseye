@@ -42,6 +42,7 @@ $getOrganisations = false;
           <input type="textarea" name="description" id="description" value="" placeholder="Omschrijving speurtocht *" required>
           <input type="text" name="loc_expedition" id="loc_expedition" value="" placeholder="Plaats *" required>
           <input type="text" name="info" id="info" value="" placeholder="Extra info">
+          <input type="number" name="levels" id="levels" value="" placeholder="Level" required>
           <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
           <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
           <input type="number" hidden name="expedition_id" id="expedition_id">

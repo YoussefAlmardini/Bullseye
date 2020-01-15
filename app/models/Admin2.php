@@ -91,11 +91,12 @@ class Admin2 extends Model
         $description = $data->description;        
         $info = $data->info;        
         $latitude = $data->latitude;        
-        $longitude = $data->longitude;        
+        $longitude = $data->longitude;  
+        $levels = $data->levels;      
 
 
-        $query = "INSERT INTO expeditions (organisation_id,name,location_name,description,info,start_coordinate_langitude,start_coordinate_longitude)
-                VALUES ($id,'$title','$loc_expedition','$description','$info',$latitude,$longitude)"; 
+        $query = "INSERT INTO expeditions (organisation_id,name,location_name,levels,description,info,start_coordinate_langitude,start_coordinate_longitude)
+                VALUES ($id,'$title','$loc_expedition','$levels','$description','$info',$latitude,$longitude)"; 
         $db = DB::connect();
         $stmt = $db->prepare($query);
         
@@ -159,9 +160,10 @@ class Admin2 extends Model
                 'expedition_id' => $maps['expedition_id'],
                 'organisation_id' => $maps['organisation_id'],
                 'nameMap'=> $maps['name'],
-                'locName'=> $maps['location_name'],
+                'name'=> $maps['location_name'],
                 'description' => $maps['description'],
                 'info' => $maps['info'],
+                'levels' => $maps['levels'],
                 'cordinates' => [
                     'lat'=> $maps['start_coordinate_langitude'],
                     'lng'=> $maps['start_coordinate_longitude'],
