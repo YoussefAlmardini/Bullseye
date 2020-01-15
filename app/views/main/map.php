@@ -84,6 +84,7 @@ function UpdateCurrentPosition(position) {
     currentPos.longitude = position.coords.longitude;
 }
 
+
 function onLocationFound(e) 
 {
     if(mymap.hasLayer(mymarker)){
@@ -108,9 +109,9 @@ function onLocationFound(e)
         // TODO: GET CURRENT QUESTION CIRCLE DATA
 
         if(isInside) {
-            alert('Ik zit erin');
+            //alert('Ik zit erin');
         } else{
-            alert('NIET ERIN');
+            //alert('NIET ERIN');
         }
     } else {
         mymarker.addTo(mymap);

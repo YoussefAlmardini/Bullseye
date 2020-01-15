@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="middleBlock">
-        <form method="post" action="/login/authenticate">
+        <form method="post" action="/login/authorizeRanger">
           <div class="secondTitle formTitle">
             Inloggen
           </div>
