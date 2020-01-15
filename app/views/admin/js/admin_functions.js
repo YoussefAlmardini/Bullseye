@@ -15,7 +15,7 @@ L.Control.MyControl = L.Control.extend({
     onAdd: function(map) {
       var el = L.DomUtil.create('div', 'leaflet-bar my-control');
   
-      el.innerHTML = 'Mijn locatie <img src="/src/assets/myicon.png"> Opgeslagen locatie <img src="/src/assets/InLocation.png"> Niet opgeslagen locatie <img src="/src/assets/ringNoLocation.png">';
+      el.innerHTML = 'Mijn mappen <img src="/src/assets/mapLocation.png"> Mijn locatie <img src="/src/assets/myicon.png"> Opgeslagen locatie <img src="/src/assets/InLocation.png"> Niet opgeslagen locatie <img src="/src/assets/ringNoLocation.png">';
        
       return el;
     },
@@ -106,6 +106,7 @@ document.getElementById('select_expedition').addEventListener('change', function
                 clickable: true,
                 radius: 15,
                 title: marker.quest,
+                color: 'green',
                 answer: marker.answer,
                 queue: marker.queue,
                 tip_1: marker.tips[0],
@@ -176,7 +177,6 @@ function addMarker(e){
     newCircle = new L.circle(e.latlng, {
         clickable: true,
         radius: 15,
-        color: 'green',
         title: title,
         answer: answer,
         queue: queue,
@@ -332,6 +332,7 @@ function NewMap(){
     let organisationValue = document.getElementById('organisation_id').selectedIndex;
     organisationID = document.getElementById('organisation_id').selectedIndex = organisationValue;
 
+
     fetch('/admin/newMap/', {
         method: 'POST',
         body: JSON.stringify({
@@ -341,7 +342,8 @@ function NewMap(){
             info: data.info,
             loc_expedition: data.loc_expedition,
             latitude: data.setlatitude,
-            longitude: data.setlongitude
+            longitude: data.setlongitude,
+            levels: data.levels
         })
     }).then(function(res) {
         return res.json();
@@ -354,3 +356,99 @@ function NewMap(){
         }
     })
 }
+
+
+function deleteMap(e) {
+    var r = confirm("Weet u zeker dat u de map wilt verwijderen?");
+    if (r == true) {
+        const data = objectifyForm(document.getElementById('newmapForm'));
+
+        console.log(data);
+
+        fetch('/admin/deleteMap/', {
+            method: 'POST',
+            body: JSON.stringify({
+                expedition_id: data.expedition_id
+            })
+        }).then(function(res) {
+            return res.json();
+        }).then(function(res) {
+            if(res) {
+                alert('Map is succesvol verwijderd, samen met eventuele markers!');
+                location.reload();
+            } else {
+                alert('Er heeft een probleem plaatsgevonden, probeer het later nog eens');
+            }
+        })
+    } else {
+        // PRESSED CANCEL
+    }  
+}
+
+function clearMap() {
+    document.getElementById('newmapForm').reset();
+    groupMaps.clearLayers();
+}
+
+// Make a group where all the markers will in be
+var groupMaps = L.featureGroup();  
+mymap.addLayer(groupMaps);
+
+function mapClick(e){
+    console.log(this);
+    document.getElementById('title_expedition').value = this.options.nameMap;
+    document.getElementById('description').value = this.options.description;
+    document.getElementById('loc_expedition').value = this.options.name;
+    document.getElementById('info').value = this.options.info;
+    document.getElementById('levels').value = this.options.levels;
+    document.getElementById('setlatitude').value = this.options.latitude;
+    document.getElementById('setlongitude').value = this.options.longitude;
+    document.getElementById('expedition_id').value = this.options.expedition_id;
+}
+
+//If an organisation is selected, get all the maps
+document.getElementById('organisation_id').addEventListener('change', function(e) {
+    groupMaps.clearLayers();
+    const id = e.target.selectedOptions[0].value;
+
+    fetch('/admin/getMaps/' + id, {
+        id: id,
+    }).then(function(res) {
+        return res.json();
+    }).then(function(res) {
+        for(const i in res) {
+            const maps = res[i];
+
+            console.log(maps);
+
+            const text = "<strong id='title'>"+maps.nameMap+"</strong><br>"+    
+            "<a hidden id='expedition_id"+i+"'>"+maps.expedition_id+"</a><br>"+
+            "<a id='description"+i+"'>"+maps.description+"</a><br>"+
+            "Locatie:<a id='loc_expedition"+i+"'>"+maps.name+"</a><br>"+
+            "Extra info:<a id='extra"+i+"'>"+maps.info+"</a><br>"+
+            "Level:<a id='levels"+i+"'>"+maps.levels+"</a><br>";
+
+            newMarker = new L.marker(L.latLng(maps.cordinates.lat, maps.cordinates.lng), {
+                clickable: true,
+                nameMap: maps.nameMap,
+                expedition_id:maps.expedition_id,
+                description: maps.description,
+                name:maps.name,
+                info:maps.info,
+                levels: maps.levels,
+                latitude: maps.cordinates.lat,
+                longitude: maps.cordinates.lng
+            }).addTo(groupMaps)
+            .bindPopup(text)
+            .openPopup()
+            .on('contextmenu', deleteMap)
+            .on("click", mapClick)
+            .on('mouseover', function (e) {
+                this.openPopup();
+            })
+            .on('mouseout', function (e) {
+                this.closePopup();
+            });
+        }
+    })
+});

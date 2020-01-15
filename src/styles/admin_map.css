@@ -118,7 +118,7 @@ body{
 }
 
 .leaflet-right {
-  left: 50%;
+  text-align: center;
   transform: translate(-50%, 0%);
 }
 

@@ -86,6 +86,7 @@ class User extends Model
         $stmt->bindParam(':role', $role);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
         $_SESSION['errors'] = [];
         // If email is not valid
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {

@@ -41,10 +41,13 @@ $getOrganisations = false;
           <input type="text" name="title_expedition" id="title_expedition" value="" placeholder="Titel speurtocht *" required>
           <input type="textarea" name="description" id="description" value="" placeholder="Omschrijving speurtocht *" required>
           <input type="text" name="loc_expedition" id="loc_expedition" value="" placeholder="Plaats *" required>
-          <input type="text" name="info" id="Info" value="" placeholder="Extra info">
+          <input type="text" name="info" id="info" value="" placeholder="Extra info">
+          <input type="number" name="levels" id="levels" value="" placeholder="Level" required>
           <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
           <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
+          <input type="number" hidden name="expedition_id" id="expedition_id">
          <button type="button" onclick="NewMap()"> Voeg nieuwe map toe</button>
+         <button type="button" onclick="clearMap()">Reset map</button>
         </form>
       </ul>
     </div>
@@ -75,8 +78,8 @@ $getOrganisations = false;
             <input type="number" id="latitude" value="" name="latitude" placeholder="Latitude*" readonly required>
             <input type="number" id="longitude" value="" name="longitude" placeholder="Longitude*" readonly required>
             <button type="button" onclick="addData()" id="">Add/Update</button>
-            <button type="button" onclick="resetFields()">Reset</button>
-            <button type="button" onclick="clearAll()">Clear All</button>
+            <button type="button" onclick="resetFields()">Reset vraag</button>
+            <button type="button" onclick="clearAll()">Reset alles</button>
           </form>
       </ul>
   </div>
@@ -124,7 +127,7 @@ function getMaps(){
     for($i = 0; $i < count($result); $i++) {
       $expedition_id = $result[$i]['expedition_id'];
       $expedition_name = $result[$i]['name'];
-      echo '<option name="expedition_id type="number" id="expedition'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
+      echo '<option name="expedition_id type="number" id="expedition_id'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
     }
 }
 

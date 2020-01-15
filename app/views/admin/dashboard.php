@@ -15,6 +15,8 @@ require_once("header.php");
 
 <body>
     <div>Welkom op de dashboard-pagina!</div>
+
+    <a href="/admin/addCustomer">Organisatie toevoegen</a>
 </body>
 
 </html>

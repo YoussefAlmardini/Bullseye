@@ -1,30 +1,63 @@
 <?php
-    if(!$_SESSION['adminLoggedIn']){
-        header("Location: /admin/index");
-    }
+if (!$_SESSION['adminLoggedIn']) {
+    header("Location: /admin/index");
+}
 
-    require_once("header.php");
-    require_once("mapload.php");
+require_once("header.php");
 ?>
 
 <html lang="en">
-    <head>
-        <title>Heatmap - Admin | NL Rangers</title>
-    </head>
 
-    <body>
-    
-        <h1>Welkom op de heatmap-pagina</h1>
-        <div id="mymap"></div>
+<head>
+    <title>Heatmap - Admin | NL Rangers</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 100%;
+        }
 
-        <script>
-            var heat = L.heatLayer([
-                [52.177908, 5.386823, 0.9], // lat, lng, intensity
-            ], {radius: 25}).addTo(mymap);
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
 
-            mymap.addLayer(heat);
-        </script>
-    </body>
+<body>
+    <div id="map"></div>
+    <script>
+        var map;
+        var coordinatesObj = <?php echo json_encode($data['locations']) ?>;
+        var heatmapData = [];
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 52.149787,
+                    lng: 5.344201
+                },
+                zoom: 16
+            });
+            initHeatMap();
+        }
+
+        function initHeatMap() {
+            for (i = 0; i < coordinatesObj.length; i++) {
+                heatmapData.push(new google.maps.LatLng(coordinatesObj[i][0], coordinatesObj[i][1]));
+            }
+
+            var heatmap = new google.maps.visualization.HeatmapLayer({
+                data: heatmapData
+            });
+
+            heatmap.setMap(map);
+        }
+    </script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvPT8O8uZWxxFVCXMf2JOBrzAA0aeyyho&libraries=visualization&callback=initMap"></script>
+</body>
+
 </html>
-
-

@@ -11,4 +11,13 @@ class Main extends Controller
     {
         $this->view('main/list');
     }
+
+    public function getYourQuestion()
+    {
+        $main = $this->model('MainModel');
+        $res = $main->getYourCurrentQuestion();
+
+        echo json_encode($res);
+        exit;
+    }
 }

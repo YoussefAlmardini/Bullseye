@@ -84,6 +84,7 @@ function UpdateCurrentPosition(position) {
     currentPos.longitude = position.coords.longitude;
 }
 
+
 function onLocationFound(e) 
 {
     if(mymap.hasLayer(mymarker)){
@@ -96,7 +97,7 @@ function onLocationFound(e)
         //         radius: 15
         //     }).addTo(mymap);
         // }, 0);
-
+        getYourCurrentQuestionLocation();
         // This is the distance between the current position of the marker and the center of the circle
         var distance = mymap.distance(e.latlng, [52.1739999562361300,5.4037646949291240]);
         //circle.getLatLng()  
@@ -108,13 +109,22 @@ function onLocationFound(e)
         // TODO: GET CURRENT QUESTION CIRCLE DATA
 
         if(isInside) {
-            alert('Ik zit erin');
+            //alert('Ik zit erin');
         } else{
-            alert('NIET ERIN');
+            //alert('NIET ERIN');
         }
     } else {
         mymarker.addTo(mymap);
     }
+}
+
+function getYourCurrentQuestionLocation(){
+    fetch('/main/getYourQuestion/')
+    .then(function(res) {
+        return res.json();
+    }).then(function(res) {
+        console.log(res);
+    })
 }
 
 function NavigateTargetQuestion(coords,currentQuestion){
@@ -164,6 +174,37 @@ function ShowQuestionDialog(question,id,lang,long){
     currentQuestion.CreateQuestionElement();
     NavigateTargetQuestion(coords,currentQuestion);
     
+  
+    mymap.locate({ setView:true, watch: true });
+    mymap.on('locationfound', onLocationFound);
+    
+    mymap.on('locationerror', function(e){
+            alert("Locatie toegang geweigerd.");
+    });
+
+    function sendLocation(){
+        var latitude = mymarker.getLatLng().lat;
+        var longitude = mymarker.getLatLng().lng;
+
+        console.log("Latitude " + latitude);
+        console.log("Longitude " + longitude);
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(this.responseText);
+            }
+        };
+
+        xhttp.open("GET", "http://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude, true);
+        xhttp.send();
+    };
+
+    (window.setInterval(sendLocation, 60000));
+}
+</script>
+</body>
+
     //currentQuestion.Print();
 }// END ShowQuestionDialog()
 
