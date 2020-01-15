@@ -25,35 +25,36 @@ require_once("header.php");
         </style>
     </head>
 
-    <body>
-        <form action="/admin/sendCustomerDataToModel" method="post">
-            <input required type="text" name="company_name"><br>
+    <body style="text-align:center">
+        <form class="addForm" action="/admin/sendCustomerDataToModel" method="post">
+            <label>Bedrijfsnaam: </label><br>
+            <input required type="text" class="input" name="company_name"><br>
 
             <label>Postcode: </label><br>
-            <input type="text" name="postal_code" id="postal_code"><br>
+            <input type="text" name="postal_code" class="input" id="postal_code"><br>
 
             <label>Straatnaam: </label><br>
-            <input type="text" name="street_name" id="street_name"><br>
+            <input type="text" name="street_name" class="input" id="street_name"><br>
 
             <label>Huisnummer: </label><br>
-            <input type="text" name="house_number" id="house_number"><br>
+            <input type="text" name="house_number" class="input" id="house_number"><br>
 
             <label>Huisletter: </label><br>
-            <input type="text" name="house_letter" id="house_letter"><br>
+            <input type="text" name="house_letter" class="input" id="house_letter"><br>
 
             <br><div onclick="fillMailingAddress()" id="fillMailingAddress">Het postadres is hetzelfde als het normale adres</div><br><br>
 
             <label>Postcode factuuradres: </label><br>
-            <input type="text" name="mailing_address_postal_code" id="mailing_address_postal_code"><br>
+            <input type="text" name="mailing_address_postal_code" class="input" id="mailing_address_postal_code"><br>
 
             <label>Straatnaam postadres: </label><br>
-            <input type="text" name="mailing_address_street_name" id="mailing_address_street_name"><br>
+            <input type="text" name="mailing_address_street_name" class="input" id="mailing_address_street_name"><br>
 
             <label>Huisnummer postadres: </label><br>
-            <input type="text" name="mailing_address_house_number" id="mailing_address_house_number"><br>
+            <input type="text" name="mailing_address_house_number" class="input" id="mailing_address_house_number"><br>
 
             <label>Huisletter postadres: </label><br>
-            <input type="text" name="mailing_address_house_letter" id="mailing_address_house_letter"><br><br>
+            <input type="text" name="mailing_address_house_letter" class="input" id="mailing_address_house_letter"><br><br>
 
             <br><br><input type="submit" name="submit" value="Opslaan">
         </form>

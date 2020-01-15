@@ -16,6 +16,8 @@ $getOrganisations = false;
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/admin/profiel">Uw profiel</a>
     <a href="/admin/registeradmin">Profiel aanmaken</a>
+    <a href="/admin/addCustomer">Klant aanmaken</a>
+    <a href="/admin/addOrganisation">Organisatie aanmaken</a>
     <a href="#">Heatmap</a>
     <form method="POST">
       <a><input type="submit" value="Uitloggen" name="logout"></a>
