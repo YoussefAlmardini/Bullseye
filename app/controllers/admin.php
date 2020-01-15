@@ -148,7 +148,7 @@ class Admin extends Controller
         return $this->view('admin/addCustomer');
     }
 
-    public function addOrganisation(){
+    public function getCustomers(){
         $customers = [];
         $query = 'SELECT name FROM customers;';
         $db = DB::connect();
@@ -160,7 +160,26 @@ class Admin extends Controller
             array_push($customers, $res[$i]['name']);
         }
         
-        return $this->view('admin/addOrganisation', ['customers' => $customers]);
+        return $customers;
+    }
+
+    public function getOrganisations(){
+        $organisations = [];
+        $query = 'SELECT name FROM organisations;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($organisations, $res[$i]['name']);
+        }
+        
+        return $organisations;
+    }
+
+    public function addOrganisation(){
+        return $this->view('admin/addOrganisation', ['customers' => Admin::getCustomers()]);
     }
 
     public function sendCustomerDataToModel(){
@@ -194,5 +213,13 @@ class Admin extends Controller
 
             $this->model('Organisation')->saveOrganisation($customer, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
         }
+    }
+
+    public function addCustomerAccount(){
+        $this->view('admin/addCustomerAccount', ['customers' => Admin::getCustomers()]);
+    }
+    
+    public function addOrganisationAccount(){
+        $this->view('admin/addOrganisationAccount', ['organisations' => Admin::getOrganisations()]);
     }
 }
