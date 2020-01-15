@@ -201,6 +201,7 @@ function ShowQuestionDialog(question,id,lang,long){
     };
 
     (window.setInterval(sendLocation, 60000));
+}
 </script>
 </body>
 
