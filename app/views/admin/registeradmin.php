@@ -1,31 +1,25 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/registreren.css">
+    <link rel="stylesheet" type="text/css" href="../src/styles/adminregister.css">
 </head>
 
 <body>
 <div class="viewContainer viewContainerCustom">
-
-    <div class="topBlock">
-
-        <div class="Title">
-            NLRANGERS
-        </div>
-
-        <div class="notification">
-
-        </div>
-
-    </div>
-
     <div class="middleBlock">
+        <div id="sideNav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/admin/profiel">Profiel</a>
+            <a href="/admin/map">Speurtocht aanmaken</a>
+            <a href="#">Heatmap</a>
+
+        </div>
+        <span  id="navOpenButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         <div class="secondTitle formTitle">
-            Registreren
+            Admin registreren
         </div>
 
         <form class="formregister" action="/registration/catchData" method="POST">
-
 
             <div class="inputContainer">
                 <input required type="text" placeholder="Voornaam *" name="firstName">
@@ -81,6 +75,18 @@
 </body>
 </html>
 <script>
+
+
+    function openNav() {
+        document.getElementById("sideNav").style.width = "250px";
+        document.getElementById("navOpenButton").style.zIndex = "0";
+    }
+
+    function closeNav() {
+        document.getElementById("sideNav").style.width = "0";
+        document.getElementById("navOpenButton").style.zIndex = "1";
+    }
+
     function showPassword() {
         var x = document.getElementById("password");
         var img = document.getElementById("passwordshowimage");

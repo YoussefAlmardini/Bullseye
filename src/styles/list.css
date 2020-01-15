@@ -1,0 +1,86 @@
+body{
+    background: #D1DDE5;
+    padding-bottom: 100px;
+}
+
+.scaverageList{
+}
+
+.scaverageItem{
+    margin: 100px auto;
+    padding: 2.5%;
+    border-radius: 25px;
+    width: 75%;
+    background: url('/src/assets/cardbg.jpg');
+    background-size: cover;
+}
+
+.scaverageItemTitle{
+    font-size: 50px;
+    text-align: center;
+    color: #0F7EC7;
+    font-family: Segoe UI;
+    font-weight: 500;
+    margin-top: 25px;
+    font-weight: 700;
+}
+
+.scaverageItemIcon{
+    text-align: center;
+}
+
+.scaverageItemIcon img{
+    text-align: center;
+    width:250px;
+}
+
+.scaverageItemButton{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.IconInfo{
+    width: 100%;
+    background: rgba(15,126,199,0.2);
+    margin-top: 25px;
+    display: flex;
+}
+.infoBlock{
+    width: 33.33%;
+    padding: 2%;
+}
+.infoBlock .icon{
+    text-align: center;
+}
+.infoBlock .icon img{
+    width: 100px;
+}
+.infoBockData{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 30px;
+    color: black;
+    font-family: Segoe UI;
+    font-weight: bold;
+    
+}
+.tooltip .tooltiptext{
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-size: 40px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+  .centerText{
+      text-align: center;
+      margin-top: 25px;
+      font-size: 40px;
+  }

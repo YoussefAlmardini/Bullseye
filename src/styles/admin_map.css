@@ -1,3 +1,6 @@
+body{
+  margin:0;
+}
 #mymap {
   width: 100%;
   height: 600px;
@@ -9,8 +12,8 @@
   background: rgba(255, 255, 255, 1);
   opacity: .6;
   width: 200px;
-  height: 600px;
-  height: 100vh;
+  height: auto;
+  top:30%;
   position: absolute;
   left: -200px;
   z-index: 1;
@@ -20,7 +23,7 @@
 }
 
 #toolbar.open {
-  left: 0;
+  left: 10px;
   opacity: .95;
 }
 
@@ -31,11 +34,15 @@
   box-shadow: 1px 0 2px rgba(0, 0, 0, .3);
   position: absolute;
   right: -25px;
-  top: 40%;
+  top: 12%;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   border: 1px solid #333;
   cursor: pointer;
+}
+
+#toolbar .hamburger2 {
+  top: 60%;
 }
 
 .hamburger span {
@@ -44,11 +51,12 @@
   position: relative;
   transform: rotate(90deg);
   top: 39px;
-  left: -21px;
+  left: -8px;
+  width: 40px;
 }
 
 #tourstops {
-  overflow-y: scroll;
+
   max-height: 95vh;
 }
 
@@ -66,4 +74,68 @@
 
 #toolbar li:hover {
   color: #666;
+}
+
+#navOpenButton{
+  position: absolute;
+  right: 10px;
+  z-index: 1;
+}
+
+.sidenav {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #0F7EC7;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  border: 2px solid #ccc;
+}
+
+.sidenav a {
+  padding: 0px 0px 5px 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #FFF;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+  text-decoration: underline;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.leaflet-right {
+  text-align: center;
+  transform: translate(-50%, 0%);
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+select{
+  margin-bottom: 7px;
+}
+
+input{
+  margin-bottom: 7px;
 }
