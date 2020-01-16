@@ -33,6 +33,8 @@ let currentPos = {
     latitude : 0,
     longitude : 0
 }
+var position;
+
 document.getElementById('mymap').innerHTML = "<div id='map' style='width: 100%; height: 90%;'></div>";
 const mymap = L.map('mymap').setView([52.1637739, 5.3965879], 15);    
 // Default Layer Options
@@ -74,59 +76,70 @@ mymap.on('locationerror', function(e){
         //alert("Locatie toegang geweigerd.");
 });
 
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(UpdateCurrentPosition);
-} else { 
-    alert('De website heeft uw locatie nodig om goed te functioneren.');
+function success(position){
+    updateLocation(position.coords.latitude, position.coords.longitude);
 }
 
-function UpdateCurrentPosition(position) {
-    currentPos.latitude = position.coords.latitude;
-    currentPos.longitude = position.coords.longitude;
+function geo_error() {
+  alert("Sorry, no position available.");
 }
 
+var geo_options = {
+  enableHighAccuracy: true,  
+  timeout           : 3000
+};
+
+if (navigator.geolocation) navigator.geolocation.getCurrentPosition(success, geo_error, geo_options);
+
+function updateLocation(latitude,longitude){
+    position = [latitude,longitude];
+}
+
+function manageLocationFound(){
+    mymarker.setLatLng(position)
+
+    var promise = getYourCurrentQuestionLocation();
+    console.log(promise);
+    let data = null;
+    promise.then(function(res) {
+        var quest = res.quest;
+        var id = res.questionID;
+        var langitude = res.coordinate_langitude;
+        var longitude = res.coordinate_longitude;
+        // This is the distance between the current position of the marker and the center of the circle
+        var distance = mymap.distance(position, [langitude,longitude]);
+        // The marker is inside the circle when the distance is inferior to the radius
+        var isInside = distance < 15;
+        
+        //If circle already exists, it will be deleted before making new circle
+        if (typeof nextQuestionCircle !== 'undefined') {
+            mymap.removeLayer(nextQuestionCircle);
+        }
+        nextQuestionCircle = new L.circle([langitude,longitude], {   
+            color: "black", //Border color
+            fillColor: "green", //Inside color
+            fillOpacity: 0.5,
+            radius: 15
+        }).addTo(mymap);    
+        if(isInside) {
+            if(!document.getElementById('questionElement')) {
+                currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
+                currentQuestion.Print();
+            }
+        } else{
+            if(document.getElementById('questionElement')) {
+                currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
+                currentQuestion.Delete();
+            }
+              
+        }
+    });//END PROMISE
+}//End Manage Location Found
 
 function onLocationFound(e) 
 {
     if(mymap.hasLayer(mymarker)){
-        mymarker.setLatLng(e.latlng)
-
-        var promise = getYourCurrentQuestionLocation();
-        let data = null;
-        promise.then(function(res) {
-            var quest = res.quest;
-            var id = res.questionID;
-            var langitude = res.coordinate_langitude;
-            var longitude = res.coordinate_longitude;
-            // This is the distance between the current position of the marker and the center of the circle
-            var distance = mymap.distance(e.latlng, [langitude,longitude]);
-            // The marker is inside the circle when the distance is inferior to the radius
-            var isInside = distance < 15;
-            
-            //If circle already exists, it will be deleted before making new circle
-            if (typeof nextQuestionCircle !== 'undefined') {
-                mymap.removeLayer(nextQuestionCircle);
-            }
-            nextQuestionCircle = new L.circle([langitude,longitude], {   
-                color: "black", //Border color
-                fillColor: "green", //Inside color
-                fillOpacity: 0.5,
-                radius: 15
-            }).addTo(mymap);    
-
-            currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
-            currentQuestion.Print();
-                currentQuestion.Delete();
-
-            if(isInside) {
-                currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
-                currentQuestion.Print();
-            } else{
-                currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
-                currentQuestion.Delete();
-            }
-        });//END PROMISE
-        
+      manageLocationFound();
         
     } else {
         mymarker.addTo(mymap);
@@ -165,25 +178,52 @@ function ShowQuestionDialog(question,id,lang,long){
     (window.setInterval(sendLocation, 60000));
     return currentQuestion;
 }
+
+function sendAnswer() {
+    var answer =  document.getElementById('answer').value;
+    if(answer !=  '') {
+        fetch('/main/sendAnswer/', {
+            method: 'POST',
+            body: JSON.stringify({
+                answer: answer,
+            })
+        }).then(function(res) {
+            return res.json();
+        }).then(function(res) {
+            if(res) {
+                alert('Correct!');
+                currentQuestion.Delete();
+                
+                navigator.geolocation.watchPosition(success, geo_error, geo_options);
+                manageLocationFound();
+            } else {
+                alert('Uw antwoord is niet correct, helaas!');
+            }
+        })
+    }else{
+        alert('Vul een antwoord in');
+    }
+    
+}
 </script>
 </body>
 <?php 
 
-if(isset($_POST['answer'])){
-    $userAnswer = $_POST['answerBody'];
-    if( $userAnswer ===  '') {
-        echo "<script>alert('vul je aantwoord in');</script>";
-    }else{
-        $questionAnswerd = MainModel::validateUserAnswer($userAnswer);
+// if(isset($_POST['answer'])){
+//     $userAnswer = $_POST['answerBody'];
+//     if( $userAnswer ===  '') {
+//         echo "<script>alert('vul je aantwoord in');</script>";
+//     }else{
+//         $questionAnswerd = MainModel::validateUserAnswer($userAnswer);
 
-        if($questionAnswerd){
-            echo '<script>currentQuestion.Delete();</script>';
-            MainModel::getYourCurrentQuestion();
-        }else{
-            echo "<script>alert('het aantwoord is niet waar helaas!');</script>";
-        }
-    }
-}
-?>
+//         if($questionAnswerd){
+//             echo '<script>currentQuestion.Delete();</script>';
+//             MainModel::getYourCurrentQuestion();
+//         }else{
+//             echo "<script>alert('het aantwoord is niet waar helaas!');</script>";
+//         }
+//     }
+// }
+// ?>
         
 </html>

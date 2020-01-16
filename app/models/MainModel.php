@@ -9,9 +9,9 @@ class MainModel extends Model
 
     public static function getYourCurrentQuestion()
     {
+        // TODO: expedition_id toevoegen aan query en in database
         $user_id = $_SESSION['user']['user_id'];
-        error_log(print_r($_SESSION['quests'],TRUE));
-        $query = "SELECT * FROM user_answers WHERE answered = 0 AND user_id = $user_id";
+        $query = "SELECT * FROM user_answers WHERE user_id = $user_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -20,11 +20,26 @@ class MainModel extends Model
             return $_SESSION['quests'][0];
         }else{
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            for($i = 0; $i < count($result); $i++) {
-               if($_SESSION['quests'][$i]['quest_id'] == $result['quest_id']){
-                    unset($_SESSION['quests'][$i]);
-               }
+
+            foreach($_SESSION['quests'] as $i => $question) {
+                foreach($result as $row) {
+                    // var_dump($row, $question);
+                    //         error_log(print_r($row,TRUE));
+                    if($row['quest_id'] == $question['questionID']) {
+                        unset($_SESSION['quests'][$i]);
+                    }
+                }
             }
+            $_SESSION['quests'] = array_values($_SESSION['quests']);
+            // var_dump($_SESSION['quests']);
+            // for($i = 0; $i < count($_SESSION['quests']); $i++) {
+            //     foreach($result as $row) {
+            //         error_log(print_r($row,TRUE));
+            //         if($row['quest_id'] == $_SESSION[$i]['questionID']) {
+            //             unset($_SESSION['quests'][$i]);
+            //         }
+            //     }
+            // }
             return $_SESSION['quests'][0];
         }
     }
@@ -39,20 +54,20 @@ class MainModel extends Model
         $stmt->execute();
     }
 
-    public static function validateUserAnswer($userAnswer){
-
+    public static function validateUserAnswer($data){
+        $answer = strtolower($data->answer);
         $user_id = $_SESSION['user']['user_id'];
-        $quest = this::getYourCurrentQuestion();
-        $quest_id =  $quest['quest_id'];
-
+        $quest = MainModel::getYourCurrentQuestion();
+        $quest_id =  $quest['questionID'];
+        
         $query = "SELECT `answer` FROM `quests` WHERE `quest_id` = $quest_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        if($result[0]['answer'] == $userAnswer){
-            this::insertUserAnswer($user_id,$quest_id);
+        if($result[0]['answer'] == $answer){
+            MainModel::insertUserAnswer($user_id,$quest_id);
             return true;
 
         }else return false;
