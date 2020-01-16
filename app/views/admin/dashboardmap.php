@@ -16,6 +16,8 @@ $getOrganisations = false;
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/admin/profiel">Uw profiel</a>
     <a href="/admin/registeradmin">Profiel aanmaken</a>
+    <a href="/admin/addCustomer">Klant aanmaken</a>
+    <a href="/admin/addOrganisation">Organisatie aanmaken</a>
     <a href="#">Heatmap</a>
     <form method="POST">
       <a><input type="submit" value="Uitloggen" name="logout"></a>
@@ -46,7 +48,7 @@ $getOrganisations = false;
           <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
           <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
           <input type="number" hidden name="expedition_id" id="expedition_id">
-         <button type="button" onclick="NewMap()"> Voeg nieuwe map toe</button>
+         <button type="button" onclick="NewMap()"> Nieuwe map/Update</button>
          <button type="button" onclick="clearMap()">Reset map</button>
         </form>
       </ul>

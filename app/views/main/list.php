@@ -1,7 +1,8 @@
-<?php
-    include "app/views/header/index.php";
-?>
-
+<link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/main.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/list.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/profiel.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
 <body>
     <div class="thirdTitle spaceUnder center">
         Alle speurtochten
@@ -23,7 +24,7 @@
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
             for($i = 0; $i < count($result); $i++) {
-
+                
                 $id = $result[$i]['expedition_id'];
                 $ex_name = $result[$i]['expedition'];
                 $organisation = $result[$i]['organisation'];
@@ -69,8 +70,8 @@
               
     
                 <div class='scaverageItemButton'>   
-                    <form method='post' action='index.php'>
-                        <input class='green' type='submit' name='expStart' value='Start'>
+                    <form method='post' action='index.php' name=''>
+                        <input class='green' type='submit' name='' id='$id' onclick='changeValue(this)' value='Start'>
                         <input type='text' name='id' value='$id' hidden>
                     <form>
                 </div>
@@ -86,6 +87,13 @@
       
     <?php include "app/components/bottomNavigation/index.php"; ?>
     <script>
+        function changeValue(e) {
+            var button = document.getElementById(e.id);
+            var input = button.nextSibling.nextSibling;
+            button.setAttribute("name", "clickedExpedition");
+            input.setAttribute("name", "clickedID");
+        }
+
         document.getElementById('list').style.background = "#0F7EC7";
 
         function ShowInfo(){

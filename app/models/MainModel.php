@@ -10,8 +10,7 @@ class MainModel extends Model
     public static function getYourCurrentQuestion()
     {
         $user_id = $_SESSION['user']['user_id'];
-        $_SESSION['quests'];
-
+        error_log(print_r($_SESSION['quests'],TRUE));
         $query = "SELECT * FROM user_answers WHERE answered = 0 AND user_id = $user_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);

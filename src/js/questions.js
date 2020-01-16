@@ -52,6 +52,6 @@ class Question{
     }
 
     Delete=()=>{
-        this.questionBlock.innerHTML = '';
+        this.questionBlock.parentElement.innerHTML = '';
     }
 }
