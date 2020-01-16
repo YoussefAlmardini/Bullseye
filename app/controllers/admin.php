@@ -39,7 +39,26 @@ class Admin extends Controller
 
 
 
+    public function CreateNewAdmin(){
 
+        $role_id = 2;
+        $first_name = $_POST['firstName'];
+        $insertion = $_POST['insertion'];
+        $last_name = $_POST['lastName'];
+        $birth_date = $_POST['birthDate'];
+        $email_address = $_POST['email_address'];
+        $password = $_POST['password'];
+
+
+        $model = $this->model('AdminCreate');
+
+        if($model->CreateAdmin($role_id, $first_name, $insertion, $last_name, $birth_date, $email_address, $password)){
+            echo "<script>alert('Het admin account is gemaakt!');</script>";
+            $this->view('admin/dashboardmap');
+        }else{
+            $this->view('/admin/registeradmin');
+        }
+    }
 
     public function UpdateAdminAccount(){
         // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA AND SENDS IT TO THE MODEL
@@ -195,4 +214,37 @@ class Admin extends Controller
             $this->model('Organisation')->saveOrganisation($customer, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
         }
     }
+
+    public function addContact(){
+        $customers = [];
+        $query = 'SELECT name FROM customers;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($customers, $res[$i]['name']);
+        }
+
+        return $this->view('admin/addContact', ['customers' => $customers]);
+    }
+
+    public function sendContactDataToModel(){
+        if(isset($_POST['submit'])){
+
+            $customer = $_POST['customer'];
+            $first_name = $_POST['firstname'];
+            $insertion = $_POST['insertion'];
+            $last_name = $_POST['lastname'];
+            $function = $_POST['function'];
+            $email = $_POST['email'];
+            $phone_number = $_POST['phonenumber'];
+
+
+            $this->model('Contact')->saveContact($customer, $first_name, $insertion, $last_name, $function, $email, $phone_number);
+        }
+    }
+
 }
+

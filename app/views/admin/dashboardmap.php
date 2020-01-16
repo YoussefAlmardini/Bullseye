@@ -20,7 +20,7 @@ $getOrganisations = false;
     <a href="/admin/addOrganisation">Organisatie aanmaken</a>
     <a href="#">Heatmap</a>
     <form method="POST">
-      <a><input type="submit" value="Uitloggen" name="logout"></a>
+      <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
     </form>
 
 </div>
