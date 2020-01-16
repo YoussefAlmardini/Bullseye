@@ -11,7 +11,9 @@ $getOrganisations = false;
     <a href="/admin/map">Speurtocht maken</a>
     <a href="/admin/registeradmin">Profielen aanmaken</a>
     <a href="#">Heatmap</a>
-
+    <form method="POST">
+        <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
+    </form>
 </div>
 <span  id="navOpenButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 

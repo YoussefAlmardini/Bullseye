@@ -154,3 +154,17 @@ select{
 input{
   margin-bottom: 7px;
 }
+
+#uitlog{
+  height: 40px;
+  width: auto;
+  background-color: #0F7EC7;
+  color: #FFFFFF;
+  opacity: 1;
+  font-size: 25px;
+  left: 0;
+  text-decoration: none;
+  display: block;
+  font-family: times newroman;
+  border: none;
+}
