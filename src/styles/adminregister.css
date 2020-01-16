@@ -33,7 +33,7 @@ html{
 }
 
 .sidenav {
-    height: 20%;
+    height: 25%;
     width: 0;
     position: fixed;
     z-index: 1;
@@ -142,4 +142,22 @@ button{
     left: 1130px;
     top: 850px;
     opacity: 0.5;
+}
+
+#uitlog{
+    height: 40px;
+    width: auto;
+    background-color: #0F7EC7;
+    color: #FFFFFF;
+    opacity: 1;
+    font-size: 25px;
+    left: 0;
+    text-decoration: none;
+    display: block;
+    font-family: times newroman;
+    border: none;
+}
+
+.sideNav a{
+    left: 0px;
 }
