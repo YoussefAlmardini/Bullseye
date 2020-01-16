@@ -1,10 +1,50 @@
 <?php
-include "header.php";
-if (!$_SESSION['adminLoggedIn']) {
-  header("Location: /admin/index");
+
+if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
+    header("Location: /login");
 }
-$getOrganisations = false;
+
+function getTypesQuestions(){
+  // THIS FUNCTION CHECKS FOR EXISTANCE OF THE BY THE USER INSERTED E-MAILADDRESS
+  $query = 'SELECT * FROM `question_types`';
+  $db = DB::connect();
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $result = $stmt->fetchAll();
+  for($i = 0; $i < count($result); $i++) {
+    echo '<option type="text" id="type'.$i.'" value="'.$result[$i]["type_id"].'">'.$result[$i]["type"].'</option>';
+  }
+}
+
+function getMaps(){
+    $query = 'SELECT * FROM `expeditions`';
+    $db = DB::connect();
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    for($i = 0; $i < count($result); $i++) {
+      $expedition_id = $result[$i]['expedition_id'];
+      $expedition_name = $result[$i]['name'];
+      echo '<option name="expedition_id type="number" id="expedition_id'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
+    }
+}
+
+function getOrganisations(){
+  $query = 'SELECT * FROM `organisations`';
+  $db = DB::connect();
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+  $result = $stmt->fetchAll();
+  for($i = 0; $i < count($result); $i++) {
+    $organisation_id = $result[$i]['organisation_id'];
+    $organisation_name = $result[$i]['name'];
+    echo '<option type="text" id="organisation'.$i.'" value="'.$organisation_id.'">'.$organisation_name.'</option>';
+  }
+}
+
 ?>
+<!-- $getOrganisations = false;
+?> -->
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
@@ -17,7 +57,7 @@ $getOrganisations = false;
     <a href="/admin/profiel">Uw profiel</a>
     <a href="/admin/registeradmin">Profiel aanmaken</a>
     <a href="#">Heatmap</a>
-    <form method="POST">
+    <form method="POST" action="/home/logout">
       <a><input type="submit" value="Uitloggen" name="logout"></a>
     </form>
 
@@ -104,46 +144,5 @@ $getOrganisations = false;
   }
   
 </script>
-<?php
 
-function getTypesQuestions(){
-  // THIS FUNCTION CHECKS FOR EXISTANCE OF THE BY THE USER INSERTED E-MAILADDRESS
-  $query = 'SELECT * FROM `question_types`';
-  $db = DB::connect();
-  $stmt = $db->prepare($query);
-  $stmt->execute();
-  $result = $stmt->fetchAll();
-  for($i = 0; $i < count($result); $i++) {
-    echo '<option type="text" id="type'.$i.'" value="'.$result[$i]["type_id"].'">'.$result[$i]["type"].'</option>';
-  }
-}
-
-function getMaps(){
-    $query = 'SELECT * FROM `expeditions`';
-    $db = DB::connect();
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    for($i = 0; $i < count($result); $i++) {
-      $expedition_id = $result[$i]['expedition_id'];
-      $expedition_name = $result[$i]['name'];
-      echo '<option name="expedition_id type="number" id="expedition_id'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
-    }
-}
-
-function getOrganisations(){
-  $query = 'SELECT * FROM `organisations`';
-  $db = DB::connect();
-  $stmt = $db->prepare($query);
-  $stmt->execute();
-  $result = $stmt->fetchAll();
-  for($i = 0; $i < count($result); $i++) {
-    $organisation_id = $result[$i]['organisation_id'];
-    $organisation_name = $result[$i]['name'];
-    echo '<option type="text" id="organisation'.$i.'" value="'.$organisation_id.'">'.$organisation_name.'</option>';
-  }
-}
-
-
-?>
 </html>

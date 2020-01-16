@@ -2,12 +2,6 @@
 
 class Admin extends Controller
 {
-    #index page
-    public function index()
-    {
-        $this->view('admin/index');
-    }
-
     #map page
     public function map()
     {
@@ -36,11 +30,7 @@ class Admin extends Controller
     {
         $this->view('admin/registeradmin');
     }
-
-
-
-
-
+    
     public function UpdateAdminAccount(){
         // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA AND SENDS IT TO THE MODEL
 

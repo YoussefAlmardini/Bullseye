@@ -7,40 +7,46 @@ class Login extends Controller
         $this->view('login/index');
     }
 
-    public function authenticate($email, $password, $role)
+    public function redirect($role)
     {
-        $result = $this->model('User')->checkLogin($email, $password, $role);
-        if($result) {
-            return true;
-        } else {
-            header('Location: /login');
+        echo "<script>U bent ingelogd</script>";
+
+        if ($role === 'ranger') {
+            header('Location: /main/index');
+        } else if ($role === 'admin' || $role === 'customer' || $role === 'organisation') {
+            //echo "<script>alert('admin');</script>";
+            //echo "<script>window.location.href = '/admin/map';</script>";
+            //echo "hoi";
+            // header('Location: /admin/map');
+            header('Location: /admin/map');
         }
     }
 
-    public function redirectUser($role){
-        if($role === 'ranger'){
-            header('Location: /main');
-            echo "<script>confirm('U bent ingelogd als ranger');</script>";
-        } else if($role === 'admin'){
-            echo "<script>window.location.href = '/admin/map';</script>";
-        }
-    }
+    public function authenticate()
+    {
+        $result = $this->model('User')->checkLogin($_POST['email'], $_POST['password']);
 
-    public function authorizeAdmin(){
-        $password = $_POST['password'];
-        $email = $_POST['email'];
+        
 
-        if(Login::authenticate($email, $password, 'admin')){
-            Login::redirectUser('admin');
-        }
-    }
+        switch ($result) {
+            case 1:
+                Login::redirect('ranger');
+                break;
 
-    public function authorizeRanger(){
-        $password = $_POST['password'];
-        $email = $_POST['email'];
+            case 2:
+                Login::redirect('customer');
+                break;
 
-        if(login::authenticate($email, $password, 'ranger')){
-            Login::redirectUser('ranger');
+            case 3:
+                Login::redirect('admin');
+                break;
+
+            case 4:
+                Login::redirect('organisation');
+                break;
+
+            default:
+                header('Location: /login');
         }
     }
 }

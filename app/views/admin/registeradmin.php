@@ -1,3 +1,9 @@
+<?php
+if (!$_SESSION['adminLoggedIn']) {
+    header("Location: /login");
+}
+?>
+
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
