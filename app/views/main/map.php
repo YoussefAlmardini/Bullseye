@@ -102,13 +102,17 @@ function onLocationFound(e)
             var distance = mymap.distance(e.latlng, [langitude,longitude]);
             // The marker is inside the circle when the distance is inferior to the radius
             var isInside = distance < 15;
-
-            // L.circle([langitude,longitude], {   
-            //     color: "red",
-            //     fillColor: "blue",
-            //     fillOpacity: 0.5,
-            //     radius: 15
-            // }).addTo(mymap);
+            
+            //If circle already exists, it will be deleted before making new circle
+            if (typeof nextQuestionCircle !== 'undefined') {
+                mymap.removeLayer(nextQuestionCircle);
+            }
+            nextQuestionCircle = new L.circle([langitude,longitude], {   
+                color: "black", //Border color
+                fillColor: "green", //Inside color
+                fillOpacity: 0.5,
+                radius: 15
+            }).addTo(mymap);    
 
             currentQuestion = ShowQuestionDialog(quest, id, langitude, longitude);
             currentQuestion.Print();

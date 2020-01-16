@@ -4,6 +4,10 @@
     <div class="scaverage">
     <?php 
    
+    if (!$_SESSION['user']) {
+        header("Location: /login");
+    }
+
     if(isset($_POST['clickedID'])){
         include_once "map.php";
         //die('Dit is jouw ID: '. $_POST['clickedID']);

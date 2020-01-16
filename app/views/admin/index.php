@@ -27,6 +27,7 @@
         margin: 0 auto;
         max-width: 50%;
         text-align: center;
+        font-size: 40px;
     }
     .login-username,
     .login-password {
@@ -39,6 +40,7 @@
         padding: 0.5rem;
         transition: 250ms background ease-in;
         width: calc(100% - 3rem);
+        font-size: 30px;
     }
     .login-username:focus,
     .login-password:focus {
@@ -55,6 +57,7 @@
         min-width: 1px;
         padding: 0.25rem;
         transition: 250ms background ease-in;
+        font-size: 30px;
     }
     .login-submit:hover,
     .login-submit:focus {

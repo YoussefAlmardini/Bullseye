@@ -1,3 +1,6 @@
+<?php
+
+?>
 <link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/main.css">
 <div class="standardMain">
