@@ -28,6 +28,7 @@
 </body>
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script>
+
 let currentPos = {
     latitude : 0,
     longitude : 0
@@ -167,14 +168,15 @@ function ShowQuestionDialog(question,id,lang,long){
 if(isset($_POST['answer'])){
     $userAnswer = $_POST['answerBody'];
     if( $userAnswer ===  '') {
-        echo "<script>alert('nee nee nee');</script>";
+        echo "<script>alert('vul je aantwoord in');</script>";
     }else{
-        //Check from database if the answer is correct
-
-        $questionAnswerd = true;
+        $questionAnswerd = MainModel::validateUserAnswer($userAnswer);
 
         if($questionAnswerd){
             echo '<script>currentQuestion.Delete();</script>';
+            MainModel::getYourCurrentQuestion();
+        }else{
+            echo "<script>alert('het aantwoord is niet waar helaas!');</script>";
         }
     }
 }
