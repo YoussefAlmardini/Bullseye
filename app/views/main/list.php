@@ -11,6 +11,9 @@
     <div class="scaverageList">
 
         <?php 
+            if (!$_SESSION['user']) {
+                header("Location: /login");
+            }
 
             $query = 'SELECT *,`organisations`.`name` as `organisation`,`expeditions`.`name` as `expedition` FROM `expeditions` INNER JOIN `organisations` ON `organisations`.`organisation_id` = `expeditions`.`organisation_id`';
             $db = \DB::connect();
