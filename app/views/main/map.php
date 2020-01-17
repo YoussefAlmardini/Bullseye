@@ -63,7 +63,7 @@ const mymarker = L.marker([0,0],
     opacity: 1,                 // Adjust the opacity
     clickable: true,            // Make the icon clickable
     alt: 'mymarker'}            // Name for accessibillity
-);
+).addTo(mymap);
 
 // Button to jump to your own location
 L.easyButton('<span class="bigdot">&bigodot;</span>', function(){

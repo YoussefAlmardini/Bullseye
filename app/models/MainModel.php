@@ -9,9 +9,10 @@ class MainModel extends Model
 
     public static function getYourCurrentQuestion()
     {
-        // TODO: expedition_id toevoegen aan query en in database
         $user_id = $_SESSION['user']['user_id'];
-        $query = "SELECT * FROM user_answers WHERE user_id = $user_id";
+        $expedition_id = $_SESSION['expedition_id'];
+        error_log(print_r($_SESSION['expedition_id'], true));
+        $query = "SELECT * FROM user_answers WHERE user_id = $user_id AND expedition_id = $expedition_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -45,11 +46,13 @@ class MainModel extends Model
     }
 
     public static function insertUserAnswer($user_id, $quest_id){
-        $query_insert = 'INSERT INTO `user_answers` (`user_id`, `quest_id`, `answered`, `answer`) VALUES (:u_id,:quest_id , :answerd, NULL)';
+        $expedition_id = $_SESSION['expedition_id'];
+        $query_insert = 'INSERT INTO `user_answers` (`user_id`, `quest_id`, `expedition_id`, `answered`, `answer`) VALUES (:u_id,:quest_id , :expedition_id,:answerd, NULL)';
         $db = DB::connect();
         $stmt = $db->prepare($query_insert);
         $stmt->bindValue(':u_id', $user_id);
         $stmt->bindValue(':quest_id',  $quest_id);
+        $stmt->bindValue(':expedition_id',  $expedition_id);
         $stmt->bindValue(':answerd', 1);
         $stmt->execute();
     }
