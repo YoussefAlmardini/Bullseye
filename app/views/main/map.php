@@ -132,7 +132,10 @@ function manageLocationFound(){
                 currentQuestion.Delete();
             }
               
-        }
+        }     
+    }).catch(() => {
+        //TODO: Maak hier het einde zodat er geen expedition meer geselecteerd is.
+        alert('DO something about this error');
     });//END PROMISE
 }//End Manage Location Found
 

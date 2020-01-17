@@ -57,7 +57,9 @@ class MainModel extends Model
         $query = "UPDATE `users` SET level_id = $level_id WHERE `user_id` = $user_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
-        $stmt->execute();
+        if($stmt->execute()) {
+            unset($_SESSION["expedition_id"]);
+        }
     }
 
     public static function insertUserAnswer($user_id, $quest_id){
