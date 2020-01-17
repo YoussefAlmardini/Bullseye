@@ -28,5 +28,5 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION[
         </form>
     </body>
     
-    <?php var_dump($data['profileData']); ?>
+    <!-- <?php var_dump($data['profileData']); ?> -->
 </html>
