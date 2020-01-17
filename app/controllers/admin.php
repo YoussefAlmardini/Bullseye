@@ -3,6 +3,11 @@
 class Admin extends Controller
 {
     #map page
+    public function index()
+    {
+        $this->view('admin/dashboardmap');
+    }
+
     public function map()
     {
         $this->view('admin/dashboardmap');
