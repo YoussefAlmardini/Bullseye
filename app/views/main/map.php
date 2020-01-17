@@ -51,7 +51,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // Sets icon
 var myIcon = L.icon({
     iconUrl: window.location.origin + '/src/assets/myicon.png',
-    iconSize: [50, 50],
+    iconSize: [20, 30],
     iconAnchor: [25, 50],
     popupAnchor: [],
 });

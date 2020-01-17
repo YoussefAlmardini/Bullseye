@@ -47,7 +47,7 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION[
             // Sets icon
             var myIcon = L.icon({
                 iconUrl: window.location.origin + '/src/assets/myicon.png',
-                iconSize: [30, 50],
+                iconSize: [20, 30],
                 iconAnchor: [20,55],
                 popupAnchor: [],
             });
