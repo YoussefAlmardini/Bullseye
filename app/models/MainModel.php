@@ -7,11 +7,12 @@ class MainModel extends Model
       
     }
 
+    
+
     public static function getYourCurrentQuestion()
     {
         $user_id = $_SESSION['user']['user_id'];
         $expedition_id = $_SESSION['expedition_id'];
-        error_log(print_r($_SESSION['expedition_id'], true));
         $query = "SELECT * FROM user_answers WHERE user_id = $user_id AND expedition_id = $expedition_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
@@ -44,8 +45,7 @@ class MainModel extends Model
             if(isset($_SESSION['quests'][0])){
                 return $_SESSION['quests'][0];
             }else{
-                var_dump($_SESSION['quests'][0]);
-                levelUp();
+                MainModel::levelUp();
                 return false;
             }
         }
@@ -54,9 +54,10 @@ class MainModel extends Model
     public function levelUp(){
         $user_id = $_SESSION['user']['user_id'];
         $level_id = $_SESSION['user']['level_id'] + 1;
-        $query = "UPDATE `users` SET level_id = $level_id";
+        $query = "UPDATE `users` SET level_id = $level_id WHERE `user_id` = $user_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
+        $stmt->execute();
     }
 
     public static function insertUserAnswer($user_id, $quest_id){
