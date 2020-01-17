@@ -216,18 +216,20 @@ class Admin extends Controller
     }
 
     public function addContact(){
-        $customers = [];
-        $query = 'SELECT name FROM customers;';
-        $db = DB::connect();
-        $stmt = $db->prepare($query);
-        $stmt->execute();
-        $res = $stmt->fetchAll();
 
-        for($i = 0; $i < count($res); $i++){
-            array_push($customers, $res[$i]['name']);
-        }
+            $customers = [];
+            $query = 'SELECT name FROM customers;';
+            $db = DB::connect();
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+            $res = $stmt->fetchAll();
 
-        return $this->view('admin/addContact', ['customers' => $customers]);
+            for ($i = 0; $i < count($res); $i++) {
+                array_push($customers, $res[$i]['name']);
+            }
+
+            return $this->view('admin/addContact', ['customers' => $customers]);
+
     }
 
     public function sendContactDataToModel(){

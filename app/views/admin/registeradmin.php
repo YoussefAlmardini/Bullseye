@@ -16,13 +16,17 @@ if (!$_SESSION['adminLoggedIn']) {
     <div class="middleBlock">
         <div id="sideNav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="/admin/profiel">Uw Profiel</a>
             <a href="/admin/map">Speurtocht aanmaken</a>
-            <a href="#">Heatmap</a>
+            <a href="/admin/profiel">Uw Profiel</a>
+            <a href="/admin/addCustomer">Klant aanmaken</a>
+            <a href="/admin/addOrganisation">Organisatie aanmaken</a>
+            <a href="/admin/addContact">Contact aanmaken</a>
+            <a href="/admin/generateHeatmap">Heatmap</a>
             <form method="POST">
                 <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
             </form>
         </div>
+
         <span  id="navOpenButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         <div class="secondTitle formTitle">
             Admin registreren

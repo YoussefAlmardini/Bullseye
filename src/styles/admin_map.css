@@ -108,6 +108,7 @@ body{
   transition: 0.5s;
   padding-top: 60px;
   border: 2px solid #ccc;
+  text-align: left;
 }
 
 .sidenav a {
@@ -129,7 +130,7 @@ body{
   top: 0;
   right: 25px;
   font-size: 36px;
-  margin-left: 50px;
+  margin-left: 0px;
 }
 
 .leaflet-right {
