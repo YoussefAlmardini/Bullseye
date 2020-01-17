@@ -63,7 +63,7 @@ const mymarker = L.marker([0,0],
     opacity: 1,                 // Adjust the opacity
     clickable: true,            // Make the icon clickable
     alt: 'mymarker'}            // Name for accessibillity
-).addTo(mymap);
+);
 
 // Button to jump to your own location
 L.easyButton('<span class="bigdot">&bigodot;</span>', function(){
@@ -81,12 +81,12 @@ function success(position){
 }
 
 function geo_error() {
-  alert("Sorry, no position available.");
+//   alert("Sorry, no position available.");
 }
 
 var geo_options = {
   enableHighAccuracy: true,  
-  timeout           : 3000
+  timeout           : 2700
 };
 
 if (navigator.geolocation) navigator.geolocation.getCurrentPosition(success, geo_error, geo_options);
@@ -139,8 +139,8 @@ function manageLocationFound(){
 function onLocationFound(e) 
 {
     if(mymap.hasLayer(mymarker)){
-      manageLocationFound();
-        
+        navigator.geolocation.getCurrentPosition(success, geo_error, geo_options);
+        manageLocationFound();
     } else {
         mymarker.addTo(mymap);
     }
