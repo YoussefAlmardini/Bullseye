@@ -146,9 +146,23 @@ class User extends Model
             if ($validPassword) {
                 $_SESSION['user'] = $user;
                 $_SESSION['user_id'] = $user['user_id'];
+
+                if($user['customer_id'] !== ""){
+                    $_SESSION['customer_id'] = $user['customer_id'];
+                }
+                
+                if($user['organisation_id'] !== ""){
+                    $_SESSION['organisation_id'] = $user['organisation_id'];
+                }
+
                 $_SESSION['logged_in'] = time();
 
                 $role = $user['role'];
+
+                $_SESSION['adminLoggedIn'] = false;
+                $_SESSION['customerLoggedIn'] = false;
+                $_SESSION['organisationLoggedIn'] = false;
+                $_SESSION['rangerLoggedIn'] = false;
 
                 if ($role === 'admin') {
                     $_SESSION['adminLoggedIn'] = true;

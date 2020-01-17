@@ -2,15 +2,15 @@
 
 class Organisation extends Model
 {
-    public function saveOrganisation($customer, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter){
+    public function saveOrganisation($customerID, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter){
         $db = DB::connect();
 
-        $queryGetCustomer = 'SELECT customer_id FROM customers WHERE name = :name;';
-        $stmt = $db->prepare($queryGetCustomer);
-        $stmt->bindValue(':name', $customer);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_OBJ);
-        $customerID = $row->customer_id;
+        // $queryGetCustomer = 'SELECT customer_id FROM customers WHERE name = :name;';
+        // $stmt = $db->prepare($queryGetCustomer);
+        // $stmt->bindValue(':name', $customer);
+        // $stmt->execute();
+        // $row = $stmt->fetch(PDO::FETCH_OBJ);
+        // $customerID = $row->customer_id;
         
         $queryInsertOrganisation = 'INSERT INTO organisations (name, customer_id) VALUES (:name, :customerID);';
         $stmt = $db->prepare($queryInsertOrganisation);

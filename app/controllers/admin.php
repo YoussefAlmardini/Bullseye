@@ -155,9 +155,10 @@ class Admin extends Controller
 
     public function getOrganisations(){
         $organisations = [];
-        $query = 'SELECT name FROM organisations;';
+        $query = 'SELECT name FROM organisations WHERE customer_id = :customer_id;';
         $db = DB::connect();
         $stmt = $db->prepare($query);
+        $stmt->bindValue(':customer_id', $_SESSION['customer_id']);
         $stmt->execute();
         $res = $stmt->fetchAll();
 
@@ -168,8 +169,19 @@ class Admin extends Controller
         return $organisations;
     }
 
+    public function getCustomerID(){
+        $query = 'SELECT customer_id FROM users WHERE user_id = :user_id;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':user_id', $_SESSION['user_id']);
+        $stmt->execute();
+        $res = $stmt->fetch(PDO::FETCH_OBJ);
+
+        return $res->customer_id;
+    }
+
     public function addOrganisation(){
-        return $this->view('admin/addOrganisation', ['customers' => Admin::getCustomers()]);
+        return $this->view('admin/addOrganisation', ['customer_id' => Admin::getCustomerID()]);
     }
 
     public function sendCustomerDataToModel(){
@@ -190,7 +202,7 @@ class Admin extends Controller
 
     public function sendOrganisationDataToModel(){
         if(isset($_POST['submit'])){
-            $customer = $_POST['customer'];
+            $customer = $_POST['customer_id'];
             $organisationName = $_POST['organisation_name'];
             $postalCode = $_POST['postal_code'];
             $streetName = $_POST['street_name'];

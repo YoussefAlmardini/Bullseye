@@ -25,17 +25,9 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn']) {
 
     <body>
         <form action="/admin/sendOrganisationDataToModel" method="post">
-            <label>Kies de klant waarvoor u een organisatie wil toevoegen:</label>
-            <select name="customer">
-                <option selected="selected" disabled>Kies een klant</option>
-                <?php
-                    for($i = 0; $i < count($data['customers']); $i++){
-                        echo '<option>' . $data['customers'][$i] . '</option>';
-                    }
-                ?>
-            </select><br><br>
+            <input type="hidden" name="customer_id" value="<?php echo $data['customer_id'] ?>">
 
-            <label>Naam organisatie klant: </label><br>
+            <label>Naam organisatie: </label><br>
             <input required type="text" name="organisation_name"><br>
 
             <label>Postcode: </label><br>
