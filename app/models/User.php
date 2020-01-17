@@ -225,7 +225,15 @@ class User extends Model
         $stmt->execute();
     }
 
-    public function sendProfileDataToModel($firstName, $insertion, $lastName, $email){
-        
+    public function updateAdminProfile($firstName, $insertion, $lastName, $email){
+        $query = 'UPDATE users SET first_name = :firstName, insertion = :insertion, last_name = :lastName, email_address = :email WHERE user_id = :userID;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':firstName', $firstName);
+        $stmt->bindValue(':insertion', $insertion);
+        $stmt->bindValue(':lastName', $lastName);
+        $stmt->bindValue(':email', $email);
+        $stmt->bindValue(':userID', $_SESSION['user_id']);
+        $stmt->execute();
     }
 }
