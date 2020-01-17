@@ -21,7 +21,7 @@ if (!$_SESSION['adminLoggedIn']) {
             <a href="/admin/addOrganisation">Organisatie aanmaken</a>
             <a href="/admin/addContact">Contact aanmaken</a>
             <a href="/admin/generateHeatmap">Heatmap</a>
-            <form method="POST">
+            <form method="POST"  action="/home/logout">>
                 <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
             </form>
         </div>

@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80d34d0f-1f60-4124-b1da-c53fb9a9c4e6" name="Default Changelist" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/styles/admin_customer.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/styles/admin_heatmap.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/styles/admin_organisation.css" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin.php" afterPath="$PROJECT_DIR$/app/controllers/admin.php" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/profiel.php" afterPath="$PROJECT_DIR$/app/controllers/profiel.php" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/addContact.php" afterPath="$PROJECT_DIR$/app/views/admin/addContact.php" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/addCustomer.php" afterPath="$PROJECT_DIR$/app/views/admin/addCustomer.php" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/addOrganisation.php" afterPath="$PROJECT_DIR$/app/views/admin/addOrganisation.php" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/dashboardmap.php" afterPath="$PROJECT_DIR$/app/views/admin/dashboardmap.php" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/generateHeatmap.php" afterPath="$PROJECT_DIR$/app/views/admin/generateHeatmap.php" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/heatmap.php" afterPath="$PROJECT_DIR$/app/views/admin/heatmap.php" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/profiel.php" afterPath="$PROJECT_DIR$/app/views/admin/profiel.php" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/registeradmin.php" afterPath="$PROJECT_DIR$/app/views/admin/registeradmin.php" />
-      <change beforePath="$PROJECT_DIR$/src/styles/admin_map.css" afterPath="$PROJECT_DIR$/src/styles/admin_map.css" />
-      <change beforePath="$PROJECT_DIR$/src/styles/admin_profiel.css" afterPath="$PROJECT_DIR$/src/styles/admin_profiel.css" />
-      <change beforePath="$PROJECT_DIR$/src/styles/adminregister.css" afterPath="$PROJECT_DIR$/src/styles/adminregister.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,7 +17,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/admin/addCustomer.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="325">
-              <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="56" />
+              <caret line="33" column="12" lean-forward="false" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -43,17 +27,27 @@
         <entry file="file://$PROJECT_DIR$/src/styles/admin_organisation.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="852">
-              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generateHeatmap.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="registeradmin.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admin/registeradmin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generateHeatmap.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/admin/generateHeatmap.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="767">
-              <caret line="53" column="13" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="53" selection-end-column="13" />
+            <state relative-caret-position="425">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/profiel/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1258">
-              <caret line="74" column="7" lean-forward="false" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
+              <caret line="75" column="7" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -92,18 +86,8 @@
       <file leaf-file-name="profiel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin/profiel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-845">
-              <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addOrganisation.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/addOrganisation.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="-831">
+              <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -112,26 +96,20 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2431">
-              <caret line="154" column="20" lean-forward="false" selection-start-line="154" selection-start-column="20" selection-end-line="154" selection-end-column="20" />
-              <folding>
-                <marker date="1579083015153" expanded="true" signature="1732:1794" ph="SELECT user_... users" />
-                <marker date="1579083015153" expanded="true" signature="2274:2462" ph="INSERT INTO users... " />
-                <marker date="1579083015153" expanded="true" signature="3194:3327" ph="SELECT users... users" />
-                <marker date="1579083015153" expanded="true" signature="5277:5408" ph="Update users... " />
-                <marker date="1579083015153" expanded="true" signature="6306:6471" ph="Update contact_data... " />
-              </folding>
+            <state relative-caret-position="3332">
+              <caret line="207" column="20" lean-forward="false" selection-start-line="207" selection-start-column="20" selection-end-line="207" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profiel.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profiel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/profiel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
               <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
               <folding>
-                <marker date="1579257869181" expanded="true" signature="103:302" ph="SELECT users... users" />
+                <marker date="1579257927542" expanded="true" signature="103:302" ph="SELECT users... users" />
               </folding>
             </state>
           </provider>
@@ -194,7 +172,6 @@
         <option value="$PROJECT_DIR$/src/styles/admin_profiel.css" />
         <option value="$PROJECT_DIR$/app/views/admin/dashboardmap.php" />
         <option value="$PROJECT_DIR$/app/views/admin/profiel.php" />
-        <option value="$PROJECT_DIR$/app/views/admin/registeradmin.php" />
         <option value="$PROJECT_DIR$/src/styles/admin_heatmap.css" />
         <option value="$PROJECT_DIR$/app/views/admin/generateHeatmap.php" />
         <option value="$PROJECT_DIR$/src/styles/admin_customer.css" />
@@ -204,6 +181,7 @@
         <option value="$PROJECT_DIR$/src/styles/admin_organisation.css" />
         <option value="$PROJECT_DIR$/app/views/admin/addContact.php" />
         <option value="$PROJECT_DIR$/app/controllers/profiel.php" />
+        <option value="$PROJECT_DIR$/app/views/admin/registeradmin.php" />
       </list>
     </option>
   </component>
@@ -372,12 +350,12 @@
       <workItem from="1578555332313" duration="10927000" />
       <workItem from="1578641958654" duration="7663000" />
       <workItem from="1578908692016" duration="10832000" />
-      <workItem from="1579246652160" duration="7639000" />
+      <workItem from="1579246652160" duration="7835000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110111000" />
+    <option name="totallyTimeSpent" value="110307000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
@@ -525,6 +503,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -533,6 +512,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -582,6 +562,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-765">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -649,22 +630,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/registeradmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3927">
           <caret line="231" column="0" lean-forward="false" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
           <folding>
-            <marker date="1579249376227" expanded="true" signature="301:736" ph="SELECT conta... organisations" />
-            <marker date="1579249376227" expanded="true" signature="4967:4993" ph="SELECT name customers" />
-            <marker date="1579249376227" expanded="true" signature="7306:7332" ph="SELECT name customers" />
+            <marker date="1579257931140" expanded="true" signature="301:736" ph="SELECT conta... organisations" />
+            <marker date="1579257931140" expanded="true" signature="4967:4993" ph="SELECT name customers" />
+            <marker date="1579257931140" expanded="true" signature="9099:9125" ph="SELECT name customers" />
           </folding>
         </state>
       </provider>
@@ -673,9 +646,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-680">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1579184995847" expanded="true" signature="2391:2403" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -708,10 +679,10 @@
         <state relative-caret-position="459">
           <caret line="27" column="98" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="27" selection-end-column="98" />
           <folding>
-            <marker date="1579249707962" expanded="true" signature="5248:5278" ph="SELECT * FRO... question_types" />
-            <marker date="1579249707962" expanded="true" signature="5587:5614" ph="SELECT * FRO... expeditions" />
-            <marker date="1579249707962" expanded="true" signature="6063:6092" ph="SELECT * FRO... organisations" />
-            <marker date="1579249707962" expanded="true" signature="6462:6464" ph="..." />
+            <marker date="1579258023114" expanded="true" signature="5248:5278" ph="SELECT * FRO... question_types" />
+            <marker date="1579258023114" expanded="true" signature="5587:5614" ph="SELECT * FRO... expeditions" />
+            <marker date="1579258023114" expanded="true" signature="6063:6092" ph="SELECT * FRO... organisations" />
+            <marker date="1579258023114" expanded="true" signature="6462:6464" ph="..." />
           </folding>
         </state>
       </provider>
@@ -735,15 +706,7 @@
     <entry file="file://$PROJECT_DIR$/src/styles/admin_organisation.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="852">
-          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/generateHeatmap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="767">
-          <caret line="53" column="13" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="53" selection-end-column="13" />
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -751,7 +714,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/admin/addCustomer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
-          <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="56" />
+          <caret line="33" column="12" lean-forward="false" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -764,41 +727,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/addContact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="21" column="61" lean-forward="false" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/profiel/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" column="7" lean-forward="false" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/profiel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-845">
-          <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2431">
-          <caret line="154" column="20" lean-forward="false" selection-start-line="154" selection-start-column="20" selection-end-line="154" selection-end-column="20" />
-          <folding>
-            <marker date="1579083015153" expanded="true" signature="1732:1794" ph="SELECT user_... users" />
-            <marker date="1579083015153" expanded="true" signature="2274:2462" ph="INSERT INTO users... " />
-            <marker date="1579083015153" expanded="true" signature="3194:3327" ph="SELECT users... users" />
-            <marker date="1579083015153" expanded="true" signature="5277:5408" ph="Update users... " />
-            <marker date="1579083015153" expanded="true" signature="6306:6471" ph="Update contact_data... " />
-          </folding>
+        <state relative-caret-position="3332">
+          <caret line="207" column="20" lean-forward="false" selection-start-line="207" selection-start-column="20" selection-end-line="207" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -807,8 +740,48 @@
         <state relative-caret-position="102">
           <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
           <folding>
-            <marker date="1579257869181" expanded="true" signature="103:302" ph="SELECT users... users" />
+            <marker date="1579257927542" expanded="true" signature="103:302" ph="SELECT users... users" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/profiel/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="75" column="7" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/profiel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-831">
+          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/addContact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="21" column="61" lean-forward="false" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/registeradmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/generateHeatmap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
