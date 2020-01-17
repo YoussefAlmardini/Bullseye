@@ -41,8 +41,22 @@ class MainModel extends Model
             //         }
             //     }
             // }
-            return $_SESSION['quests'][0];
+            if(isset($_SESSION['quests'][0])){
+                return $_SESSION['quests'][0];
+            }else{
+                var_dump($_SESSION['quests'][0]);
+                levelUp();
+                return false;
+            }
         }
+    }
+
+    public function levelUp(){
+        $user_id = $_SESSION['user']['user_id'];
+        $level_id = $_SESSION['user']['level_id'] + 1;
+        $query = "UPDATE `users` SET level_id = $level_id";
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
     }
 
     public static function insertUserAnswer($user_id, $quest_id){
