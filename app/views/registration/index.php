@@ -25,7 +25,7 @@
         </div>
 
         <form class="formregister" action="/registration/catchData" method="POST">
-
+            <input type="hidden" name="role_id" value="1">
 
             <div class="inputContainer">
                 <input required type="text" placeholder="Voornaam *" name="firstName">

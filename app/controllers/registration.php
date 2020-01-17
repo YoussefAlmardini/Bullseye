@@ -9,7 +9,8 @@ class Registration extends Controller
         $this->view('registration/index');
     }
 
-    public function catchData(){
+    public function catchData()
+    {
         // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA AND SENDS IT TO THE MODEL
 
         $firstName = htmlentities(htmlspecialchars($_POST['firstName']));
@@ -21,14 +22,38 @@ class Registration extends Controller
         $password = $_POST['password'];
         $repeatedPassword = $_POST['repeatedPassword'];
         $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $role_id = $_POST['role_id'];
+
+        if (isset($_POST['customer'])) {
+            $customer = $_POST['customer'];
+        } else {
+            $customer = 0;
+        }
+
+        if (isset($_POST['organisation'])) {
+            $organisation = $_POST['organisation'];
+        } else {
+            $organisation = 0;
+        }
 
         $model = $this->model('User');
 
-        if($model->validateUserInput($firstName, $insertion, $lastName, $birthDate, $email_address, $repeatedEmail_address, $password, $repeatedPassword, $hashedPassword)){
+        if ($model->validateUserInput($firstName, $insertion, $lastName, $birthDate, $email_address, $repeatedEmail_address, $password, $repeatedPassword, $hashedPassword, $role_id, $customer, $organisation)) {
             echo "<script>alert('Uw account is succesvol aangemaakt!');</script>";
-            $this->view('login/index');
-        }else{
-            $this->view('registration/index');
+
+            if ($role_id === "1") {
+                $this->view('login/index');
+            }
+        } else {
+            echo "<script>alert('Er is iets fout gegaan');</script>";
+
+            if ($role_id === "1") {
+                $this->view('registration/index');
+            } else if ($role_id === "2") {
+                $this->view('admin/addCustomerAccount');
+            } else if ($role_id === "4") {
+                $this->view('admin/addOrganisationAccount');
+            }
         }
     }
 }

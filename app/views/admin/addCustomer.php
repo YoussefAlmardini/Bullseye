@@ -1,9 +1,7 @@
 <?php
 if (!$_SESSION['adminLoggedIn']) {
-    header("Location: /admin/index");
+    header("Location: /login");
 }
-
-require_once("header.php");
 ?>
 
 <html lang="en">
