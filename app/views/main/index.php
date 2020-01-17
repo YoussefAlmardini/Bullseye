@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/src/styles/main.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
+<script src="/src/js/mobility.js"></script>
 <body>
     <div class="scaverage">
     <?php 
