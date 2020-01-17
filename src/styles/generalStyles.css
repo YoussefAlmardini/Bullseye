@@ -21,7 +21,6 @@ button{
 button:hover{
     cursor: pointer;
 }
-
 input{
     opacity: 75;
     font-family: Segoe UI;

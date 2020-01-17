@@ -2,12 +2,6 @@
 
 class Admin extends Controller
 {
-    #index page
-    public function index()
-    {
-        $this->view('admin/index');
-    }
-
     #map page
     public function map()
     {
@@ -39,7 +33,26 @@ class Admin extends Controller
 
 
 
+    public function CreateNewAdmin(){
 
+        $role_id = 2;
+        $first_name = $_POST['firstName'];
+        $insertion = $_POST['insertion'];
+        $last_name = $_POST['lastName'];
+        $birth_date = $_POST['birthDate'];
+        $email_address = $_POST['email_address'];
+        $password = $_POST['password'];
+
+
+        $model = $this->model('AdminCreate');
+
+        if($model->CreateAdmin($role_id, $first_name, $insertion, $last_name, $birth_date, $email_address, $password)){
+            echo "<script>alert('Het admin account is gemaakt!');</script>";
+            $this->view('admin/dashboardmap');
+        }else{
+            $this->view('/admin/registeradmin');
+        }
+    }
 
     public function UpdateAdminAccount(){
         // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA AND SENDS IT TO THE MODEL
@@ -123,4 +136,167 @@ class Admin extends Controller
         echo json_encode($res);
         exit;
     }
+
+    public function generateHeatmap(){
+        $this->view('admin/generateHeatmap');
+    }
+
+    public function initHeatmapPeriod(){
+        if(isset($_POST['submit'])){
+            $startDate = $_POST['starting_date'];
+            $endDate = $_POST['end_date'];
+            $locationsObj = new stdClass();
+
+            if($endDate < $startDate){
+                echo '<script>alert("De einddatum mag niet voor de begindatum zijn!");</script>';
+            }else{
+                $locationsObj = $this->model('AnonymousLocation')->getLocationsArr($startDate, $endDate);
+            }
+        }
+
+        return $this->view('admin/heatmap', ['locations' => $locationsObj]);
+    }
+
+    public function addCustomer(){
+        return $this->view('admin/addCustomer');
+    }
+
+    public function getCustomers(){
+        $customers = [];
+        $query = 'SELECT name FROM customers;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($customers, $res[$i]['name']);
+        }
+        
+        return $customers;
+    }
+
+    public function getOrganisations(){
+        $organisations = [];
+        $query = 'SELECT name FROM organisations;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($organisations, $res[$i]['name']);
+        }
+        
+        return $organisations;
+    }
+
+    public function addOrganisation(){
+        return $this->view('admin/addOrganisation', ['customers' => Admin::getCustomers()]);
+    }
+
+    public function sendCustomerDataToModel(){
+        if(isset($_POST['submit'])){
+            $companyName = $_POST['company_name'];
+            $postalCode = $_POST['postal_code'];
+            $streetName = $_POST['street_name'];
+            $houseNumber = $_POST['house_number'];
+            $houseLetter = $_POST['house_letter'];
+            $mailingAddressPostalCode = $_POST['mailing_address_postal_code'];
+            $mailingAddressStreetName = $_POST['mailing_address_street_name'];
+            $mailingAddressHouseNumber = $_POST['mailing_address_house_number'];
+            $mailingAddressHouseLetter = $_POST['mailing_address_house_letter'];
+
+            $this->model('Customer')->saveCustomer($companyName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
+        }
+    }
+
+    public function sendOrganisationDataToModel(){
+        if(isset($_POST['submit'])){
+            $customer = $_POST['customer'];
+            $organisationName = $_POST['organisation_name'];
+            $postalCode = $_POST['postal_code'];
+            $streetName = $_POST['street_name'];
+            $houseNumber = $_POST['house_number'];
+            $houseLetter = $_POST['house_letter'];
+            $mailingAddressPostalCode = $_POST['mailing_address_postal_code'];
+            $mailingAddressStreetName = $_POST['mailing_address_street_name'];
+            $mailingAddressHouseNumber = $_POST['mailing_address_house_number'];
+            $mailingAddressHouseLetter = $_POST['mailing_address_house_letter'];
+
+            $this->model('Organisation')->saveOrganisation($customer, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
+        }
+    }
+
+    public function getProfileData(){
+        $profileData = [];
+        $query = 'SELECT first_name, insertion, last_name, email_address FROM users WHERE user_id = :user_id;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':user_id', $_SESSION['user_id']);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($profileData, $res[$i]);
+        }
+
+        return $profileData;
+    }
+
+    public function addCustomerAccount(){
+        $this->view('admin/addCustomerAccount', ['customers' => Admin::getCustomers()]);
+    }
+    
+    public function addOrganisationAccount(){
+        $this->view('admin/addOrganisationAccount', ['organisations' => Admin::getOrganisations()]);
+    }
+
+    public function updateProfile(){
+        return $this->view('admin/updateProfile', ['profileData' => Admin::getProfileData()]);
+    }
+
+    public function sendProfileDataToModel(){
+        if(isset($_POST['submit'])){
+            $firstName = $_POST['firstName'];
+            $insertion = $_POST['insertion'];
+            $lastName = $_POST['lastName'];
+            $email = $_POST['email'];
+
+            $this->model('User')->updateAdminProfile($firstName, $insertion, $lastName, $email);
+        }
+    }
+
+    public function addContact(){
+        $customers = [];
+        $query = 'SELECT name FROM customers;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($customers, $res[$i]['name']);
+        }
+
+        return $this->view('admin/addContact', ['customers' => $customers]);
+    }
+
+    public function sendContactDataToModel(){
+        if(isset($_POST['submit'])){
+
+            $customer = $_POST['customer'];
+            $first_name = $_POST['firstname'];
+            $insertion = $_POST['insertion'];
+            $last_name = $_POST['lastname'];
+            $function = $_POST['function'];
+            $email = $_POST['email'];
+            $phone_number = $_POST['phonenumber'];
+
+
+            $this->model('Contact')->saveContact($customer, $first_name, $insertion, $last_name, $function, $email, $phone_number);
+        }
+    }
+
 }
+

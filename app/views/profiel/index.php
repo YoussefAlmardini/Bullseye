@@ -1,6 +1,7 @@
-<?php
-     include "app/views/header/index.php";
-?>
+<link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/profiel.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/home.css">
     <body>
         <div class="viewContainer viewContainerCustom">
 

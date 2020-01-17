@@ -1,9 +1,7 @@
 <?php
-if(!$_SESSION['adminLoggedIn']){
-    header("Location: /admin/index");
+if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
+    header("Location: /login");
 }
-
-require_once("header.php");
 ?>
 
 <html lang="en">
@@ -15,6 +13,8 @@ require_once("header.php");
 
 <body>
     <div>Welkom op de dashboard-pagina!</div>
+
+    <a href="/admin/addCustomer">Organisatie toevoegen</a>
 </body>
 
 </html>
