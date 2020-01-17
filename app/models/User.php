@@ -145,6 +145,7 @@ class User extends Model
             $validPassword = password_verify($password, $user['password']);
             if ($validPassword) {
                 $_SESSION['user'] = $user;
+                $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['logged_in'] = time();
 
                 $role = $user['role'];
@@ -222,5 +223,9 @@ class User extends Model
         $stmt->bindValue(':phoneNumber', $phoneNumber);
         $stmt->bindValue(':id', $ID);
         $stmt->execute();
+    }
+
+    public function sendProfileDataToModel($firstName, $insertion, $lastName, $email){
+        
     }
 }

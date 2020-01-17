@@ -205,11 +205,42 @@ class Admin extends Controller
         }
     }
 
+    public function getProfileData(){
+        $profileData = [];
+        $query = 'SELECT first_name, insertion, last_name, email_address FROM users WHERE user_id = :user_id;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':user_id', $_SESSION['user_id']);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($profileData, $res[$i]);
+        }
+
+        return $profileData;
+    }
+
     public function addCustomerAccount(){
         $this->view('admin/addCustomerAccount', ['customers' => Admin::getCustomers()]);
     }
     
     public function addOrganisationAccount(){
         $this->view('admin/addOrganisationAccount', ['organisations' => Admin::getOrganisations()]);
+    }
+
+    public function updateProfile(){
+        return $this->view('admin/updateProfile', ['profileData' => Admin::getProfileData()]);
+    }
+
+    public function sendProfileDataToModel(){
+        if(isset($_POST['submit'])){
+            $firstName = $_POST['firstName'];
+            $insertion = $_POST['insertion'];
+            $lastName = $_POST['lastName'];
+            $email = $_POST['email'];
+
+            $this->model('User')->updateAdminProfile($firstName, $insertion, $lastName, $email);
+        }
     }
 }
