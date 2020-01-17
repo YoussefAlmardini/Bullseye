@@ -41,7 +41,7 @@ class Admin2 extends Model
     {
         $question_ID = $data->id;
         $expedition_id = $data->expedition_id;
-        $answer = $data->answer;
+        $answer = strtolower($data->answer);
         $type_id = $data->type_id;
         $queue = $data->queue;
         $quest = $data->title;
@@ -127,6 +127,7 @@ class Admin2 extends Model
 
     public function deleteQuest($data) {
         $id = $data->id;
+        error_log($id);
         $query = "DELETE FROM quests WHERE quest_id = $id";
         $db = DB::connect();
         $stmt = $db->prepare($query);

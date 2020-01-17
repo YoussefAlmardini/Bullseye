@@ -1,8 +1,7 @@
 <?php
 if (!$_SESSION['adminLoggedIn']) {
-    header("Location: /admin/index");
+    header("Location: /login");
 }
-
 ?>
 
 <html>

@@ -10,8 +10,9 @@ class MainModel extends Model
     public static function getYourCurrentQuestion()
     {
         $user_id = $_SESSION['user']['user_id'];
-        error_log(print_r($_SESSION['quests'],TRUE));
-        $query = "SELECT * FROM user_answers WHERE answered = 0 AND user_id = $user_id";
+        $expedition_id = $_SESSION['expedition_id'];
+        error_log(print_r($_SESSION['expedition_id'], true));
+        $query = "SELECT * FROM user_answers WHERE user_id = $user_id AND expedition_id = $expedition_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -20,39 +21,56 @@ class MainModel extends Model
             return $_SESSION['quests'][0];
         }else{
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-            for($i = 0; $i < count($result); $i++) {
-               if($_SESSION['quests'][$i]['quest_id'] == $result['quest_id']){
-                    unset($_SESSION['quests'][$i]);
-               }
+
+            foreach($_SESSION['quests'] as $i => $question) {
+                foreach($result as $row) {
+                    // var_dump($row, $question);
+                    //         error_log(print_r($row,TRUE));
+                    if($row['quest_id'] == $question['questionID']) {
+                        unset($_SESSION['quests'][$i]);
+                    }
+                }
             }
+            $_SESSION['quests'] = array_values($_SESSION['quests']);
+            // var_dump($_SESSION['quests']);
+            // for($i = 0; $i < count($_SESSION['quests']); $i++) {
+            //     foreach($result as $row) {
+            //         error_log(print_r($row,TRUE));
+            //         if($row['quest_id'] == $_SESSION[$i]['questionID']) {
+            //             unset($_SESSION['quests'][$i]);
+            //         }
+            //     }
+            // }
             return $_SESSION['quests'][0];
         }
     }
 
     public static function insertUserAnswer($user_id, $quest_id){
-        $query_insert = 'INSERT INTO `user_answers` (`user_id`, `quest_id`, `answered`, `answer`) VALUES (:u_id,:quest_id , :answerd, NULL)';
+        $expedition_id = $_SESSION['expedition_id'];
+        $query_insert = 'INSERT INTO `user_answers` (`user_id`, `quest_id`, `expedition_id`, `answered`, `answer`) VALUES (:u_id,:quest_id , :expedition_id,:answerd, NULL)';
         $db = DB::connect();
         $stmt = $db->prepare($query_insert);
         $stmt->bindValue(':u_id', $user_id);
         $stmt->bindValue(':quest_id',  $quest_id);
+        $stmt->bindValue(':expedition_id',  $expedition_id);
         $stmt->bindValue(':answerd', 1);
         $stmt->execute();
     }
 
-    public static function validateUserAnswer($userAnswer){
-
+    public static function validateUserAnswer($data){
+        $answer = strtolower($data->answer);
         $user_id = $_SESSION['user']['user_id'];
-        $quest = this::getYourCurrentQuestion();
-        $quest_id =  $quest['quest_id'];
-
+        $quest = MainModel::getYourCurrentQuestion();
+        $quest_id =  $quest['questionID'];
+        
         $query = "SELECT `answer` FROM `quests` WHERE `quest_id` = $quest_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        if($result[0]['answer'] == $userAnswer){
-            this::insertUserAnswer($user_id,$quest_id);
+        if($result[0]['answer'] == $answer){
+            MainModel::insertUserAnswer($user_id,$quest_id);
             return true;
 
         }else return false;

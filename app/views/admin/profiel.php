@@ -1,6 +1,7 @@
 <?php
-include "header.php";
-$getOrganisations = false;
+if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
+    header("Location: /login");
+}
 ?>
 
 

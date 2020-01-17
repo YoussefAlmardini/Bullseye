@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
     <link rel="stylesheet" type="text/css" href="../src/styles/registreren.css">
+    <script src="/src/js/mobility.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
         </div>
 
         <form class="formregister" action="/registration/catchData" method="POST">
-
+            <input type="hidden" name="role_id" value="1">
 
             <div class="inputContainer">
                 <input required type="text" placeholder="Voornaam *" name="firstName">

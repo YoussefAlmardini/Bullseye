@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/src/styles/main.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
+<script src="/src/js/mobility.js"></script>
 <body>
     <div class="scaverage">
     <?php 
@@ -10,6 +11,7 @@
 
     if(isset($_POST['clickedID'])){
         include_once "map.php";
+        $_SESSION['expedition_id'] = $_POST['clickedID'];
         //die('Dit is jouw ID: '. $_POST['clickedID']);
         $query = 'SELECT * FROM `quests` WHERE `expedition_id`='.$_POST['clickedID'];
         $db = \DB::connect();

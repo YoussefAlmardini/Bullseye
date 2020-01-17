@@ -2,13 +2,12 @@
 
 class Admin extends Controller
 {
-    #index page
+    #map page
     public function index()
     {
-        $this->view('admin/index');
+        $this->view('admin/dashboardmap');
     }
 
-    #map page
     public function map()
     {
         $this->view('admin/dashboardmap');
@@ -167,7 +166,7 @@ class Admin extends Controller
         return $this->view('admin/addCustomer');
     }
 
-    public function addOrganisation(){
+    public function getCustomers(){
         $customers = [];
         $query = 'SELECT name FROM customers;';
         $db = DB::connect();
@@ -179,7 +178,26 @@ class Admin extends Controller
             array_push($customers, $res[$i]['name']);
         }
         
-        return $this->view('admin/addOrganisation', ['customers' => $customers]);
+        return $customers;
+    }
+
+    public function getOrganisations(){
+        $organisations = [];
+        $query = 'SELECT name FROM organisations;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($organisations, $res[$i]['name']);
+        }
+        
+        return $organisations;
+    }
+
+    public function addOrganisation(){
+        return $this->view('admin/addOrganisation', ['customers' => Admin::getCustomers()]);
     }
 
     public function sendCustomerDataToModel(){
@@ -212,6 +230,45 @@ class Admin extends Controller
             $mailingAddressHouseLetter = $_POST['mailing_address_house_letter'];
 
             $this->model('Organisation')->saveOrganisation($customer, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
+        }
+    }
+
+    public function getProfileData(){
+        $profileData = [];
+        $query = 'SELECT first_name, insertion, last_name, email_address FROM users WHERE user_id = :user_id;';
+        $db = DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':user_id', $_SESSION['user_id']);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        for($i = 0; $i < count($res); $i++){
+            array_push($profileData, $res[$i]);
+        }
+
+        return $profileData;
+    }
+
+    public function addCustomerAccount(){
+        $this->view('admin/addCustomerAccount', ['customers' => Admin::getCustomers()]);
+    }
+    
+    public function addOrganisationAccount(){
+        $this->view('admin/addOrganisationAccount', ['organisations' => Admin::getOrganisations()]);
+    }
+
+    public function updateProfile(){
+        return $this->view('admin/updateProfile', ['profileData' => Admin::getProfileData()]);
+    }
+
+    public function sendProfileDataToModel(){
+        if(isset($_POST['submit'])){
+            $firstName = $_POST['firstName'];
+            $insertion = $_POST['insertion'];
+            $lastName = $_POST['lastName'];
+            $email = $_POST['email'];
+
+            $this->model('User')->updateAdminProfile($firstName, $insertion, $lastName, $email);
         }
     }
 
