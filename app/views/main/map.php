@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <head>
    <link rel="stylesheet" href="/src/styles/map.css"/>
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -185,9 +189,8 @@ function ShowQuestionDialog(question,id,lang,long){
     function sendLocation(){
         var latitude = mymarker.getLatLng().lat;
         var longitude = mymarker.getLatLng().lng;
+        var organisation_id = // organisation_id of the organisation that created this expedition;
 
-        console.log("Latitude " + latitude);
-        console.log("Longitude " + longitude);
         var xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function() {
@@ -196,7 +199,7 @@ function ShowQuestionDialog(question,id,lang,long){
             }
         };
 
-        xhttp.open("GET", "http://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude, true);
+        xhttp.open("GET", "http://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude + "&organisation_id=" + organisation_id, true);
         xhttp.send();
     };
 

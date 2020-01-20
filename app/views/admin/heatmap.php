@@ -1,5 +1,5 @@
 <?php
-if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
+if (!$_SESSION['organisationLoggedIn']) {
     header("Location: /login");
 }
 ?>

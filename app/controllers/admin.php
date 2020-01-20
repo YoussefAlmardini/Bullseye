@@ -115,8 +115,7 @@ class Admin extends Controller
     }
 
     public function generateHeatmap(){
-        $this->view('admin/generateHeatmap', );
-        return $this->view('admin/generateHeatmap', ['customer_id' => Admin::getCustomerID()]);
+        return $this->view('admin/generateHeatmap');
     }
 
     public function initHeatmapPeriod(){
@@ -124,11 +123,12 @@ class Admin extends Controller
             $startDate = $_POST['starting_date'];
             $endDate = $_POST['end_date'];
             $locationsObj = new stdClass();
+            $organisationID = $_POST['organisation_id'];
 
             if($endDate < $startDate){
                 echo '<script>alert("De einddatum mag niet voor de begindatum zijn!");</script>';
             }else{
-                $locationsObj = $this->model('AnonymousLocation')->getLocationsArr($startDate, $endDate);
+                $locationsObj = $this->model('AnonymousLocation')->getLocationsArr($startDate, $endDate, $organisationID);
             }
         }
 
