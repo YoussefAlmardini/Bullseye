@@ -165,6 +165,7 @@ function addMarker(e){
     const answer = document.getElementById('answer').value;
     const tip1 = document.getElementById('tip1').value;
     const tip2 = document.getElementById('tip2').value;
+    const guide_next = document.getElementById('guide_next').value;
     const latitude = document.getElementById('latitude').value;
     const longitude = document.getElementById('longitude').value;
     const text = "<strong id='title'>"+title+"</strong><br>"+
@@ -181,6 +182,7 @@ function addMarker(e){
         queue: queue,
         tip_1: tip1,
         tip_2: tip2,
+        guide_next: guide_next,
         type_id: type_id,
         id: "",
         latitude: latitude,
@@ -286,6 +288,7 @@ function addData() {
             queue: data.queue,
             tip1: data.tip1,
             tip2: data.tip2,
+            guide_next: data.guide_next,
             latitude: data.latitude,
             longitude: data.longitude
         })

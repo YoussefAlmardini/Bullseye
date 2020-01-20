@@ -47,13 +47,14 @@ class Admin2 extends Model
         $quest = $data->title;
         $tip1 = $data->tip1;
         $tip2 = $data->tip2;
+        $guide_next = $data->guide_next;
         $latitude = $data->latitude;
         $longitude = $data->longitude;
 
         if(empty($question_ID)){
             //Als er geen vraag bestaat maak er 1 aan
-            $query = "INSERT INTO quests (`expedition_id`, `type_id`, `answer`, `queue`, `quest`, `coordinate_langitude`, `coordinate_longitude`, `tip_1`, `tip_2`)
-            VALUES ($expedition_id, $type_id, '$answer', $queue, '$quest', $latitude, $longitude, '$tip1', '$tip2')";
+            $query = "INSERT INTO quests (`expedition_id`, `type_id`, `answer`, `queue`, `quest`, `coordinate_langitude`, `coordinate_longitude`, `tip_1`, `tip_2`, `guide_next`)
+            VALUES ($expedition_id, $type_id, '$answer', $queue, '$quest', $latitude, $longitude, '$tip1', '$tip2', '$guide_next')";
             $db = DB::connect();
             $stmt = $db->prepare($query);
             if ($stmt->execute()) { 
@@ -71,6 +72,7 @@ class Admin2 extends Model
             `quest` = '$quest',
             `tip_1` = '$tip1',
             `tip_2` = '$tip2',
+            `guide_next` = '$guide_next',
             `coordinate_langitude` = $latitude,
             `coordinate_langitude` = $longitude WHERE quest_id = ".$question_ID;
             $db = DB::connect();

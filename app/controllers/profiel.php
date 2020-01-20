@@ -12,13 +12,8 @@ class Profiel extends Controller
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         //print_r($user);
-
-
-
-
         $this->view('profiel/index', ['user' => $user]);
     }
-
 
     public function UpdateAccount(){
         // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA AND SENDS IT TO THE MODEL
