@@ -14,7 +14,19 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION[
         <h1>Welkom op de heatmap-pagina</h1>
 
         <form method="POST" action="/admin/initHeatmapPeriod">
-            <legend>Selecteer een periode om een heatmap te laten genereren:</legend><br>
+            <legend>Selecteer informatie om een heatmap te laten genereren:</legend><br>
+
+            <label>Selecteer een organisatie: </label><br>
+
+            <select>
+                <option selected="selected" disabled="disabled" name="organisation">Kies een organisatie</option>
+                <?php
+                    for($i = 0; $i < count($data['organisations']); $i++){
+                        echo '<option value=" '. $data['organisations']['organisation_id'] .' ">' . $data['organisations']['organisation'][$i] . '</option>';
+                    }
+                ?>
+            </select>
+
             <label for="starting_date">Begindatum: </label>
             <input type="date" name="starting_date"><br><br>
 

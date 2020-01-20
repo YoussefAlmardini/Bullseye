@@ -115,7 +115,8 @@ class Admin extends Controller
     }
 
     public function generateHeatmap(){
-        $this->view('admin/generateHeatmap');
+        $this->view('admin/generateHeatmap', );
+        return $this->view('admin/generateHeatmap', ['customer_id' => Admin::getCustomerID()]);
     }
 
     public function initHeatmapPeriod(){
