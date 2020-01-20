@@ -11,7 +11,10 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION[
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/admin/map">Speurtocht maken</a>
     <a href="/admin/registeradmin">Profielen aanmaken</a>
-    <a href="#">Heatmap</a>
+    <a href="/admin/addCustomer">Klant aanmaken</a>
+    <a href="/admin/addOrganisation">Organisatie aanmaken</a>
+    <a href="/admin/addContact">Contact aanmaken</a>
+    <a href="/admin/generateHeatmap">Heatmap</a>
     <form method="POST">
         <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
     </form>

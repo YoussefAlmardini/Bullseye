@@ -17,6 +17,6 @@
     </div>
 
     <div class="mainButton">
-        <button><a href="/main/list" class="clearLink">Mijn lijst</a></button>
+        <button onclick="window.location.href='/main/list'"><a class="clearLink">Mijn lijst</a></button>
     </div>
 </div>

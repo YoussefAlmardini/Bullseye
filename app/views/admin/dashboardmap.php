@@ -89,9 +89,10 @@ function getMaps(){
     <a href="/admin/registeradmin">Profiel aanmaken</a>
     <a href="/admin/addCustomer">Klant aanmaken</a>
     <a href="/admin/addOrganisation">Organisatie aanmaken</a>
-    <a href="#">Heatmap</a>
-    <form method="POST" action="/home/logout">
-      <a><input type="submit" value="Uitloggen" name="logout"></a>
+    <a href="/admin/addContact">Contact aanmaken</a>
+    <a href="/admin/generateHeatmap">Heatmap</a>
+    <form method="POST">
+      <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
     </form>
 
 </div>
