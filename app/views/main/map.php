@@ -7,6 +7,7 @@
    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>    
+   <script src="/src/js/mobility.js"></script>
 </head>
 <body>
     <div class="TopDataBar" style='display:none;'>

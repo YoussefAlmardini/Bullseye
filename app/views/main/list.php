@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="/src/styles/list.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/profiel.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
+<script src="/src/js/mobility.js"></script>
 <body>
     <div class="thirdTitle spaceUnder center">
         Alle speurtochten
