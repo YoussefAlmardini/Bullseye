@@ -23,6 +23,15 @@
 
         $_SESSION['quests'] = array();
 
+        $query = 'SELECT organisation_id FROM expeditions WHERE expedition_id = :expedition_id;';
+        $db = \DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':expedition_id', $_POST['id']);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_OBJ);
+
+        $_SESSION['organisationIDOfCurrentExpedition'] = $row->organisation_id;
+
         for($i = 0; $i < count($result); $i++) {
            $questionID = $result[$i]['quest_id'];
            $answer = $result[$i]['answer'];

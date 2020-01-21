@@ -1,7 +1,3 @@
-<?php
-    session_start();
-?>
-
 <head>
    <link rel="stylesheet" href="/src/styles/map.css"/>
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -189,7 +185,7 @@ function ShowQuestionDialog(question,id,lang,long){
     function sendLocation(){
         var latitude = mymarker.getLatLng().lat;
         var longitude = mymarker.getLatLng().lng;
-        var organisation_id = // organisation_id of the organisation that created this expedition;
+        var organisation_id = <?php echo $_SESSION['organisationIDOfCurrentExpedition']; ?>
 
         var xhttp = new XMLHttpRequest();
 
