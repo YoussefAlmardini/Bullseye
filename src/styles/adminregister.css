@@ -33,7 +33,7 @@ html{
 }
 
 .sidenav {
-    height: 42%;
+    height: 20%;
     width: 0;
     position: fixed;
     z-index: 1;
@@ -44,7 +44,6 @@ html{
     transition: 0.5s;
     padding-top: 60px;
     border: 2px solid #ccc;
-    text-align: left;
 }
 
 .sidenav a {
@@ -65,7 +64,7 @@ html{
     top: 0;
     right: 25px;
     font-size: 36px;
-    margin-left: 0px;
+    margin-left: 50px;
 }
 
 @media screen and (max-height: 450px) {
@@ -119,25 +118,28 @@ button{
     height: 25px;
     position: absolute;
     left: 1130px;
-    top: 655px;
+    top: 750px;
+    opacity: 0.5;
+}
+.passwordshow2 {
+    height: 30px;
+    position: absolute;
+    left: 1130px;
+    top: 750px;
     opacity: 0.5;
 }
 
-
-#uitlog{
-    height: 40px;
-    width: auto;
-    background-color: #0F7EC7;
-    color: #FFFFFF;
-    opacity: 1;
-    font-size: 25px;
-    left: 0;
-    text-decoration: none;
-    display: block;
-    font-family: times newroman;
-    border: none;
+.passwordshow3 {
+    height: 25px;
+    position: absolute;
+    left: 1130px;
+    top: 850px;
+    opacity: 0.5;
 }
-
-.sideNav a{
-    left: 0px;
+.passwordshow4 {
+    height: 30px;
+    position: absolute;
+    left: 1130px;
+    top: 850px;
+    opacity: 0.5;
 }

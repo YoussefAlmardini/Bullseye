@@ -2,26 +2,21 @@
         width: auto;}
 
 #mymap{
-    height: 92%;
+    height: auto;
     width: auto;
-    /*top: 8.5%;*/
+    top: 8.5%;
     z-index: 1;
-}
-
-.leaflet-top {
-    transform: scale(2.0);
-    margin: 50px;
 }
 .questionBlock{
     position: absolute;
-    top: 64%;
+    top: 400px;
     z-index: 1;
     margin: 0 auto;
     width: 100%;
-    height: 500px;
+    height: 700px;
     font-family: Segoe UI;
-    background: url(/src/assets/fBXEda.jpg);
-    background-size: cover;
+    background-size: contain;
+    background: url('/src/assets/fBXEda.jpg');
 }
 
 .questionBlock p{
@@ -44,18 +39,15 @@
     font-size: 40px;
     background: blanchedalmond;
     margin-top: 25px;
-    padding: 5px;
 }
 
 .questionBlock div input[type='submit']{
     background:#0F7EC7;
     border: none;
-    border-radius: 10px;
-    padding: 5px;
+    border-radius: 50px;
     color:white;
     opacity: 75;
     font-family: Segoe UI;
-
 }
 
 .questionBlock div input[type='text'],.questionBlock div input[type='number']{

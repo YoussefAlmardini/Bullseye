@@ -41,7 +41,7 @@ mymap.addLayer(group);
 // Sets icon
 var myIcon = L.icon({
     iconUrl: window.location.origin + '/src/assets/myicon.png',
-    iconSize: [50, 50],
+    iconSize: [20, 20],
     popupAnchor: [],
 });
 
@@ -93,6 +93,7 @@ document.getElementById('select_expedition').addEventListener('change', function
         for(const i in res) {
             const marker = res[i];
 
+            //console.log(marker);
             const text = "<strong id='title'>"+marker.quest+"</strong><br>"+
             "<a hidden id='type_id_"+i+"'>"+marker.type_id+"</a><br>"+
             "Vraag:<a id='queue"+i+"'>"+marker.queue+"</a><br>"+
@@ -165,7 +166,6 @@ function addMarker(e){
     const answer = document.getElementById('answer').value;
     const tip1 = document.getElementById('tip1').value;
     const tip2 = document.getElementById('tip2').value;
-    const guide_next = document.getElementById('guide_next').value;
     const latitude = document.getElementById('latitude').value;
     const longitude = document.getElementById('longitude').value;
     const text = "<strong id='title'>"+title+"</strong><br>"+
@@ -182,7 +182,6 @@ function addMarker(e){
         queue: queue,
         tip_1: tip1,
         tip_2: tip2,
-        guide_next: guide_next,
         type_id: type_id,
         id: "",
         latitude: latitude,
@@ -288,7 +287,6 @@ function addData() {
             queue: data.queue,
             tip1: data.tip1,
             tip2: data.tip2,
-            guide_next: data.guide_next,
             latitude: data.latitude,
             longitude: data.longitude
         })
@@ -338,7 +336,6 @@ function NewMap(){
     fetch('/admin/newMap/', {
         method: 'POST',
         body: JSON.stringify({
-            expedition_id: data.expedition_id,
             id:organisationValue,
             title: data.title_expedition,
             description: data.description,
@@ -352,7 +349,7 @@ function NewMap(){
         return res.json();
     }).then(function(res) {
         if(res) {
-            alert('Map is succesvol toegevoegd of aangepast!');
+            alert('Map is succesvol toegevoegd!');
             location.reload();
         } else {
             alert('Er heeft een probleem plaatsgevonden, probeer het later nog eens');
@@ -366,6 +363,7 @@ function deleteMap(e) {
     if (r == true) {
         const data = objectifyForm(document.getElementById('newmapForm'));
 
+        console.log(data);
 
         fetch('/admin/deleteMap/', {
             method: 'POST',
@@ -397,6 +395,7 @@ var groupMaps = L.featureGroup();
 mymap.addLayer(groupMaps);
 
 function mapClick(e){
+    console.log(this);
     document.getElementById('title_expedition').value = this.options.nameMap;
     document.getElementById('description').value = this.options.description;
     document.getElementById('loc_expedition').value = this.options.name;
@@ -420,9 +419,11 @@ document.getElementById('organisation_id').addEventListener('change', function(e
         for(const i in res) {
             const maps = res[i];
 
-            const text = "<strong id='title'>"+maps.nameMap+"</strong><br>"+   
-            "<a id='description"+i+"'>"+maps.description+"</a><br>"+
+            console.log(maps);
+
+            const text = "<strong id='title'>"+maps.nameMap+"</strong><br>"+    
             "<a hidden id='expedition_id"+i+"'>"+maps.expedition_id+"</a><br>"+
+            "<a id='description"+i+"'>"+maps.description+"</a><br>"+
             "Locatie:<a id='loc_expedition"+i+"'>"+maps.name+"</a><br>"+
             "Extra info:<a id='extra"+i+"'>"+maps.info+"</a><br>"+
             "Level:<a id='levels"+i+"'>"+maps.levels+"</a><br>";

@@ -1,19 +1,16 @@
-<link rel="stylesheet" type="text/css" href="/src/styles/main.css">
-<link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
-<script src="/src/js/mobility.js"></script>
-<body>
-    <div class="scaverage">
-    <?php 
-   
-    if (!$_SESSION['user']) {
-        header("Location: /login");
-    }
+<?php
+    include "app/views/header/index.php";
+?>
 
-    if(isset($_POST['clickedID'])){
+<body>
+
+
+<div class="scaverage">
+   <?php 
+   
+   if(isset($_POST['expStart'])){
         include_once "map.php";
-        $_SESSION['expedition_id'] = $_POST['clickedID'];
-        //die('Dit is jouw ID: '. $_POST['clickedID']);
-        $query = 'SELECT * FROM `quests` WHERE `expedition_id`='.$_POST['clickedID'];
+        $query = 'SELECT * FROM `quests` WHERE `expedition_id`='.$_POST['id'].'';
         $db = \DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -23,7 +20,7 @@
         }
 
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        
+
         $_SESSION['quests'] = array();
 
         $query = 'SELECT organisation_id FROM expeditions WHERE expedition_id = :expedition_id;';
@@ -50,13 +47,14 @@
             'coordinate_langitude' =>  $coordinate_langitude,
             'coordinate_longitude' => $coordinate_longitude
            ];
-           array_push($_SESSION['quests'],$dataRow);         
+           array_push($_SESSION['quests'],$dataRow);
+         
         }
-    }else{
+   }else{
     include_once "emptyMain.php"; 
-    }
-    ?>
-
+   }
+   ?>
+</div>
 
 <?php include "app/components/bottomNavigation/index.php"; ?>
 <script>

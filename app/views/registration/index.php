@@ -2,7 +2,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../src/styles/generalStyles.css">
     <link rel="stylesheet" type="text/css" href="../src/styles/registreren.css">
-    <script src="/src/js/mobility.js"></script>
 </head>
 
 <body>
