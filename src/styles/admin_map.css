@@ -8,6 +8,21 @@ body{
   z-index: 0;
 }
 
+.addForm {
+  margin: 20px;
+  display: inline-block;
+}
+
+.input {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 #toolbar {
   background: rgba(255, 255, 255, 1);
   opacity: .6;
@@ -93,6 +108,7 @@ body{
   transition: 0.5s;
   padding-top: 60px;
   border: 2px solid #ccc;
+  text-align: left;
 }
 
 .sidenav a {
@@ -114,7 +130,7 @@ body{
   top: 0;
   right: 25px;
   font-size: 36px;
-  margin-left: 50px;
+  margin-left: 0px;
 }
 
 .leaflet-right {
@@ -138,4 +154,18 @@ select{
 
 input{
   margin-bottom: 7px;
+}
+
+#uitlog{
+  height: 40px;
+  width: auto;
+  background-color: #0F7EC7;
+  color: #FFFFFF;
+  opacity: 1;
+  font-size: 25px;
+  left: 0;
+  text-decoration: none;
+  display: block;
+  font-family: times newroman;
+  border: none;
 }

@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+<link rel="stylesheet" type="text/css" href="/src/styles/admin_map.css">
 <?php
 
 if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
@@ -56,9 +60,12 @@ function getOrganisations(){
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/admin/profiel">Uw profiel</a>
     <a href="/admin/registeradmin">Profiel aanmaken</a>
-    <a href="#">Heatmap</a>
-    <form method="POST" action="/home/logout">
-      <a><input type="submit" value="Uitloggen" name="logout"></a>
+    <a href="/admin/addCustomer">Klant aanmaken</a>
+    <a href="/admin/addOrganisation">Organisatie aanmaken</a>
+    <a href="/admin/addContact">Contact aanmaken</a>
+    <a href="/admin/generateHeatmap">Heatmap</a>
+    <form method="POST">
+      <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
     </form>
 
 </div>
@@ -86,7 +93,7 @@ function getOrganisations(){
           <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
           <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
           <input type="number" hidden name="expedition_id" id="expedition_id">
-         <button type="button" onclick="NewMap()"> Voeg nieuwe map toe</button>
+         <button type="button" onclick="NewMap()"> Nieuwe map/Update</button>
          <button type="button" onclick="clearMap()">Reset map</button>
         </form>
       </ul>
@@ -115,6 +122,7 @@ function getOrganisations(){
             <input type="text" id="answer" value="" name="answer" placeholder="Antwoord vraag*" required>
             <input type="text" id="tip1" value="" name="tip1" placeholder="Tip 1*" required>
             <input type="text" id="tip2" value="" name="tip2" placeholder="Tip 2" >
+            <input type="text" id="guide_next" value="" name="guide_next" placeholder="Guide naar volgende vraag" >
             <input type="number" id="latitude" value="" name="latitude" placeholder="Latitude*" readonly required>
             <input type="number" id="longitude" value="" name="longitude" placeholder="Longitude*" readonly required>
             <button type="button" onclick="addData()" id="">Add/Update</button>
