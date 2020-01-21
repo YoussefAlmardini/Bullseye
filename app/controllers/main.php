@@ -20,4 +20,19 @@ class Main extends Controller
         echo json_encode($res);
         exit;
     }
+
+    public function sendAnswer() {
+        $data = json_decode(file_get_contents('php://input'));
+        $main = $this->model('MainModel');
+        $res = $main->validateUserAnswer($data);
+
+        echo json_encode($res);
+        exit;
+    }
+
+    
+    public function logOut(){
+        var_dump($_SESSION);
+        return json_encode($_SESSION);
+    }
 }

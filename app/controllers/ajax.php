@@ -12,16 +12,15 @@ class Ajax extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
                 if(isset(
                     $_GET['latitude'],
-                    $_GET['longitude'],
-                    $_GET['organisation_id']
+                    $_GET['longitude']
                 )){
-                    Ajax::sendLocationToModel($_GET['latitude'], $_GET['longitude'], $_GET['organisation_id']);
+                    Ajax::sendLocationToModel($_GET['latitude'], $_GET['longitude']);
                 }
             }
     }
 
-    public function sendLocationToModel($latitude, $longitude, $organisation_id){
+    public function sendLocationToModel($latitude, $longitude){
         $model = $this->model('AnonymousLocation');
-        $model->saveLocation($latitude, $longitude, $organisation_id);
+        $model->saveLocation($latitude, $longitude);
     }
 }

@@ -15,17 +15,24 @@ if (!$_SESSION['adminLoggedIn']) {
     <div class="middleBlock">
         <div id="sideNav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="/admin/profiel">Profiel</a>
             <a href="/admin/map">Speurtocht aanmaken</a>
-            <a href="#">Heatmap</a>
-
+            <a href="/admin/profiel">Uw Profiel</a>
+            <a href="/admin/addCustomer">Klant aanmaken</a>
+            <a href="/admin/addOrganisation">Organisatie aanmaken</a>
+            <a href="/admin/addContact">Contact aanmaken</a>
+            <a href="/admin/generateHeatmap">Heatmap</a>
+            <form method="POST"  action="/home/logout">>
+                <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
+            </form>
         </div>
+
         <span  id="navOpenButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         <div class="secondTitle formTitle">
             Admin registreren
         </div>
 
-        <form class="formregister" action="/registration/catchData" method="POST">
+        <form class="formregister" action="/admin/CreateNewAdmin" method="POST">
+
 
             <div class="inputContainer">
                 <input required type="text" placeholder="Voornaam *" name="firstName">
@@ -46,17 +53,8 @@ if (!$_SESSION['adminLoggedIn']) {
             </div>
 
             <div class="inputContainer">
-                <input required type="email" name="repeated_email_address" placeholder="Herhaal e-mailadres *">
-            </div>
-
-            <div class="inputContainer">
                 <input required type="password" placeholder="Wachtwoord *" id="password" name="password">
                 <img class="passwordshow" id="passwordshowimage" src="../src/assets/Icon-eye.png" onclick="showPassword()">
-            </div>
-
-            <div class="inputContainer">
-                <input required type="password" name="repeatedPassword" id="passwordrepeat"  placeholder="Herhaal wachtwoord *">
-                <img class="passwordshow3" id="passwordshowimage2" src="../src/assets/Icon-eye.png" onclick="showPassword2()">
             </div>
 
             <div class="inputContainer">
@@ -68,9 +66,6 @@ if (!$_SESSION['adminLoggedIn']) {
     </div>
 
     <div class="bottomBlock">
-
-        <div class="secondTitle">Heeft u al een account?</div>
-        <div class="link"><a href="/login/index"">Inloggen</a></div>
 
     </div>
 

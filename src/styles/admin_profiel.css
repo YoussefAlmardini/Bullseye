@@ -143,7 +143,7 @@ button{
 }
 
 .sidenav {
-    height: 20%;
+    height: 42%;
     width: 0;
     position: fixed;
     z-index: 1;
@@ -154,6 +154,7 @@ button{
     transition: 0.5s;
     padding-top: 60px;
     border: 2px solid #ccc;
+    text-align: left;
 }
 
 .sidenav a {
@@ -174,7 +175,7 @@ button{
     top: 0;
     right: 25px;
     font-size: 36px;
-    margin-left: 50px;
+    margin-left: 0px;
 }
 
 @media screen and (max-height: 450px) {
@@ -186,6 +187,10 @@ button{
         font-size: 18px;
     }
 }
+
+
+
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -199,3 +204,15 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
+#uitlog{
+    height: 40px;
+    width: auto;
+    background-color: #0F7EC7;
+    color: #FFFFFF;
+    opacity: 1;
+    font-size: 25px;
+    left: 0;
+    text-decoration: none;
+    display: block;
+    font-family: times newroman;
+}

@@ -57,10 +57,7 @@
               <div class="popup" onclick="myFunction()">
                 <label>Info</label>
                 <span class="popuptext" id="myPopup">
-                  Er zijn vele variaties van passages van 
-                  Lorem Ipsum beschikbaar maar het merendeel 
-                  heeft te lijden gehad van wijzigingen
-                  in een of andere vorm.
+                  Dit is een site waarop speurtochten gedaan kunnen worden. Deze speurtochten zijn vooral bedoeld voor kinderen. Als u wilt inloggen of registreren kunt u op de groene inlog knop drukken.
                 </span>
               </div>
             </button>

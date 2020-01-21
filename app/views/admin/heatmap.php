@@ -1,5 +1,5 @@
 <?php
-if (!$_SESSION['organisationLoggedIn']) {
+if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
     header("Location: /login");
 }
 ?>
@@ -10,6 +10,7 @@ if (!$_SESSION['organisationLoggedIn']) {
     <title>Heatmap - Admin | NL Rangers</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../src/styles/admin_heatmap.css">
     <style>
         #map {
             height: 100%;

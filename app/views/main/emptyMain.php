@@ -1,3 +1,8 @@
+<?php
+
+?>
+<link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
+<link rel="stylesheet" type="text/css" href="/src/styles/main.css">
 <div class="standardMain">
     <div class="thirdTitle spaceUnder center">
         Huidige speurtocht
@@ -12,6 +17,6 @@
     </div>
 
     <div class="mainButton">
-        <button><a href="/main/list" class="clearLink">Mijn lijst</a></button>
+        <button onclick="window.location.href='/main/list'"><a class="clearLink">Mijn lijst</a></button>
     </div>
 </div>
