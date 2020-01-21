@@ -3,11 +3,6 @@
 class Admin extends Controller
 {
     #map page
-    public function index()
-    {
-        $this->view('admin/dashboardmap');
-    }
-
     public function map()
     {
         $this->view('admin/dashboardmap');
@@ -35,30 +30,7 @@ class Admin extends Controller
     {
         $this->view('admin/registeradmin');
     }
-
-
-
-    public function CreateNewAdmin(){
-
-        $role_id = 2;
-        $first_name = $_POST['firstName'];
-        $insertion = $_POST['insertion'];
-        $last_name = $_POST['lastName'];
-        $birth_date = $_POST['birthDate'];
-        $email_address = $_POST['email_address'];
-        $password = $_POST['password'];
-
-
-        $model = $this->model('AdminCreate');
-
-        if($model->CreateAdmin($role_id, $first_name, $insertion, $last_name, $birth_date, $email_address, $password)){
-            echo "<script>alert('Het admin account is gemaakt!');</script>";
-            $this->view('admin/dashboardmap');
-        }else{
-            $this->view('/admin/registeradmin');
-        }
-    }
-
+    
     public function UpdateAdminAccount(){
         // THIS FUNCTION CATCHES THE BY THE USER INSERTED DATA AND SENDS IT TO THE MODEL
 
@@ -143,8 +115,7 @@ class Admin extends Controller
     }
 
     public function generateHeatmap(){
-        $this->view('admin/generateHeatmap', );
-        return $this->view('admin/generateHeatmap', ['customer_id' => Admin::getCustomerID()]);
+        return $this->view('admin/generateHeatmap');
     }
 
     public function initHeatmapPeriod(){
@@ -152,11 +123,12 @@ class Admin extends Controller
             $startDate = $_POST['starting_date'];
             $endDate = $_POST['end_date'];
             $locationsObj = new stdClass();
+            $organisationID = $_POST['organisation_id'];
 
             if($endDate < $startDate){
                 echo '<script>alert("De einddatum mag niet voor de begindatum zijn!");</script>';
             }else{
-                $locationsObj = $this->model('AnonymousLocation')->getLocationsArr($startDate, $endDate);
+                $locationsObj = $this->model('AnonymousLocation')->getLocationsArr($startDate, $endDate, $organisationID);
             }
         }
 
@@ -284,39 +256,4 @@ class Admin extends Controller
             $this->model('User')->updateAdminProfile($firstName, $insertion, $lastName, $email);
         }
     }
-
-    public function addContact(){
-
-            $customers = [];
-            $query = 'SELECT name FROM customers;';
-            $db = DB::connect();
-            $stmt = $db->prepare($query);
-            $stmt->execute();
-            $res = $stmt->fetchAll();
-
-            for ($i = 0; $i < count($res); $i++) {
-                array_push($customers, $res[$i]['name']);
-            }
-
-            return $this->view('admin/addContact', ['customers' => $customers]);
-
-    }
-
-    public function sendContactDataToModel(){
-        if(isset($_POST['submit'])){
-
-            $customer = $_POST['customer'];
-            $first_name = $_POST['firstname'];
-            $insertion = $_POST['insertion'];
-            $last_name = $_POST['lastname'];
-            $function = $_POST['function'];
-            $email = $_POST['email'];
-            $phone_number = $_POST['phonenumber'];
-
-
-            $this->model('Contact')->saveContact($customer, $first_name, $insertion, $last_name, $function, $email, $phone_number);
-        }
-    }
-
 }
-

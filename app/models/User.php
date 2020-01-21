@@ -250,5 +250,4 @@ class User extends Model
         $stmt->bindValue(':userID', $_SESSION['user_id']);
         $stmt->execute();
     }
-
 }

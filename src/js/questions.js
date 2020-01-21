@@ -5,9 +5,11 @@ class Question{
         this.type = type;
         this.questionBlock = document.createElement('div');
         this.questionBlock.id = "questionElement";
-        this.container = document.createElement('div');
-        this.container.appendChild(this.questionBlock);
         this.givenAnswer = '';
+        this.answerForm = document.createElement('form');
+        this.answerForm.appendChild(this.questionBlock);
+        this.answerForm.method = 'post';
+        this.answerForm.action = 'main';
     }
 
     CreateQuestionElement=()=>{
@@ -18,9 +20,7 @@ class Question{
 
         let answer = document.createElement('input');
         let submit = document.createElement('input');
-        submit.addEventListener('click', sendAnswer);
         answer.type = this.type;
-        answer.id = 'answer';
         submit.innerText = 'Checken';
         submit.type = 'submit';
         answer.name = 'answerBody'
@@ -41,10 +41,10 @@ class Question{
         this.questionBlock.appendChild(answerBlock);
         this.questionBlock.appendChild(submitBlock);
 
-        return ( this.container);
+        return ( this.questionBlock);
     }
 
-    Print=()=>{document.body.appendChild(this.container);}
+    Print=()=>{document.body.appendChild(this.answerForm);}
 
     ChangeAnswer=(e)=>{this.givenAnswer = e.target.value;}
     SubmitAnswer=()=>{
@@ -52,6 +52,6 @@ class Question{
     }
 
     Delete=()=>{
-        this.container.innerHTML = '';
+        this.questionBlock.innerHTML = '';
     }
 }

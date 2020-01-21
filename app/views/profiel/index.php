@@ -1,13 +1,6 @@
-<?php 
-if(isset($_POST['log_out'])){
-    var_dump('log out');
-}
+<?php
+     include "app/views/header/index.php";
 ?>
-<link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
-<link rel="stylesheet" type="text/css" href="/src/styles/profiel.css">
-<link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
-<link rel="stylesheet" type="text/css" href="/src/styles/home.css">
-<script src="/src/js/mobility.js"></script>
     <body>
         <div class="viewContainer viewContainerCustom">
 
@@ -67,24 +60,16 @@ if(isset($_POST['log_out'])){
 
                     <div class="submitContainer">
                         <button type="submit">Verzenden</button>
-                      
                     </div>
 
                 </form>
-                <button style="background:red" onclick='logOut()'>uitloggen</button>
-                 
+
             </div>
     </div>
 
     <?php include "app/components/bottomNavigation/index.php"; ?>
     <script>
         document.getElementById('profile').style.background = "#0F7EC7";
-        //TODO FETCH LOGUIT
-        function logOut(){
-            let nextLocaton =  window.location.href.replace('profiel','inloggin');
-            location.replace(nextLocaton);
-        }
-
     </script>
 </body>
 </html>

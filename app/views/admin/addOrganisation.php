@@ -7,7 +7,6 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn']) {
 <html lang="en">
     <head>
         <title>Organisatie toevoegen | NL Rangers</title>
-        <link rel="stylesheet" type="text/css" href="../src/styles/admin_organisation.css">
         <meta charset="utf-8">
         <style>
             #fillMailingAddress{
@@ -25,22 +24,6 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn']) {
     </head>
 
     <body>
-        <div id="sideNav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="/admin/map">Speurtocht aanmaken</a>
-            <a href="/admin/profiel">Uw profiel</a>
-            <a href="/admin/registeradmin">Profiel aanmaken</a>
-            <a href="/admin/addCustomer">Klant aanmaken</a>
-            <a href="/admin/addContact">Contact aanmaken</a>
-            <a href="/admin/generateHeatmap">Heatmap</a>
-            <form method="POST">
-                <a><input id="uitlog" type="submit" value="Uitloggen" name="logout"></a>
-            </form>
-
-        </div>
-        <span  id="navOpenButton" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-
-
         <form action="/admin/sendOrganisationDataToModel" method="post">
             <input type="hidden" name="customer_id" value="<?php echo $data['customer_id'] ?>">
 
@@ -79,18 +62,6 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn']) {
         
 
         <script>
-
-            function openNav() {
-                document.getElementById("sideNav").style.width = "250px";
-                document.getElementById("navOpenButton").style.zIndex = "0";
-            }
-
-            function closeNav() {
-                document.getElementById("sideNav").style.width = "0";
-                document.getElementById("navOpenButton").style.zIndex = "1";
-            }
-
-
             function fillMailingAddress(){
                 document.getElementById('mailing_address_postal_code').value = document.getElementById('postal_code').value;
                 document.getElementById('mailing_address_street_name').value = document.getElementById('street_name').value;

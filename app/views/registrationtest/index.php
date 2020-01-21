@@ -4,7 +4,6 @@
 <head>
     <title>Registreren - NL Rangers</title>
     <link rel="stylesheet" href="registration.css">
-    <script src="/src/js/mobility.js"></script>
 </head>
 
 <body>
