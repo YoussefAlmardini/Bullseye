@@ -3,7 +3,6 @@
 ?>
 <link rel="stylesheet" type="text/css" href="/src/styles/generalStyles.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/main.css">
-<script src="/src/js/mobility.js"></script>
 <div class="standardMain">
     <div class="thirdTitle spaceUnder center">
         Huidige speurtocht
