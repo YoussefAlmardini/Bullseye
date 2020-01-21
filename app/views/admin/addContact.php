@@ -3,7 +3,7 @@ if (!$_SESSION['adminLoggedIn']) {
     header("Location: /admin/index");
 }
 
-require_once("header.php");
+// require_once("header.php");
 ?>
 
 <html lang="en">

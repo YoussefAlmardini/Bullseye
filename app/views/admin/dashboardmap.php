@@ -120,8 +120,8 @@ function getMaps(){
           <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
           <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
           <input type="number" hidden name="expedition_id" id="expedition_id">
-         <button type="button" onclick="NewMap()"> Nieuwe map/Update</button>
-         <button type="button" onclick="clearMap()">Reset map</button>
+         <button type="button" onclick="NewMap()"> Nieuwe map/Aanpassen</button>
+         <button type="button" onclick="clearMap()">Opnieuw instellen</button>
         </form>
       </ul>
     </div>
@@ -149,12 +149,12 @@ function getMaps(){
             <input type="text" id="answer" value="" name="answer" placeholder="Antwoord vraag*" required>
             <input type="text" id="tip1" value="" name="tip1" placeholder="Tip 1*" required>
             <input type="text" id="tip2" value="" name="tip2" placeholder="Tip 2" >
-            <input type="text" id="guide_next" value="" name="guide_next" placeholder="Guide naar volgende vraag" >
-            <input type="number" id="latitude" value="" name="latitude" placeholder="Latitude*" readonly required>
-            <input type="number" id="longitude" value="" name="longitude" placeholder="Longitude*" readonly required>
-            <button type="button" onclick="addData()" id="">Add/Update</button>
-            <button type="button" onclick="resetFields()">Reset vraag</button>
-            <button type="button" onclick="clearAll()">Reset alles</button>
+            <input type="text" id="guide_next" value="" name="guide_next" placeholder="Gids naar volgende vraag">
+            <input type="number" id="latitude" value="" name="latitude" placeholder="Coordinaten Latitude*" readonly required>
+            <input type="number" id="longitude" value="" name="longitude" placeholder="Coordinaten Longitude*" readonly required>
+            <button type="button" onclick="addData()" id="">Nieuwe marker/Aanpassen</button>
+            <button type="button" onclick="resetFields()">Opniew instellen vraag</button>
+            <button type="button" onclick="clearAll()">Alles opnieuw instellen</button>
           </form>
       </ul>
   </div>
