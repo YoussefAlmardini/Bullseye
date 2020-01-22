@@ -74,7 +74,7 @@ class Admin2 extends Model
             `tip_2` = '$tip2',
             `guide_next` = '$guide_next',
             `coordinate_langitude` = $latitude,
-            `coordinate_langitude` = $longitude WHERE quest_id = ".$question_ID;
+            `coordinate_longitude` = $longitude WHERE quest_id = ".$question_ID;
             $db = DB::connect();
             $stmt = $db->prepare($query);
             if ($stmt->execute()) { 
