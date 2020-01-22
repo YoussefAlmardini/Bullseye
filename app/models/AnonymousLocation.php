@@ -29,8 +29,6 @@ class AnonymousLocation extends Model
         $stmt->execute();
         $organisationID = $stmt->fetchAll();
 
-        var_dump($organisationID[0]['organisation_id']);
-
         $query = 'SELECT latitude, longitude FROM anonymous_user_locations WHERE date >= :startDate AND date <= :endDate AND organisation_id = :organisation_id;';
         $db = DB::connect();
         $stmt = $db->prepare($query);
