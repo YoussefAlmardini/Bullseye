@@ -1,6 +1,6 @@
 <?php
 if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
-    header("Location: /login");
+    header("Location: /admin/map");
 }
 ?>
 

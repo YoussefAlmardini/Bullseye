@@ -1,6 +1,6 @@
 <?php
 if (!$_SESSION['adminLoggedIn']) {
-    header("Location: /login");
+    header("Location: /admin/map");
 }
 ?>
 
