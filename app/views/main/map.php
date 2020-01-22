@@ -31,5 +31,24 @@
     <?php
         include "js/map.js";
     ?>
+
+function sendLocation(){
+        var latitude = mymarker.getLatLng().lat;
+        var longitude = mymarker.getLatLng().lng;
+        var organisation_id = <?php echo $_SESSION['organisationIDOfCurrentExpedition']; ?>
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(this.responseText);
+            }
+        };
+
+        xhttp.open("GET", "https://nlrangers.test/ajax/getLocation?latitude=" + latitude + "&longitude=" + longitude + "&organisation_id=" + organisation_id, true);
+        xhttp.send();
+    };
+
+    (window.setInterval(sendLocation, 60000));
 </script> 
 </html>

@@ -24,7 +24,6 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION[
         }
     </style>
 </head>
-
 <body>
     <div id="map"></div>
     <script>
@@ -35,10 +34,10 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION[
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {
-                    lat: 52.149787,
-                    lng: 5.344201
+                    lat: 47.545699,
+                    lng: 16.068600
                 },
-                zoom: 16
+                zoom: 1
             });
             initHeatMap();
         }

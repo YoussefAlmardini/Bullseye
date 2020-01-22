@@ -33,11 +33,11 @@ if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION[
 
             <label>Selecteer een organisatie: </label><br>
 
-            <select>
-                <option selected="selected" disabled="disabled" name="organisation">Kies een organisatie</option>
+            <select name="organisation">
+                <option selected="selected" disabled="disabled">Kies een organisatie</option>
                 <?php
                     for($i = 0; $i < count($data['organisations']); $i++){
-                        echo '<option value=" '. $data['organisations']['organisation_id'] .' ">' . $data['organisations']['organisation'][$i] . '</option>';
+                        echo '<option value="'. $data['organisations'][$i] .'">' . $data['organisations'][$i] . '</option>';
                     }
                 ?>
             </select>
