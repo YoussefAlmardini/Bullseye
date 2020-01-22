@@ -105,8 +105,9 @@ function manageLocationFound(){
         }
     // When there is no more queston (End of expedition) this catch will be called     
     }).catch(() => {
-        //TODO: Maak hier het einde zodat er geen expedition meer geselecteerd is.
-        alert('DO something about this error');
+        alert('Jij bent klaar met je speurtocht! kier een andere speurtocht te doen!');
+        let nextLocaton =  window.location.href.replace('index.php','list');
+        location.replace(nextLocaton);
     });//End Promise
 }//End Manage Location Found
 

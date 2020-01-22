@@ -11,6 +11,9 @@
     <div class="scaverageList">
 
         <?php 
+
+            //var_dump($_SESSION['user']['level_id'] > 0);
+            //var_dump($_SESSION['user']);
             if (!$_SESSION['user']) {
                 header("Location: /login");
             }
