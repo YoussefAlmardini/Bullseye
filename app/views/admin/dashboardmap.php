@@ -20,31 +20,58 @@ function getTypesQuestions(){
   }
 }
 
-function getMaps(){
-    $query = 'SELECT * FROM `expeditions`';
-    $db = DB::connect();
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    for($i = 0; $i < count($result); $i++) {
-      $expedition_id = $result[$i]['expedition_id'];
-      $expedition_name = $result[$i]['name'];
-      echo '<option name="expedition_id type="number" id="expedition_id'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
-    }
+function getCustomerID(){
+$query = 'SELECT customer_id FROM customers WHERE name = :user_name;';
+  $db = DB::connect();
+  $stmt = $db->prepare($query);
+  $stmt->bindValue(':user_name', $_SESSION['user']['first_name']);
+  $stmt->execute();
+
+  $result = $stmt->fetchAll();
+  for($i = 0; $i < count($result); $i++) {
+    $customer_id = '';
+    $customer_id = $result[$i]["customer_id"];
+   return $customer_id;
+  }
 }
 
 function getOrganisations(){
-  $query = 'SELECT * FROM `organisations`';
+  $customer_id = getCustomerID();
+
+  $query = 'SELECT * FROM organisations WHERE customer_id ='.$customer_id.'';
   $db = DB::connect();
   $stmt = $db->prepare($query);
   $stmt->execute();
+
   $result = $stmt->fetchAll();
   for($i = 0; $i < count($result); $i++) {
     $organisation_id = $result[$i]['organisation_id'];
     $organisation_name = $result[$i]['name'];
     echo '<option type="text" id="organisation'.$i.'" value="'.$organisation_id.'">'.$organisation_name.'</option>';
   }
+
+  return $organisation_id;
 }
+
+
+function getMaps(){
+    $customer_id = getCustomerID();
+    $organisation_id = getCustomerID();
+
+    $query = 'SELECT * FROM expeditions
+    INNER JOIN customers
+    WHERE expeditions.organisation_id = '.$organisation_id.' AND customers.customer_id = '.$customer_id.'';
+    $db = DB::connect();
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    for($i = 0; $i < count($result); $i++) {
+      $expedition_id = $result[$i]['expedition_id'];
+      $expedition_name = $result[$i]['2'];
+      echo '<option name="expedition_id type="number" id="expedition_id'.$i.'" value="'.$expedition_id.'">'.$expedition_name.'</option>';
+    }
+}
+
 
 ?>
 <!-- $getOrganisations = false;
@@ -93,8 +120,8 @@ function getOrganisations(){
           <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
           <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
           <input type="number" hidden name="expedition_id" id="expedition_id">
-         <button type="button" onclick="NewMap()"> Nieuwe map/Update</button>
-         <button type="button" onclick="clearMap()">Reset map</button>
+         <button type="button" onclick="NewMap()"> Nieuwe map/Aanpassen</button>
+         <button type="button" onclick="clearMap()">Opnieuw instellen</button>
         </form>
       </ul>
     </div>
@@ -122,12 +149,12 @@ function getOrganisations(){
             <input type="text" id="answer" value="" name="answer" placeholder="Antwoord vraag*" required>
             <input type="text" id="tip1" value="" name="tip1" placeholder="Tip 1*" required>
             <input type="text" id="tip2" value="" name="tip2" placeholder="Tip 2" >
-            <input type="text" id="guide_next" value="" name="guide_next" placeholder="Guide naar volgende vraag" >
-            <input type="number" id="latitude" value="" name="latitude" placeholder="Latitude*" readonly required>
-            <input type="number" id="longitude" value="" name="longitude" placeholder="Longitude*" readonly required>
-            <button type="button" onclick="addData()" id="">Add/Update</button>
-            <button type="button" onclick="resetFields()">Reset vraag</button>
-            <button type="button" onclick="clearAll()">Reset alles</button>
+            <input type="text" id="guide_next" value="" name="guide_next" placeholder="Gids naar volgende vraag">
+            <input type="number" id="latitude" value="" name="latitude" placeholder="Coordinaten Latitude*" readonly required>
+            <input type="number" id="longitude" value="" name="longitude" placeholder="Coordinaten Longitude*" readonly required>
+            <button type="button" onclick="addData()" id="">Nieuwe marker/Aanpassen</button>
+            <button type="button" onclick="resetFields()">Opniew instellen vraag</button>
+            <button type="button" onclick="clearAll()">Alles opnieuw instellen</button>
           </form>
       </ul>
   </div>

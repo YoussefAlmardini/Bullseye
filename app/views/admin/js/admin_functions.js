@@ -41,7 +41,7 @@ mymap.addLayer(group);
 // Sets icon
 var myIcon = L.icon({
     iconUrl: window.location.origin + '/src/assets/myicon.png',
-    iconSize: [50, 50],
+    iconSize: [20, 30],
     popupAnchor: [],
 });
 
