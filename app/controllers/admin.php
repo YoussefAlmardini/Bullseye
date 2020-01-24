@@ -233,7 +233,9 @@ class Admin extends Controller
             $mailingAddressHouseNumber = $_POST['mailing_address_house_number'];
             $mailingAddressHouseLetter = $_POST['mailing_address_house_letter'];
 
-            $this->model('Customer')->saveCustomer($companyName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
+            if ($this->model('Customer')->saveCustomer($companyName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter)) {
+                header('Location: /admin/map');
+            }
         }
     }
 
@@ -251,7 +253,9 @@ class Admin extends Controller
             $mailingAddressHouseNumber = $_POST['mailing_address_house_number'];
             $mailingAddressHouseLetter = $_POST['mailing_address_house_letter'];
 
-            $this->model('Organisation')->saveOrganisation($customer, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter);
+            if ($this->model('Organisation')->saveOrganisation($customer, $organisationName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter)) {
+                header('Location: /admin/map');
+            }
         }
     }
 
@@ -295,7 +299,9 @@ class Admin extends Controller
             $lastName = $_POST['lastName'];
             $email = $_POST['email'];
 
-            $this->model('User')->updateAdminProfile($firstName, $insertion, $lastName, $email);
+            if ($this->model('User')->updateAdminProfile($firstName, $insertion, $lastName, $email)) {
+                header('Location: /admin/map');
+            }
         }
     }
 
@@ -329,7 +335,9 @@ class Admin extends Controller
             $phone_number = $_POST['phonenumber'];
 
 
-            $this->model('Contact')->saveContact($customer, $first_name, $insertion, $last_name, $function, $email, $phone_number);
+            if ($this->model('Contact')->saveContact($customer, $first_name, $insertion, $last_name, $function, $email, $phone_number)) {
+                header('Location: /admin/map');
+            }
         }
     }
 }

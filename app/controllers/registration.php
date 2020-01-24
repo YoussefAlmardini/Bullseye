@@ -43,6 +43,8 @@ class Registration extends Controller
 
             if ($role_id === "1") {
                 $this->view('login/index');
+            } else if ($role_id !== "1") {
+                $this->view('admin/dashboardmap');
             }
         } else {
             echo "<script>alert('Er is iets fout gegaan');</script>";
