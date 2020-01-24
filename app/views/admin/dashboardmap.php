@@ -131,7 +131,7 @@
           <input type="number" name="setlatitude" id="setlatitude" value="" placeholder="Coordinaten latitude" readonly>
           <input type="number" name="setlongitude" id="setlongitude" value="" placeholder="Coordinaten longitude" readonly>
           <input type="number" hidden name="expedition_id" id="expedition_id">
-          <button type="button" onclick="NewMap()"> Nieuwe map/Aanpassen</button>
+          <button type="button" onclick="NewMap()"> Aanmaken/Aanpassen</button>
           <button type="button" onclick="clearMap()">Opnieuw instellen</button>
         </form>
       </ul>
@@ -163,7 +163,7 @@
         <input type="text" id="guide_next" value="" name="guide_next" placeholder="Gids naar volgende vraag">
         <input type="number" id="latitude" value="" name="latitude" placeholder="Coordinaten Latitude*" readonly required>
         <input type="number" id="longitude" value="" name="longitude" placeholder="Coordinaten Longitude*" readonly required>
-        <button type="button" onclick="addData()" id="">Nieuwe marker/Aanpassen</button>
+        <button type="button" onclick="addData()" id="">Aanmaken/Aanpassen</button>
         <button type="button" onclick="resetFields()">Opniew instellen vraag</button>
         <button type="button" onclick="clearAll()">Alles opnieuw instellen</button>
       </form>

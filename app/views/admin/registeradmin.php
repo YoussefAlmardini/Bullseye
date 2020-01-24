@@ -34,7 +34,7 @@ if (!$_SESSION['adminLoggedIn']) {
 
             <form class="formregister" action="/admin/CreateNewAdmin" method="POST">
 
-
+                
                 <div class="inputContainer">
                     <input required type="text" placeholder="Voornaam *" name="firstName">
                 </div>
@@ -53,6 +53,7 @@ if (!$_SESSION['adminLoggedIn']) {
                     <input required type="email" placeholder="E-mailadres *" name="email_address">
                 </div>
 
+                <p>U kunt uw wachtwoord niet meer wijzigen</p>
                 <div class="inputContainer">
                     <input required type="password" placeholder="Wachtwoord *" id="password" name="password">
                     <img class="passwordshow" id="passwordshowimage" src="../src/assets/Icon-eye.png" onclick="showPassword()">
