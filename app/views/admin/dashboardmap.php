@@ -112,9 +112,9 @@
   <div id="mapwrap">
     <div id="toolbar">
       <div class="hamburger">
-        <span>Mappen</span>
+        <span>Sprtochten</span>
       </div>
-      <h2>Nieuwe map</h2>
+      <h2>Nieuwe speurtocht aanmaken</h2>
       <ul>
         <form id="newmapForm">
           <h4>Map info</h4>
@@ -139,12 +139,12 @@
   </div>
   <div id="toolbar">
     <div class="hamburger hamburger2">
-      <span>Markers</span>
+      <span>Vragen</span>
     </div>
-    <h2>Nieuwe markers</h2>
+    <h2>Nieuwe vragen aanmaken</h2>
     <ul>
       <form id="markerForm">
-        <h4>Marker info toevoegen</h4>
+        <h4>Vragen info toevoegen</h4>
         <!-- Begin marker adding new map or choose organisation and add extra markers-->
         <select id='select_expedition' name="expedition_id">
           <option type="text" id="speurtocht" value="" selected disabled>Speurtocht selecteren</option>
