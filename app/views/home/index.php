@@ -53,7 +53,8 @@
          </div>
          
          <div>
-            <button onclick="ShowInfo(this)">
+           <!-- onclick="ShowInfo(this)" -->
+            <button onclick="location.href='/about'">
               <div class="popup" onclick="myFunction()">
                 <label>Info</label>
                 <span class="popuptext" id="myPopup">
