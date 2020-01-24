@@ -11,8 +11,6 @@ class Home extends Controller
     public function test() //test function 
     {
         echo "Home pagina met method 'test'";
-        
-        
     }
     public function logout()
     {

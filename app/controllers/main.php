@@ -21,7 +21,8 @@ class Main extends Controller
         exit;
     }
 
-    public function sendAnswer() {
+    public function sendAnswer()
+    {
         $data = json_decode(file_get_contents('php://input'));
         $main = $this->model('MainModel');
         $res = $main->validateUserAnswer($data);
@@ -30,8 +31,9 @@ class Main extends Controller
         exit;
     }
 
-    
-    public function logOut(){
+
+    public function logOut()
+    {
         var_dump($_SESSION);
         return json_encode($_SESSION);
     }

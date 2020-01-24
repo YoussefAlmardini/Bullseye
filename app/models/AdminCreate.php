@@ -2,7 +2,8 @@
 
 class AdminCreate extends Model
 {
-    public function CreateAdmin($role_id, $firstname, $insertion, $lastname, $birthdate, $emailaddress, $password){
+    public function CreateAdmin($role_id, $firstname, $insertion, $lastname, $birthdate, $emailaddress, $password)
+    {
 
         $db = DB::connect();
 
@@ -16,6 +17,5 @@ class AdminCreate extends Model
         $stmt->bindValue(':email', $emailaddress);
         $stmt->bindValue(':pword', $password);
         $stmt->execute();
-
     }
 }

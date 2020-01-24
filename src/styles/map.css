@@ -1,7 +1,9 @@
-#mapid {height: 90%;
-        width: auto;}
+#mapid {
+    height: 90%;
+    width: auto;
+}
 
-#mymap{
+#mymap {
     height: 92%;
     width: auto;
     /*top: 8.5%;*/
@@ -12,7 +14,8 @@
     transform: scale(2.0);
     margin: 50px;
 }
-.questionBlock{
+
+.questionBlock {
     position: absolute;
     top: 64%;
     z-index: 1;
@@ -24,20 +27,21 @@
     background-size: cover;
 }
 
-.questionBlock p{
+.questionBlock p {
     width: 100%;
     text-align: center;
     font-size: 60px;
-    color: #0F7EC7;;
+    color: #0F7EC7;
+    ;
     font-weight: bold;
 }
 
-.questionBlock div{
+.questionBlock div {
     text-align: center;
     margin-top: 50px;
 }
 
-.questionBlock div input{
+.questionBlock div input {
     width: 50%;
     margin: 0 auto;
     text-align: center;
@@ -47,19 +51,18 @@
     padding: 5px;
 }
 
-.questionBlock div input[type='submit']{
-    background:#0F7EC7;
+.questionBlock div input[type='submit'] {
+    background: #0F7EC7;
     border: none;
     border-radius: 10px;
     padding: 5px;
-    color:white;
+    color: white;
     opacity: 75;
     font-family: Segoe UI;
-
 }
 
-.questionBlock div input[type='text'],.questionBlock div input[type='number']{
-   width: 75%;
-   background: white;
-   border: 2px solid black;
+.questionBlock div input[type='text'], .questionBlock div input[type='number'] {
+    width: 75%;
+    background: white;
+    border: 2px solid black;
 }

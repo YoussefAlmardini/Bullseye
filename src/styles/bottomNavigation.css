@@ -1,4 +1,4 @@
-.NavButton{
+.NavButton {
     top: 745px;
     left: 0%;
     width: 33.5%;
@@ -7,15 +7,15 @@
     text-align: center;
 }
 
-.footerimages{
+.footerimages {
     padding-top: 25px;
 }
 
-.active{
+.active {
     background: #0F7EC7;
 }
 
-.navigationContainer{
+.navigationContainer {
     position: fixed;
     bottom: 0;
     display: flex;

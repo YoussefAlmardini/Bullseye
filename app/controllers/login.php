@@ -14,10 +14,6 @@ class Login extends Controller
         if ($role === 'ranger') {
             header('Location: /main/index');
         } else if ($role === 'admin' || $role === 'customer' || $role === 'organisation') {
-            //echo "<script>alert('admin');</script>";
-            //echo "<script>window.location.href = '/admin/map';</script>";
-            //echo "hoi";
-            // header('Location: /admin/map');
             header('Location: /admin/map');
         }
     }
@@ -26,7 +22,7 @@ class Login extends Controller
     {
         $result = $this->model('User')->checkLogin($_POST['email'], $_POST['password']);
 
-        
+
 
         switch ($result) {
             case 1:
