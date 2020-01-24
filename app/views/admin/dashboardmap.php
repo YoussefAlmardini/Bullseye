@@ -2,77 +2,87 @@
 <link rel="stylesheet" type="text/css" href="/src/styles/admin_map.css">
 <?php
 
-if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
-  header("Location: /login");
-}
-
-function getTypesQuestions()
-{
-  // THIS FUNCTION CHECKS FOR EXISTANCE OF THE BY THE USER INSERTED E-MAILADDRESS
-  $query = 'SELECT * FROM `question_types`';
-  $db = DB::connect();
-  $stmt = $db->prepare($query);
-  $stmt->execute();
-  $result = $stmt->fetchAll();
-  for ($i = 0; $i < count($result); $i++) {
-    echo '<option type="text" id="type' . $i . '" value="' . $result[$i]["type_id"] . '">' . $result[$i]["type"] . '</option>';
-  }
-}
-
-function getCustomerID()
-{
-  $query = 'SELECT customer_id FROM customers WHERE name = :user_name;';
-  $db = DB::connect();
-  $stmt = $db->prepare($query);
-  $stmt->bindValue(':user_name', $_SESSION['user']['first_name']);
-  $stmt->execute();
-
-  $result = $stmt->fetchAll();
-  for ($i = 0; $i < count($result); $i++) {
-    $customer_id = '';
-    $customer_id = $result[$i]["customer_id"];
-    return $customer_id;
-  }
-}
-
-function getOrganisations()
-{
-  $customer_id = getCustomerID();
-
-  $query = 'SELECT * FROM organisations WHERE customer_id =' . $customer_id . '';
-  $db = DB::connect();
-  $stmt = $db->prepare($query);
-  $stmt->execute();
-
-  $result = $stmt->fetchAll();
-  for ($i = 0; $i < count($result); $i++) {
-    $organisation_id = $result[$i]['organisation_id'];
-    $organisation_name = $result[$i]['name'];
-    echo '<option type="text" id="organisation' . $i . '" value="' . $organisation_id . '">' . $organisation_name . '</option>';
+  if (!$_SESSION['adminLoggedIn'] && !$_SESSION['customerLoggedIn'] && !$_SESSION['organisationLoggedIn']) {
+    header("Location: /login");
   }
 
-  return $organisation_id;
-}
-
-
-function getMaps()
-{
-  $customer_id = getCustomerID();
-  $organisation_id = getCustomerID();
-
-  $query = 'SELECT * FROM expeditions
-    INNER JOIN customers
-    WHERE expeditions.organisation_id = ' . $organisation_id . ' AND customers.customer_id = ' . $customer_id . '';
-  $db = DB::connect();
-  $stmt = $db->prepare($query);
-  $stmt->execute();
-  $result = $stmt->fetchAll();
-  for ($i = 0; $i < count($result); $i++) {
-    $expedition_id = $result[$i]['expedition_id'];
-    $expedition_name = $result[$i]['2'];
-    echo '<option name="expedition_id type="number" id="expedition_id' . $i . '" value="' . $expedition_id . '">' . $expedition_name . '</option>';
+  function getTypesQuestions()
+  {
+    // THIS FUNCTION CHECKS FOR EXISTANCE OF THE BY THE USER INSERTED E-MAILADDRESS
+    $query = 'SELECT * FROM `question_types`';
+    $db = DB::connect();
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    for ($i = 0; $i < count($result); $i++) {
+      echo '<option type="text" id="type' . $i . '" value="' . $result[$i]["type_id"] . '">' . $result[$i]["type"] . '</option>';
+    }
   }
-}
+
+  function getCustomerID()
+  {
+    $query = 'SELECT customer_id FROM customers WHERE name = :user_name;';
+    $db = DB::connect();
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':user_name', $_SESSION['user']['first_name']);
+    $stmt->execute();
+
+    if($stmt->rowCount() > 0) {
+      $result = $stmt->fetchAll();
+      for ($i = 0; $i < count($result); $i++) {
+        $customer_id = '';
+        $customer_id = $result[$i]["customer_id"];
+        return $customer_id;
+      }
+    } else{
+      return 0;
+    }
+    
+  }
+
+  function getOrganisations()
+  {
+    $customer_id = getCustomerID();
+
+    $query = 'SELECT * FROM organisations WHERE customer_id =' . $customer_id . '';
+    $db = DB::connect();
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+
+  
+    if($stmt->rowCount() > 0) {
+      $result = $stmt->fetchAll();
+      for ($i = 0; $i < count($result); $i++) {
+        $organisation_id = $result[$i]['organisation_id'];
+        $organisation_name = $result[$i]['name'];
+        echo '<option type="text" id="organisation' . $i . '" value="' . $organisation_id . '">' . $organisation_name . '</option>';
+      }
+      return $organisation_id;
+    } else{
+      echo '<a>Geen organisaties</a>';
+    }
+    
+  }
+
+
+  function getMaps()
+  {
+    $customer_id = getCustomerID();
+    $organisation_id = getCustomerID();
+
+    $query = 'SELECT * FROM expeditions
+      INNER JOIN customers
+      WHERE expeditions.organisation_id = ' . $organisation_id . ' AND customers.customer_id = ' . $customer_id . '';
+    $db = DB::connect();
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    for ($i = 0; $i < count($result); $i++) {
+      $expedition_id = $result[$i]['expedition_id'];
+      $expedition_name = $result[$i]['2'];
+      echo '<option name="expedition_id type="number" id="expedition_id' . $i . '" value="' . $expedition_id . '">' . $expedition_name . '</option>';
+    }
+  }
 
 
 ?>
@@ -87,7 +97,7 @@ function getMaps()
   <div id="sideNav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/admin/profiel">Uw profiel</a>
-    <a href="/admin/registeradmin">Profiel aanmaken</a>
+    <a href="/admin/registeradmin">Admin aanmaken</a>
     <a href="/admin/addCustomer">Klant aanmaken</a>
     <a href="/admin/addOrganisation">Organisatie aanmaken</a>
     <a href="/admin/addContact">Contact aanmaken</a>

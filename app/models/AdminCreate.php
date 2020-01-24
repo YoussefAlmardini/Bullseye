@@ -7,6 +7,8 @@ class AdminCreate extends Model
 
         $db = DB::connect();
 
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
         $queryInsertAdmin = 'INSERT INTO users (role_id, first_name, insertion, last_name, birthdate, email_address, password) VALUES (:role, :fname, :insertion, :lname, :bdate, :email, :pword) ';
         $stmt = $db->prepare($queryInsertAdmin);
         $stmt->bindValue(':role', $role_id);
