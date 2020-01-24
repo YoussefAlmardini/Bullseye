@@ -4,9 +4,8 @@ class MainModel extends Model
 {
     public static function GetExpeditions()
     {
-      
     }
-    
+
     public static function getYourCurrentQuestion()
     {
         $user_id = $_SESSION['user']['user_id'];
@@ -16,51 +15,44 @@ class MainModel extends Model
         $stmt = $db->prepare($query);
         $stmt->execute();
 
-        if($stmt->rowCount() === 0){
+        if ($stmt->rowCount() === 0) {
             return $_SESSION['quests'][0];
-        }else{
+        } else {
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-            foreach($_SESSION['quests'] as $i => $question) {
-                foreach($result as $row) {
+            foreach ($_SESSION['quests'] as $i => $question) {
+                foreach ($result as $row) {
                     // var_dump($row, $question);
                     //         error_log(print_r($row,TRUE));
-                    if($row['quest_id'] == $question['questionID']) {
+                    if ($row['quest_id'] == $question['questionID']) {
                         unset($_SESSION['quests'][$i]);
                     }
                 }
             }
             $_SESSION['quests'] = array_values($_SESSION['quests']);
-            // var_dump($_SESSION['quests']);
-            // for($i = 0; $i < count($_SESSION['quests']); $i++) {
-            //     foreach($result as $row) {
-            //         error_log(print_r($row,TRUE));
-            //         if($row['quest_id'] == $_SESSION[$i]['questionID']) {
-            //             unset($_SESSION['quests'][$i]);
-            //         }
-            //     }
-            // }
-            if(isset($_SESSION['quests'][0])){
+            if (isset($_SESSION['quests'][0])) {
                 return $_SESSION['quests'][0];
-            }else{
+            } else {
                 MainModel::levelUp();
                 return false;
             }
         }
     }
 
-    public function levelUp(){
+    public function levelUp()
+    {
         $user_id = $_SESSION['user']['user_id'];
         $level_id = $_SESSION['user']['level_id'] + 1;
         $query = "UPDATE `users` SET level_id = $level_id WHERE `user_id` = $user_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             unset($_SESSION["expedition_id"]);
         }
     }
 
-    public static function insertUserAnswer($user_id, $quest_id){
+    public static function insertUserAnswer($user_id, $quest_id)
+    {
         $expedition_id = $_SESSION['expedition_id'];
         $query_insert = 'INSERT INTO `user_answers` (`user_id`, `quest_id`, `expedition_id`, `answered`, `answer`) VALUES (:u_id,:quest_id , :expedition_id,:answerd, NULL)';
         $db = DB::connect();
@@ -72,23 +64,22 @@ class MainModel extends Model
         $stmt->execute();
     }
 
-    public static function validateUserAnswer($data){
+    public static function validateUserAnswer($data)
+    {
         $answer = strtolower($data->answer);
         $user_id = $_SESSION['user']['user_id'];
         $quest = MainModel::getYourCurrentQuestion();
         $quest_id =  $quest['questionID'];
-        
+
         $query = "SELECT `answer` FROM `quests` WHERE `quest_id` = $quest_id";
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        if($result[0]['answer'] == $answer){
-            MainModel::insertUserAnswer($user_id,$quest_id);
+        if ($result[0]['answer'] == $answer) {
+            MainModel::insertUserAnswer($user_id, $quest_id);
             return true;
-
-        }else return false;
-        
+        } else return false;
     }
 }

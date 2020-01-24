@@ -1,6 +1,6 @@
-class Question{
+class Question {
 
-    constructor(question,type){
+    constructor(question, type) {
         this.question = question;
         this.type = type;
         this.questionBlock = document.createElement('div');
@@ -10,7 +10,7 @@ class Question{
         this.givenAnswer = '';
     }
 
-    CreateQuestionElement=()=>{
+    CreateQuestionElement = () => {
 
         let questionTitle = document.createElement('p');
         let answerBlock = document.createElement('div');
@@ -30,9 +30,9 @@ class Question{
 
         questionTitle.innerText = this.question;
 
-    
+
         answer.addEventListener("change", this.ChangeAnswer);
-        submit.addEventListener("submit",this.SubmitAnswer);
+        submit.addEventListener("submit", this.SubmitAnswer);
 
         answerBlock.appendChild(answer);
         submitBlock.appendChild(submit);
@@ -41,17 +41,17 @@ class Question{
         this.questionBlock.appendChild(answerBlock);
         this.questionBlock.appendChild(submitBlock);
 
-        return ( this.container);
+        return (this.container);
     }
 
-    Print=()=>{document.body.appendChild(this.container);}
+    Print = () => { document.body.appendChild(this.container); }
 
-    ChangeAnswer=(e)=>{this.givenAnswer = e.target.value;}
-    SubmitAnswer=()=>{
-        
+    ChangeAnswer = (e) => { this.givenAnswer = e.target.value; }
+    SubmitAnswer = () => {
+
     }
 
-    Delete=()=>{
+    Delete = () => {
         this.container.innerHTML = '';
     }
 }

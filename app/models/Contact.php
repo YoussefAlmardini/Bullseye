@@ -2,7 +2,8 @@
 
 class Contact extends Model
 {
-    public function saveContact($customer, $firstname, $insertion, $lastname, $function, $email, $phonenumber){
+    public function saveContact($customer, $firstname, $insertion, $lastname, $function, $email, $phonenumber)
+    {
 
         $db = DB::connect();
 

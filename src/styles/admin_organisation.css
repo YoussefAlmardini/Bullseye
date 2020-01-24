@@ -1,4 +1,4 @@
-#navOpenButton{
+#navOpenButton {
     position: absolute;
     right: 10px;
     z-index: 1;
@@ -44,7 +44,6 @@
     .sidenav {
         padding-top: 15px;
     }
-
     .sidenav a {
         font-size: 18px;
     }

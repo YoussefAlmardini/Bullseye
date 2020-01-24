@@ -1,6 +1,7 @@
-body{
-  margin:0;
+body {
+  margin: 0;
 }
+
 #mymap {
   width: 100%;
   height: 600px;
@@ -28,7 +29,7 @@ body{
   opacity: .6;
   width: 200px;
   height: auto;
-  top:30%;
+  top: 30%;
   position: absolute;
   left: -200px;
   z-index: 1;
@@ -71,7 +72,6 @@ body{
 }
 
 #tourstops {
-
   max-height: 95vh;
 }
 
@@ -91,7 +91,7 @@ body{
   color: #666;
 }
 
-#navOpenButton{
+#navOpenButton {
   position: absolute;
   right: 10px;
   z-index: 1;
@@ -142,21 +142,20 @@ body{
   .sidenav {
     padding-top: 15px;
   }
-
   .sidenav a {
     font-size: 18px;
   }
 }
 
-select{
+select {
   margin-bottom: 7px;
 }
 
-input{
+input {
   margin-bottom: 7px;
 }
 
-#uitlog{
+#uitlog {
   height: 40px;
   width: auto;
   background-color: #0F7EC7;

@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="/src/styles/list.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/profiel.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
+
 <body>
     <div class="thirdTitle spaceUnder center">
         Alle speurtochten
@@ -10,35 +11,32 @@
 
     <div class="scaverageList">
 
-        <?php 
+        <?php
+        if (!$_SESSION['user']) {
+            header("Location: /login");
+        }
 
-            //var_dump($_SESSION['user']['level_id'] > 0);
-            //var_dump($_SESSION['user']);
-            if (!$_SESSION['user']) {
-                header("Location: /login");
-            }
+        $query = 'SELECT *,`organisations`.`name` as `organisation`,`expeditions`.`name` as `expedition` FROM `expeditions` INNER JOIN `organisations` ON `organisations`.`organisation_id` = `expeditions`.`organisation_id`';
+        $db = \DB::connect();
+        $stmt = $db->prepare($query);
+        $stmt->execute();
 
-            $query = 'SELECT *,`organisations`.`name` as `organisation`,`expeditions`.`name` as `expedition` FROM `expeditions` INNER JOIN `organisations` ON `organisations`.`organisation_id` = `expeditions`.`organisation_id`';
-            $db = \DB::connect();
-            $stmt = $db->prepare($query);
-            $stmt->execute();
+        if ($stmt->rowCount() === 0) {
+            return [];
+        }
 
-            if ($stmt->rowCount() === 0) {
-                return [];
-            }
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        for ($i = 0; $i < count($result); $i++) {
 
-            for($i = 0; $i < count($result); $i++) {
-                
-                $id = $result[$i]['expedition_id'];
-                $ex_name = $result[$i]['expedition'];
-                $organisation = $result[$i]['organisation'];
-                $location = $result[$i]['location_name'];
-                $info = $result[$i]['description'];
-                $level = $result[$i]['levels'];
+            $id = $result[$i]['expedition_id'];
+            $ex_name = $result[$i]['expedition'];
+            $organisation = $result[$i]['organisation'];
+            $location = $result[$i]['location_name'];
+            $info = $result[$i]['description'];
+            $level = $result[$i]['levels'];
 
-                echo " <div class='scaverageItem'>
+            echo " <div class='scaverageItem'>
            
                 <div class='scaverageItemIcon'>
                     <img src='/src/assets/zoo.png'>
@@ -83,14 +81,14 @@
                 </div>
     
             </div>";
-            }
+        }
         ?>
 
-       
+
 
     </div>
 
-      
+
     <?php include "app/components/bottomNavigation/index.php"; ?>
     <script>
         function changeValue(e) {
@@ -102,11 +100,11 @@
 
         document.getElementById('list').style.background = "#0F7EC7";
 
-        function ShowInfo(){
+        function ShowInfo() {
             var popup = document.getElementById("myPopup");
             popup.classList.toggle("show");
         }
     </script>
 </body>
-    
+
 </html>

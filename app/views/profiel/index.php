@@ -1,5 +1,5 @@
-<?php 
-if(isset($_POST['log_out'])){
+<?php
+if (isset($_POST['log_out'])) {
     var_dump('log out');
 }
 ?>
@@ -8,89 +8,88 @@ if(isset($_POST['log_out'])){
 <link rel="stylesheet" type="text/css" href="/src/styles/bottomNavigation.css">
 <link rel="stylesheet" type="text/css" href="/src/styles/home.css">
 <script src="/src/js/mobility.js"></script>
-    <body>
-        <div class="viewContainer viewContainerCustom">
 
-            <div class="topBlock">
-                <br><br><br>
-                <div class="secondTitle formTitle">
-                    Profiel
+<body>
+    <div class="viewContainer viewContainerCustom">
+
+        <div class="topBlock">
+            <br><br><br>
+            <div class="secondTitle formTitle">
+                Profiel
+            </div>
+        </div>
+
+        <div class="middleBlock">
+
+
+            <form class="formprofiel" action="/profiel/UpdateAccount" method="POST">
+                <div class="topimage"></div>
+                <img class="profielimage" src="../src/assets/Icon-user.png">
+
+                <div class="inputContainer marginset">
+                    <label class="birthdatetitle" for="birthDate">Voornaam: </label>
+                    <input class="firstname" required type="text" placeholder="Voornaam *" value="" id="firstname" name="firstName">
+
                 </div>
-            </div>
 
-            <div class="middleBlock">
+                <div class="inputContainer">
+                    <label class="birthdatetitle" for="birthDate">Tussenvoegsel: </label>
+                    <input class="insertion" type="text" placeholder="Tussenvoegsel" id="insertion" name="insertion">
 
+                </div>
 
-                <form class="formprofiel" action="/profiel/UpdateAccount" method="POST">
-                    <div class="topimage"></div>
-                    <img class="profielimage" src="../src/assets/Icon-user.png">
-
-                    <div class="inputContainer marginset">
-                        <label class="birthdatetitle" for="birthDate">Voornaam: </label>
-                        <input class="firstname" required type="text" placeholder="Voornaam *" value="" id="firstname" name="firstName">
-
-                    </div>
-
-                    <div class="inputContainer">
-                        <label class="birthdatetitle" for="birthDate">Tussenvoegsel: </label>
-                        <input class="insertion" type="text" placeholder="Tussenvoegsel" id="insertion" name="insertion">
-
-                    </div>
-
-                    <div class="inputContainer">
-                        <label class="birthdatetitle" for="birthDate">Achternaam: </label>
-                        <input class="lastname" required type="text" placeholder="Achternaam *" id="lastname"  name="lastName">
+                <div class="inputContainer">
+                    <label class="birthdatetitle" for="birthDate">Achternaam: </label>
+                    <input class="lastname" required type="text" placeholder="Achternaam *" id="lastname" name="lastName">
 
 
-                    </div>
+                </div>
 
 
-                    <div class="inputContainer">
-                        <label class="birthdatetitle" for="birthDate">E-mail: </label>
-                        <input class="email" required type="email" placeholder="E-mail *" disabled readonly id="email" readonly name="email">
-                        \
-                    </div>
+                <div class="inputContainer">
+                    <label class="birthdatetitle" for="birthDate">E-mail: </label>
+                    <input class="email" required type="email" placeholder="E-mail *" disabled readonly id="email" readonly name="email">
+                    \
+                </div>
 
-                    <div class="inputContainer">
-                        <label class="birthdatetitle" for="birthDate">Level: </label>
-                        <input class="level" required type="text" placeholder="Level *" disabled id="level" readonly name="level">
+                <div class="inputContainer">
+                    <label class="birthdatetitle" for="birthDate">Level: </label>
+                    <input class="level" required type="text" placeholder="Level *" disabled id="level" readonly name="level">
 
-                    </div>
-
-
-                    <div class="inputContainer">
-                        <label class="birthdatetitle" for="birthDate">Geboortedatum: </label>
-                        <input class="birthdate" required type="date" id="birthdate" name="birthdate">
-
-                    </div>
+                </div>
 
 
-                    <div class="submitContainer">
-                        <button type="submit">Verzenden</button>
-                      
-                    </div>
+                <div class="inputContainer">
+                    <label class="birthdatetitle" for="birthDate">Geboortedatum: </label>
+                    <input class="birthdate" required type="date" id="birthdate" name="birthdate">
 
-                </form>
-                <button style="background:red" onclick='logOut()'>uitloggen</button>
-                 
-            </div>
+                </div>
+
+
+                <div class="submitContainer">
+                    <button type="submit">Verzenden</button>
+
+                </div>
+
+            </form>
+            <button style="background:red" onclick='logOut()'>uitloggen</button>
+
+        </div>
     </div>
 
     <?php include "app/components/bottomNavigation/index.php"; ?>
     <script>
         document.getElementById('profile').style.background = "#0F7EC7";
-        //TODO FETCH LOGUIT
-        function logOut(){
-            let nextLocaton =  window.location.href.replace('profiel','inloggin');
+        function logOut() {
+            let nextLocaton = window.location.href.replace('profiel', 'inloggin');
             location.replace(nextLocaton);
         }
-
     </script>
 </body>
+
 </html>
 
 <script>
-
     document.getElementById('firstname').value = "<?php echo $data['user']['first_name']; ?>";
     document.getElementById('insertion').value = "<?php echo $data['user']['insertion']; ?>";
     document.getElementById('lastname').value = "<?php echo $data['user']['last_name']; ?>";
@@ -104,10 +103,10 @@ if(isset($_POST['log_out'])){
         let targetInput = e.parentElement.children[1];
         let targetImage = e.parentElement.children[2];
 
-        if (targetInput.readOnly === true){
+        if (targetInput.readOnly === true) {
             targetInput.readOnly = false;
             targetImage.src = "src/assets/Icon-edit-selected.png"
-        }else{
+        } else {
             targetInput.readOnly = true;
             targetImage.src = "src/assets/Icon-edit.png";
         }

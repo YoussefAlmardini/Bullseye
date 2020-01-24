@@ -115,7 +115,7 @@ class User extends Model
     function checkLogin($email, $password)
     {
         $db = DB::connect();
-        
+
         if ($db == false) {
             $_SESSION['errors']['no_connection'] = true;
         }
@@ -126,7 +126,7 @@ class User extends Model
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $_SESSION['errors'] = [];
-        
+
         // If email is not valid
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             unset($_SESSION['errors']);
@@ -147,11 +147,11 @@ class User extends Model
                 $_SESSION['user'] = $user;
                 $_SESSION['user_id'] = $user['user_id'];
 
-                if($user['customer_id'] !== ""){
+                if ($user['customer_id'] !== "") {
                     $_SESSION['customer_id'] = $user['customer_id'];
                 }
-                
-                if($user['organisation_id'] !== ""){
+
+                if ($user['organisation_id'] !== "") {
                     $_SESSION['organisation_id'] = $user['organisation_id'];
                 }
 
@@ -239,7 +239,8 @@ class User extends Model
         $stmt->execute();
     }
 
-    public function updateAdminProfile($firstName, $insertion, $lastName, $email){
+    public function updateAdminProfile($firstName, $insertion, $lastName, $email)
+    {
         $query = 'UPDATE users SET first_name = :firstName, insertion = :insertion, last_name = :lastName, email_address = :email WHERE user_id = :userID;';
         $db = DB::connect();
         $stmt = $db->prepare($query);
@@ -250,5 +251,4 @@ class User extends Model
         $stmt->bindValue(':userID', $_SESSION['user_id']);
         $stmt->execute();
     }
-
 }

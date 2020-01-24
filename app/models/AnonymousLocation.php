@@ -10,7 +10,8 @@ class AnonymousLocation extends Model
         'date'
     ];
 
-    public function saveLocation($latitude, $longitude, $organisation_id){
+    public function saveLocation($latitude, $longitude, $organisation_id)
+    {
         $query = 'INSERT INTO anonymous_user_locations (latitude, longitude, date, organisation_id) VALUES (:latitude, :longitude, :date, :organisation_id);';
         $db = DB::connect();
         $stmt = $db->prepare($query);
@@ -21,7 +22,8 @@ class AnonymousLocation extends Model
         $stmt->execute();
     }
 
-    public function getLocationsArr($startDate, $endDate, $organisationName){
+    public function getLocationsArr($startDate, $endDate, $organisationName)
+    {
         $query = 'SELECT organisation_id FROM organisations WHERE name = :name;';
         $db = DB::connect();
         $stmt = $db->prepare($query);

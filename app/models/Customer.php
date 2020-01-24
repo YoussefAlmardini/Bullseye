@@ -2,7 +2,8 @@
 
 class Customer extends Model
 {
-    public function saveCustomer($companyName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter){
+    public function saveCustomer($companyName, $postalCode, $streetName, $houseNumber, $houseLetter, $mailingAddressPostalCode, $mailingAddressStreetName, $mailingAddressHouseNumber, $mailingAddressHouseLetter)
+    {
         $queryInsertCustomer = 'INSERT INTO customers (name) VALUES (:name);';
         $db = DB::connect();
         $stmt = $db->prepare($queryInsertCustomer);

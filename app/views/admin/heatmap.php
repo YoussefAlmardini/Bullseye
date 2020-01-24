@@ -24,6 +24,7 @@ if (!$_SESSION['organisationLoggedIn']) {
         }
     </style>
 </head>
+
 <body>
     <div id="map"></div>
     <script>
