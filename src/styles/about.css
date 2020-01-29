@@ -1,0 +1,65 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+
+}
+
+body{
+    margin: 0;
+    padding:0;
+}
+
+h1 {
+    text-align: center;
+    padding:15px
+}
+
+#description {
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+    width: 40%;
+    text-align: justify;
+    margin-bottom: 5%;
+}
+
+
+
+.viewContainerCustom{
+    background: url('../assets/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;;
+}
+
+table {
+    display: table;
+    margin: 0 auto;
+    font-size: larger;
+}
+
+.lastAtt {
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 720px) {
+    #description {
+        width: 65%;
+        margin-bottom: 15%;
+    }
+}
+
+@media only screen and (min-width: 720px) {
+    #description {
+        width: 65%;
+    }
+
+    table {
+        font-size: 25px;
+    }
+
+    p{
+        font-size: 25px;
+    }
+}

@@ -41,7 +41,7 @@ class Admin extends Controller
     public function CreateNewAdmin()
     {
 
-        $role_id = 2;
+        $role_id = 3;
         $first_name = $_POST['firstName'];
         $insertion = $_POST['insertion'];
         $last_name = $_POST['lastName'];
