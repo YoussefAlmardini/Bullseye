@@ -30,18 +30,9 @@ if (!$_SESSION['organisationLoggedIn']) {
     <h1>Welkom op de heatmap-pagina</h1>
 
     <form method="POST" action="/admin/initHeatmapPeriod">
-        <legend>Selecteer informatie om een heatmap te laten genereren:</legend><br>
+        <legend>Selecteer een periode om een heatmap te laten genereren:</legend><br>
 
-        <label>Selecteer een organisatie: </label><br>
-
-        <select name="organisation">
-            <option selected="selected" disabled="disabled">Kies een organisatie</option>
-            <?php
-            for ($i = 0; $i < count($data['organisations']); $i++) {
-                echo '<option value="' . $data['organisations'][$i] . '">' . $data['organisations'][$i] . '</option>';
-            }
-            ?>
-        </select>
+        <input type="hidden" value="<?php echo $_SESSION['organisation_id'] ?>" name="organisationID">
 
         <label for="starting_date">Begindatum: </label>
         <input type="date" name="starting_date"><br><br>

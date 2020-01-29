@@ -22,21 +22,14 @@ class AnonymousLocation extends Model
         $stmt->execute();
     }
 
-    public function getLocationsArr($startDate, $endDate, $organisationName)
+    public function getLocationsArr($startDate, $endDate, $organisationID)
     {
-        $query = 'SELECT organisation_id FROM organisations WHERE name = :name;';
-        $db = DB::connect();
-        $stmt = $db->prepare($query);
-        $stmt->bindValue(':name', trim($organisationName));
-        $stmt->execute();
-        $organisationID = $stmt->fetchAll();
-
         $query = 'SELECT latitude, longitude FROM anonymous_user_locations WHERE date >= :startDate AND date <= :endDate AND organisation_id = :organisation_id;';
         $db = DB::connect();
         $stmt = $db->prepare($query);
         $stmt->bindValue(':startDate', $startDate);
         $stmt->bindValue(':endDate', $endDate);
-        $stmt->bindValue(':organisation_id', $organisationID[0]['organisation_id']);
+        $stmt->bindValue(':organisation_id', $organisationID);
         $stmt->execute();
 
         return $stmt->fetchAll();

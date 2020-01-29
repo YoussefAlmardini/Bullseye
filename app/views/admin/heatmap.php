@@ -56,7 +56,7 @@ if (!$_SESSION['organisationLoggedIn']) {
         }
     </script>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvPT8O8uZWxxFVCXMf2JOBrzAA0aeyyho&libraries=visualization&callback=initMap"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&libraries=visualization&callback=initMap"></script>
 </body>
 
 </html>
